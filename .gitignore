@@ -1,2 +1,5 @@
 bin/
 obj/
+datingapp.db
+datingapp.db-shm
+datingapp.db-wal
