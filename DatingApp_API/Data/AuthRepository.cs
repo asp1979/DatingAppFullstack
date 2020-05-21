@@ -1,8 +1,8 @@
-using System.Reflection.Metadata;
 using System;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
-using DatingApp_API.Models;
 using Microsoft.EntityFrameworkCore;
+using DatingApp_API.Models;
 
 namespace DatingApp_API.Data
 {
