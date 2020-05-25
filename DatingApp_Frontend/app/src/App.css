@@ -89,7 +89,6 @@ border: 2px solid grey;
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 0;
@@ -104,9 +103,16 @@ border: 2px solid grey;
     padding-left: 2rem;
 }
 
-.nav-inputs {
+.navbar ul li {
     position: relative;
-    left: -2rem;
+    left: 2.5rem;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.nav-inputs {
+    position: absolute;
+    right: 2rem;
 }
 
 .nav-inputs input {
