@@ -5,7 +5,11 @@ import { useForm } from 'react-hook-form';
 export default function Navbar() {
 
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => fetch("http://localhost:5000/api/v1/auth/login", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(res => console.log(res.json()))
 
     return (
         <div className="navbar">
@@ -19,10 +23,10 @@ export default function Navbar() {
             </ul>
 
             <form onSubmit={ handleSubmit(onSubmit) } className="nav-inputs">
-                {errors.LOGINuser && <span className="error-span">Username field is required</span>}
-                {errors.LOGINpass && <span className="error-span">Password field is required</span>}
-                <input placeholder="Username" name="LOGINuser" ref={register({ required: true })} />
-                <input placeholder="Password" name="LOGINpass" ref={register({ required: true })} type="password" />
+                {errors.username && <span className="error-span">Username field is required</span>}
+                {errors.password && <span className="error-span">Password field is required</span>}
+                <input placeholder="Username" name="username" ref={register({ required: true })} />
+                <input placeholder="Password" name="password" ref={register({ required: true })} type="password" />
                 <button type="submit">Login</button>
             </form>
 
