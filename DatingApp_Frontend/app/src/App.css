@@ -86,36 +86,3 @@ border: 2px solid grey;
 }
 
 /*-----  CSS RESET ABOVE  -----*/
-
-.navbar {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 7.5%;
-    background-color: purple;
-}
-
-.navbar h1 {
-    color: white;
-    font-size: 2.5rem;
-    padding-left: 2rem;
-}
-
-.navbar ul li {
-    position: relative;
-    left: 2.5rem;
-    display: inline-block;
-    margin-right: 1rem;
-}
-
-.nav-inputs {
-    position: absolute;
-    right: 2rem;
-}
-
-.nav-inputs input {
-    margin-right: 0.5rem;
-}
