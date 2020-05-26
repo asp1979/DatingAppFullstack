@@ -30,3 +30,9 @@
 .nav-inputs input {
     margin-right: 0.5rem;
 }
+
+.error-span {
+    margin-right: 1rem;
+    font-size: 1rem;
+    color: white;
+}
