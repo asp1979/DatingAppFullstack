@@ -5,11 +5,15 @@ import { useForm } from 'react-hook-form';
 export default function Navbar() {
 
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => fetch("http://localhost:5000/api/v1/auth/login", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    }).then(res => console.log(res.json()))
+    const onSubmit = async (formdata) => {
+        const res = await fetch("http://localhost:5000/api/v1/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formdata)
+        });
+        const parsedJSON = await res.json();
+        console.log(parsedJSON);
+    }
 
     return (
         <div className="navbar">
