@@ -1,1 +1,1 @@
-# Frontend React App (JavaScript)
+# Frontend React App (TypeScript)
