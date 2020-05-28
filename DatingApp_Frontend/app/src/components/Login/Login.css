@@ -1,0 +1,20 @@
+.page.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 1rem;
+    border: 0.2rem solid purple;
+    width: 25%;
+    height: 30rem;
+}
+
+input, button {
+    border-color: purple;
+}

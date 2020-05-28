@@ -1,6 +1,7 @@
 .navbar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 0;
@@ -13,27 +14,18 @@
 .navbar h1 {
     color: white;
     font-size: 2.5rem;
-    padding-left: 2rem;
+    margin-left: 2rem;
 }
 
 .navbar ul li {
-    position: relative;
-    left: 2.5rem;
     display: inline-block;
-    margin-right: 1rem;
+    font-size: 1.25rem;
+    margin-right: 4rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 0.5rem;
+    background-color: white;
 }
 
-.nav-inputs {
-    position: absolute;
-    right: 2rem;
-}
-
-.nav-inputs input {
-    margin-right: 0.5rem;
-}
-
-.error-span {
-    margin-right: 1rem;
-    font-size: 1rem;
-    color: white;
+.navbar ul li a {
+    color: purple;
 }

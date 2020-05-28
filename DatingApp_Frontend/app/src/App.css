@@ -86,3 +86,12 @@ border: 2px solid grey;
 }
 
 /*-----  CSS RESET ABOVE  -----*/
+
+.page {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 5rem);
+    background: white;
+}
