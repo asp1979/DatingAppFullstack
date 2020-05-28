@@ -7,15 +7,14 @@ export default function Navbar() {
     return (
         <div className="navbar">
             
-            <h1>
-                <Link to="/"> Timder </Link>
-            </h1>
+            <div className="route-nav">
+                <Link to="/"> <h1>Timder</h1> </Link>
+                <Link to="/messages"> <p>Messages</p> </Link>
+            </div>
 
-            <ul>
-                <li>
-                    <Link to="/Login"> Login </Link>
-                </li>
-            </ul>
+            <div className="user-nav">
+                <Link to="/Login"> Login </Link>
+            </div>
 
         </div>
     )

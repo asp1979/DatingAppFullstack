@@ -17,15 +17,27 @@
     margin-left: 2rem;
 }
 
-.navbar ul li {
+.user-nav a {
     display: inline-block;
     font-size: 1.25rem;
     margin-right: 4rem;
     padding: 0.5rem 1.1rem;
     border-radius: 0.5rem;
     background-color: white;
+    color: purple;
 }
 
-.navbar ul li a {
-    color: purple;
+.route-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.route-nav a, p {
+    margin: 0 1.25rem;
+}
+
+.route-nav p {
+    font-size: 1.1rem;
+    color: white;
 }
