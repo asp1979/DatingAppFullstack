@@ -12,7 +12,7 @@ export default function Navbar() {
             body: JSON.stringify(formdata)
         });
         const parsedJSON = await res.json();
-        console.log(parsedJSON);
+        localStorage.setItem("token", parsedJSON.token)
     }
 
     return (
