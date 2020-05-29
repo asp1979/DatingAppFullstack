@@ -2,20 +2,16 @@ import './Login.css';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-export const Login: React.FC = () => {
-
-    interface parsedJSON {
-        token: string
-    }
+export const Login = () => {
 
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = async (formdata: object) => {
-        const res: Response = await fetch("http://localhost:5000/api/v1/auth/login", {
+    const onSubmit = async (formdata) => {
+        const res = await fetch("http://localhost:5000/api/v1/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formdata)
         });
-        const parsedJSON: parsedJSON = await res.json();
+        const parsedJSON = await res.json();
         localStorage.setItem("token", parsedJSON.token)
     }
 

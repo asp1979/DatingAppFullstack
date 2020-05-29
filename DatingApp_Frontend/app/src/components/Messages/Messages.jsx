@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Messages: React.FC = () => {
+export const Messages = () => {
     return (
         <div className="page messages">
             <h1>Messages</h1>
