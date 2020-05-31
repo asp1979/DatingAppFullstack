@@ -5,7 +5,7 @@ import { UserContext } from '../../UserContext';
 
 export const Navbar = () => {
 
-    const { state, /* setState */ } = useContext(UserContext);
+    const { state, setState } = useContext(UserContext);
 
     return (
         <div className="navbar">
