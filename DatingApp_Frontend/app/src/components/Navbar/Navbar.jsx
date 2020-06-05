@@ -5,7 +5,7 @@ import { UserContext } from '../../UserContext';
 
 export const Navbar = () => {
 
-    const { state, setState } = useContext(UserContext);
+    const { userContext } = useContext(UserContext);
 
     return (
         <div className="navbar">
@@ -16,8 +16,8 @@ export const Navbar = () => {
             </div>
 
             <div className="user-nav">
-                <Link to="/Login"> Login </Link>
-                {state.loggedIn && <a>state.userName</a>}
+                { !userContext.loggedIn && <Link to="/Login"> Login </Link> }
+                { userContext.loggedIn && <Link to="/User"> User </Link> }
             </div>
 
         </div>
