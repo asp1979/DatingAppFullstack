@@ -1,11 +1,12 @@
 import '../Login/Login.css';
 // NOTE: this is using same styling as Login component
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export const Register = () => {
 
     const { register, handleSubmit, errors } = useForm();
+    const [state, setState] = useState({ regSuccess: null });
 
     const onSubmit = async (formdata) => {
         const post = await fetch("http://localhost:5000/api/v1/auth/register", {
@@ -13,7 +14,7 @@ export const Register = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formdata)
         });
-        const res = await post.json();
+        post.ok ? setState({ ...state, regSuccess: true }) : setState({ ...state, regSuccess: false });
     }
 
     return (
@@ -23,6 +24,9 @@ export const Register = () => {
 
                 { errors.username && <span className="error-span">Username field is required</span> }
                 { errors.password && <span className="error-span">Password field is required</span> }
+
+                { state.regSuccess === true && <span className="success-span">Registration successful! Confirm your email!</span> }
+                { state.regSuccess === false && <span className="error-span">Registration failed! Username taken!</span> }
 
                 <input placeholder="Username" name="username" ref={register({ required: true })} />
                 <input placeholder="Password" name="password" ref={register({ required: true })} type="password" />

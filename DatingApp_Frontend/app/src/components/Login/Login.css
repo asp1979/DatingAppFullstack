@@ -25,9 +25,20 @@
 
 .error-span {
     font-size: 1rem;
+    text-align: center;
     padding: 0.5rem 1.1rem;
     margin: 0 2rem;
     border-radius: 0.5rem;
     background-color: white;
     color: crimson;
+}
+
+.success-span {
+    font-size: 1rem;
+    text-align: center;
+    padding: 0.5rem 1.1rem;
+    margin: 0 2rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    color: limegreen;
 }
