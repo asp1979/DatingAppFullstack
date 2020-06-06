@@ -4,15 +4,15 @@
     justify-content: center;
 }
 
-form {
+.page.login form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     border-radius: 1rem;
     border: 0.2rem solid purple;
-    width: 25%;
-    height: 28rem;
+    width: 22%;
+    height: 24rem;
     background: purple;
 }
 
@@ -24,10 +24,10 @@ form {
 }
 
 .error-span {
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 0.5rem 1.1rem;
     margin: 0 2rem;
     border-radius: 0.5rem;
     background-color: white;
-    color: purple;
+    color: crimson;
 }
