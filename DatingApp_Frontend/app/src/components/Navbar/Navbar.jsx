@@ -21,8 +21,9 @@ export const Navbar = () => {
             </div>
 
             <div className="user-nav">
-                { !userContext.loggedIn && <Link to="/Login"> Login </Link> }
-                { userContext.loggedIn && <Link to="/User"> User </Link> }
+                { !userContext.loggedIn && <Link to="/register"> Register </Link> }
+                { !userContext.loggedIn && <Link to="/login"> Login </Link> }
+                { userContext.loggedIn && <Link to="/user"> User </Link> }
                 { userContext.loggedIn && <button onClick={ logout }> Logout </button> }
             </div>
 
