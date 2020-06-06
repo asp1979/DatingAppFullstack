@@ -12,9 +12,22 @@ form {
     border-radius: 1rem;
     border: 0.2rem solid purple;
     width: 25%;
-    height: 30rem;
+    height: 28rem;
+    background: purple;
 }
 
-input, button {
-    border-color: purple;
+.form-inputs input, .form-inputs button {
+    border-color: white;
+    border-radius: 0.5rem;
+    color: purple;
+    font-size: 1rem;
+}
+
+.error-span {
+    font-size: 1.1rem;
+    padding: 0.5rem 1.1rem;
+    margin: 0 2rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    color: purple;
 }

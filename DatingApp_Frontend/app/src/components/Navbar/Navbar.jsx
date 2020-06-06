@@ -5,7 +5,12 @@ import { UserContext } from '../../UserContext';
 
 export const Navbar = () => {
 
-    const { userContext } = useContext(UserContext);
+    const { userContext, setUserContext } = useContext(UserContext);
+
+    const logout = () => { 
+        setUserContext({ ...userContext, loggedIn: false, jwt: null });
+        localStorage.removeItem("jwt");
+    }
 
     return (
         <div className="navbar">
@@ -18,6 +23,7 @@ export const Navbar = () => {
             <div className="user-nav">
                 { !userContext.loggedIn && <Link to="/Login"> Login </Link> }
                 { userContext.loggedIn && <Link to="/User"> User </Link> }
+                { userContext.loggedIn && <button onClick={ logout }> Logout </button> }
             </div>
 
         </div>

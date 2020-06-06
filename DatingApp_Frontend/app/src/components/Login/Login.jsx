@@ -23,7 +23,7 @@ export const Login = () => {
     return (
         <div className="page login">
 
-            <form onSubmit={ handleSubmit(onSubmit) } className="nav-inputs">
+            <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs">
 
                 { errors.username && <span className="error-span">Username field is required</span> }
                 { errors.password && <span className="error-span">Password field is required</span> }
