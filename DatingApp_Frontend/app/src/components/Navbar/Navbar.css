@@ -18,7 +18,7 @@
     margin-left: 2rem;
 }
 
-.user-nav a {
+.user-nav a, .user-nav button {
     display: inline-block;
     font-size: 1.1rem;
     margin: 0 1rem;
