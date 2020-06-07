@@ -20,7 +20,7 @@
     border-color: white;
     border-radius: 0.5rem;
     color: purple;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .error-span {
@@ -41,4 +41,10 @@
     border-radius: 0.5rem;
     background-color: white;
     color: limegreen;
+}
+
+.page.login h1 {
+    font-size: 2rem;
+    text-decoration: underline;
+    color: white;
 }

@@ -25,11 +25,13 @@ export const Login = () => {
 
             <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs">
 
-                { errors.username && <span className="error-span">Username field is required</span> }
-                { errors.password && <span className="error-span">Password field is required</span> }
+                { errors.username && <span className="error-span">Username incorrect</span> }
+                { errors.password && <span className="error-span">Password incorrect</span> }
 
-                <input placeholder="Username" name="username" ref={register({ required: true })} />
-                <input placeholder="Password" name="password" ref={register({ required: true })} type="password" />
+                <h1>Login</h1>
+
+                <input placeholder="Username" name="username" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
+                <input placeholder="Password" name="password" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
 
                 <button type="submit">Login</button>
                 
