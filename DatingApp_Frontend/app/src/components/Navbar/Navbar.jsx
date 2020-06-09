@@ -23,7 +23,7 @@ export const Navbar = () => {
             <div className="user-nav">
                 { !userContext.loggedIn && <Link to="/register"> Register </Link> }
                 { !userContext.loggedIn && <Link to="/login"> Login </Link> }
-                { userContext.loggedIn && <Link to="/user"> User </Link> }
+                { userContext.loggedIn && <Link to="/user"> { userContext.jwtUsername } </Link> }
                 { userContext.loggedIn && <button onClick={ logout }> Logout </button> }
             </div>
 

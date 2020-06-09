@@ -2,6 +2,7 @@ import './Login.css';
 import React, { useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
+import jwtDecode from 'jwt-decode';
 
 export const Login = () => {
 
@@ -17,7 +18,13 @@ export const Login = () => {
         const res = await post.json();
         const JWT = res.token;
         localStorage.setItem("jwt", JWT);
-        setUserContext({ ...userContext, jwt: JWT, loggedIn: true });
+        setUserContext({
+            ...userContext,
+            jwt: JWT,
+            jwtUsername: jwtDecode(localStorage.getItem("jwt")).unique_name,
+            jwtExpiry: jwtDecode(localStorage.getItem("jwt")).exp,
+            loggedIn: true
+        });
     }
 
     return (
