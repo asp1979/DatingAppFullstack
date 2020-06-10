@@ -2,14 +2,16 @@ import './Navbar.css';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
+import { withRouter } from 'react-router-dom';
 
-export const Navbar = () => {
+export const Navbar = withRouter(({ history }) => {
 
     const { userContext, setUserContext } = useContext(UserContext);
 
     const logout = () => { 
         setUserContext({ ...userContext, loggedIn: false, jwt: null });
         localStorage.removeItem("jwt");
+        setTimeout(() => history.push("/login"), 300);
     }
 
     return (
@@ -29,4 +31,4 @@ export const Navbar = () => {
 
         </div>
     )
-}
+})

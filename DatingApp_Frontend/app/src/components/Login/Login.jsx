@@ -1,13 +1,15 @@
 import './Login.css';
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
+import { withRouter } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
-export const Login = () => {
+export const Login = withRouter(({ history }) => {
 
     const { userContext, setUserContext } = useContext(UserContext);
     const { register, handleSubmit, errors } = useForm();
+    const [fetchError, setFetchError] = useState(false);
 
     const onSubmit = async (formdata) => {
         const post = await fetch("http://localhost:5000/api/v1/auth/login", {
@@ -17,14 +19,19 @@ export const Login = () => {
         });
         const res = await post.json();
         const JWT = res.token;
-        localStorage.setItem("jwt", JWT);
-        setUserContext({
-            ...userContext,
-            jwt: JWT,
-            jwtUsername: jwtDecode(localStorage.getItem("jwt")).unique_name,
-            jwtExpiry: jwtDecode(localStorage.getItem("jwt")).exp,
-            loggedIn: true
-        });
+        if(JWT) {
+            localStorage.setItem("jwt", JWT);
+            setUserContext({
+                ...userContext,
+                jwt: JWT,
+                jwtUsername: jwtDecode(localStorage.getItem("jwt")).unique_name,
+                jwtExpiry: jwtDecode(localStorage.getItem("jwt")).exp,
+                loggedIn: true
+            });
+            setTimeout(() => history.push("/user"), 300); // redirect
+        } else {
+            setFetchError(true);
+        }
     }
 
     return (
@@ -34,6 +41,7 @@ export const Login = () => {
 
                 { errors.username && <span className="error-span">Username incorrect</span> }
                 { errors.password && <span className="error-span">Password incorrect</span> }
+                { fetchError && <span className="error-span">User does not exist!</span> }
 
                 <h1>Login</h1>
 
@@ -46,4 +54,4 @@ export const Login = () => {
 
         </div>
     )
-}
+})
