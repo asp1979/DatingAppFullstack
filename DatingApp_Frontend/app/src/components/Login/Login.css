@@ -9,16 +9,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    border-radius: 1rem;
-    border: 0.2rem solid purple;
-    width: 22%;
+    border-radius: 0.5rem;
+    border: 2px solid purple;
+    width: 17%;
     height: 24rem;
-    background: purple;
+    background: white;
 }
 
 .form-inputs input, .form-inputs button {
     border-color: white;
-    border-radius: 0.5rem;
+    border: 2px solid purple;
+    border-radius: 0.3rem;
     color: purple;
     font-size: 0.8rem;
 }
@@ -46,5 +47,5 @@
 .page.login h1 {
     font-size: 2rem;
     text-decoration: underline;
-    color: white;
+    color: purple;
 }

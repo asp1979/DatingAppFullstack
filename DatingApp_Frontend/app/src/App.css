@@ -1,3 +1,5 @@
+/*-----  CSS RESET BELOW  -----*/
+
 * {
     margin: 0px;
     padding: 0px;
@@ -109,7 +111,7 @@ th {
     100% { opacity: 1 }
 }
 
-/*-----  CSS RESET ABOVE  -----*/
+/*-----  GLOBAL CSS BELOW  -----*/
 
 .page {
     position: absolute;
@@ -117,5 +119,5 @@ th {
     left: 0;
     width: 100%;
     height: calc(100% - 5rem);
-    background: white;
+    background: linear-gradient(to right, #77a1d3, #79cbca, #e684ae);
 }
