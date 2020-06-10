@@ -10,17 +10,17 @@
     align-items: center;
     justify-content: space-evenly;
     border-radius: 0.5rem;
-    border: 2px solid purple;
     width: 17%;
     height: 24rem;
     background: white;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.1);
 }
 
 .form-inputs input, .form-inputs button {
     border-color: white;
-    border: 2px solid purple;
+    border: 2px solid grey;
     border-radius: 0.3rem;
-    color: purple;
+    color: grey;
     font-size: 0.8rem;
 }
 
@@ -30,8 +30,9 @@
     padding: 0.5rem 1.1rem;
     margin: 0 2rem;
     border-radius: 0.5rem;
+    border: 2px solid grey;
     background-color: white;
-    color: crimson;
+    color: grey;
 }
 
 .success-span {
@@ -40,6 +41,7 @@
     padding: 0.5rem 1.1rem;
     margin: 0 2rem;
     border-radius: 0.5rem;
+    border: 2px solid limegreen;
     background-color: white;
     color: limegreen;
 }
@@ -47,5 +49,5 @@
 .page.login h1 {
     font-size: 2rem;
     text-decoration: underline;
-    color: purple;
+    color: grey;
 }

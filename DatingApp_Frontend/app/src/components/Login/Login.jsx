@@ -39,11 +39,11 @@ export const Login = withRouter(({ history }) => {
 
             <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs">
 
+                <h1>Login</h1>
+
                 { errors.username && <span className="error-span">Username incorrect</span> }
                 { errors.password && <span className="error-span">Password incorrect</span> }
                 { fetchError && <span className="error-span">User does not exist!</span> }
-
-                <h1>Login</h1>
 
                 <input placeholder="Username" name="username" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
                 <input placeholder="Password" name="password" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
