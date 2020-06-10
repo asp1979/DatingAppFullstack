@@ -45,8 +45,8 @@ export const Login = withRouter(({ history }) => {
                 { errors.password && <span className="error-span">Password incorrect</span> }
                 { fetchError && <span className="error-span">User does not exist!</span> }
 
-                <input placeholder="Username" name="username" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
-                <input placeholder="Password" name="password" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
+                <input placeholder="Username" name="username" autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
+                <input placeholder="Password" name="password" autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
 
                 <button type="submit">Login</button>
                 
