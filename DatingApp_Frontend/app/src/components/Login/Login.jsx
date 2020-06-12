@@ -19,7 +19,7 @@ export const Login = withRouter(({ history }) => {
         });
         const res = await post.json();
         const JWT = res.token;
-        if(JWT) {
+        if(post.ok && JWT) {
             localStorage.setItem("jwt", JWT);
             setUserContext({
                 ...userContext,

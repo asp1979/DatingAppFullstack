@@ -14,7 +14,11 @@ export const Register = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formdata)
         });
-        post.ok ? setState({ ...state, regSuccess: true }) : setState({ ...state, regSuccess: false });
+        if(post.ok) {
+            setState({ ...state, regSuccess: true });
+        } else {
+            setState({ ...state, regSuccess: false });
+        }
     }
 
     return (
