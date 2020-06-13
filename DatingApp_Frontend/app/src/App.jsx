@@ -7,6 +7,7 @@ import { Home } from './components/Home/Home';
 import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Messages } from './components/Messages/Messages';
+import { User } from './components/User/User';
 import { UserContext } from './UserContext';
 import jwtDecode from 'jwt-decode';
 
@@ -40,10 +41,10 @@ export const App = () => {
             <UserContext.Provider value={{ userContext, setUserContext }}>
 
                 <Navbar />
-
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
+                <PrivateRoute path="/user" component={User} />
                 <PrivateRoute path="/messages" component={Messages} />
 
             </UserContext.Provider>

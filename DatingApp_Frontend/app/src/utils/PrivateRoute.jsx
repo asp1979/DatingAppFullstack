@@ -9,7 +9,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
     return (
         <Route {...rest} 
         render={
-            props => userContext.loggedIn && userContext.jwt.length > 20
+            props => userContext.loggedIn && userContext.jwt.length >= 128
             ? <Component {...props} /> 
             : <Redirect to={{ pathname: "/login" }} />
         } />
