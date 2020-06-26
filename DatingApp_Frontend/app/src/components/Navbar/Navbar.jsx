@@ -19,7 +19,8 @@ export const Navbar = withRouter(({ history }) => {
             
             <div className="route-nav">
                 <Link to="/"> <h1>Timder</h1> </Link>
-                <Link to="/messages"> <p>Messages</p> </Link>
+                { userContext.loggedIn && <Link to="/matches"> <p>Matches</p> </Link> }
+                { userContext.loggedIn && <Link to="/messages"> <p>Messages</p> </Link> }
             </div>
 
             <div className="user-nav">

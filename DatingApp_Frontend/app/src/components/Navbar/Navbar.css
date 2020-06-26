@@ -15,7 +15,7 @@
 .navbar h1 {
     color: grey;
     font-size: 2.5rem;
-    margin-left: 2rem;
+    margin: 0 2rem;
 }
 
 .user-nav a, .user-nav button {
@@ -35,12 +35,15 @@
     justify-content: space-between;
 }
 
-.route-nav a, p {
+.route-nav a {
     margin: 0 1.25rem;
 }
 
 .route-nav p {
     font-size: 1.1rem;
+    padding: 0.5rem 1.1rem;
+    border: 2px solid grey;
+    border-radius: 0.5rem;
+    background-color: white;
     color: grey;
-    padding: 1rem 0;
 }

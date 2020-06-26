@@ -6,6 +6,7 @@ import { Navbar } from './components/Navbar/Navbar';
 import { Home } from './components/Home/Home';
 import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
+import { Matches } from './components/Matches/Matches';
 import { Messages } from './components/Messages/Messages';
 import { User } from './components/User/User';
 import { UserContext } from './UserContext';
@@ -45,6 +46,7 @@ export const App = () => {
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <PrivateRoute path="/user" component={User} />
+                <PrivateRoute path="/matches" component={Matches} />
                 <PrivateRoute path="/messages" component={Messages} />
 
             </UserContext.Provider>

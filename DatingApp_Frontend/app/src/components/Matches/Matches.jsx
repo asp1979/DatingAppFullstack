@@ -1,10 +1,10 @@
 import React from 'react';
 
-export const Messages = () => {
+export const Matches = () => {
     return (
-        <div className="page messages">
+        <div className="page matches">
             <div className="content">
-                <h1>Messages</h1>
+                <h1>Matches</h1>
             </div>
         </div>
     )

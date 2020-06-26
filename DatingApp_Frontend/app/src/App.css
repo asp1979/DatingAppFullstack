@@ -121,3 +121,15 @@ th {
     height: calc(100% - 5rem);
     background: linear-gradient(to right, #77a1d3, #79cbca, #e684ae);
 }
+
+.page .content {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56%;
+    min-height: 92%;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: white;
+}
