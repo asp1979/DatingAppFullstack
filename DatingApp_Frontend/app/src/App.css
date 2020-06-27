@@ -17,7 +17,7 @@ html {
 
 body {
     height: 100%;
-    background-color: #171717;
+    background: linear-gradient(to right, #77a1d3, #79cbca, #e684ae);
     overflow-x: hidden;
 }
 
@@ -118,8 +118,7 @@ th {
     top: 5rem;
     left: 0;
     width: 100%;
-    height: calc(100% - 5rem);
-    background: linear-gradient(to right, #77a1d3, #79cbca, #e684ae);
+    min-height: calc(100% - 5rem);
 }
 
 .page .content {
