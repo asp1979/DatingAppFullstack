@@ -35,18 +35,18 @@ a {
 
 button {
     cursor: pointer;
-    font-size: 0.9rem;
-    padding: 0.5rem 1.1rem;
-    margin: 0 1rem;
-    border-radius: 0.5rem;
-    border: 2px solid white;
+    font-size: 1.8vmin;
+    padding: 1vmin 2.2vmin;
+    margin: 0 2vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid white;
     background-color: white;
     color: grey;
 }
 
 input {
     padding: 0.75vmin;
-    border: 2px solid grey;
+    border: 0.25vmin solid grey;
 }
 
 input:focus::-webkit-input-placeholder {
@@ -67,7 +67,7 @@ input:focus:-ms-input-placeholder {
 
 textarea {
     padding: 1vmin;
-    border: 2px solid grey;
+    border: 0.25vmin solid grey;
     overflow: hidden;
 }
 
@@ -115,10 +115,10 @@ th {
 
 .page {
     position: absolute;
-    top: 5rem;
+    top: 10vmin;
     left: 0;
     width: 100%;
-    min-height: calc(100% - 5rem);
+    min-height: calc(100% - 10vmin);
 }
 
 .page .content {
@@ -126,10 +126,10 @@ th {
     top: 4%;
     left: 50%;
     transform: translateX(-50%);
-    width: 56%;
+    width: 90vmin;
     min-height: 92%;
-    padding: 2rem;
-    border-radius: 1rem;
+    padding: 4vmin;
+    border-radius: 2vmin;
     background: white;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.1);
+    box-shadow: 0.1vmin 0.1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
 }

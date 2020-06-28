@@ -9,45 +9,45 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    border-radius: 0.5rem;
-    width: 17%;
-    height: 24rem;
+    border-radius: 1vmin;
+    width: 36vmin;
+    height: 44vmin;
     background: white;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.1);
+    box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
 }
 
 .form-inputs input, .form-inputs button {
     border-color: white;
-    border: 2px solid grey;
-    border-radius: 0.3rem;
+    border: 0.25vmin solid grey;
+    border-radius: 0.6vmin;
     color: grey;
-    font-size: 0.8rem;
+    font-size: 1.6vmin;
 }
 
 .error-span {
-    font-size: 0.9rem;
+    font-size: 1.8vmin;
     text-align: center;
-    padding: 0.5rem 1.1rem;
-    margin: 0 2rem;
-    border-radius: 0.5rem;
-    border: 2px solid grey;
+    padding: 1vmin 2.2vmin;
+    margin: 0 4vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid grey;
     background-color: white;
     color: grey;
 }
 
 .success-span {
-    font-size: 0.9rem;
+    font-size: 1.8vmin;
     text-align: center;
-    padding: 0.5rem 1.1rem;
-    margin: 0 2rem;
-    border-radius: 0.5rem;
-    border: 2px solid limegreen;
+    padding: 1vmin 2.2vmin;
+    margin: 0 4vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid limegreen;
     background-color: white;
     color: limegreen;
 }
 
 .page.login h1 {
-    font-size: 2rem;
+    font-size: 4vmin;
     text-decoration: underline;
     color: grey;
 }
