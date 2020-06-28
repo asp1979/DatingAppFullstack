@@ -13,7 +13,6 @@ export const Matches = () => {
             const get = await fetch("http://localhost:5000/api/v1/users", {
                 headers: { "Authorization": "Bearer " + userContext.jwt }
             });
-
             if(get.ok) {
                 const res = await get.json();
                 setMatches(res);

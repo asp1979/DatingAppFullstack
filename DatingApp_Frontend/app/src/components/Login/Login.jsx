@@ -17,9 +17,9 @@ export const Login = withRouter(({ history }) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formdata)
         });
-        const res = await post.json();
-        const JWT = res.token;
-        if(post.ok && JWT) {
+        if(post.ok) {
+            const res = await post.json();
+            const JWT = res.token;
             localStorage.setItem("jwt", JWT);
             setUserContext({
                 ...userContext,
@@ -28,7 +28,7 @@ export const Login = withRouter(({ history }) => {
                 jwtExpiry: jwtDecode(localStorage.getItem("jwt")).exp,
                 loggedIn: true
             });
-            setTimeout(() => history.push("/user"), 300); // redirect
+            history.push("/user"); // redirect
         } else {
             setFetchError(true);
         }
