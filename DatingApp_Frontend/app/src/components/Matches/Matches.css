@@ -29,6 +29,10 @@
     opacity: 0;
 }
 
+.person-card:hover {
+    background: aliceblue;
+}
+
 .person-card img {
     width: 9vmin;
     height: 9vmin;

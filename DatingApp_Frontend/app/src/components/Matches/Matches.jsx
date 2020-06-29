@@ -1,6 +1,7 @@
 import './Matches.css';
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../UserContext';
+import { Link } from 'react-router-dom';
 
 export const Matches = () => {
 
@@ -34,10 +35,12 @@ export const Matches = () => {
                     !loading && matches
                     .filter(x => x.username !== userContext.jwtUsername)
                     .map((match, i) => 
-                        <li className="person-card" key={i}>
-                            <p>{match.knownAs}</p>
-                            <img src={match.photoUrl} alt=""></img>
-                        </li>
+                        <Link to={"user/" + match.username}>
+                            <li className="person-card" key={i}>
+                                <p>{match.knownAs}</p>
+                                <img src={match.photoUrl} alt=""></img>
+                            </li>
+                        </Link>
                     )
                 }
                 </ul>
