@@ -4,10 +4,11 @@
 }
 
 .matches .content ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 15vmin 15vmin 15vmin 15vmin;
+    column-gap: 5vmin;
+    grid-template-rows: 15vmin 15vmin 15vmin;
+    row-gap: 5vmin;
 }
 
 .person-card {

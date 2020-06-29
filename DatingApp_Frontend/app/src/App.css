@@ -129,6 +129,7 @@ th {
     width: 90vmin;
     min-height: 92%;
     padding: 4vmin;
+    margin-bottom: 2%;
     border-radius: 2vmin;
     background: white;
     box-shadow: 0.1vmin 0.1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
