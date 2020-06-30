@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export const Matches = () => {
 
     const { userContext } = useContext(UserContext);
-    const [matches, setMatches] = useState(null);
+    const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export const Matches = () => {
             });
             if(get.ok) {
                 const res = await get.json();
-                setMatches(res);
+                setMatches([...res]);
                 setLoading(false);
             } else {
                 console.log(get.status, "Error");
@@ -33,13 +33,11 @@ export const Matches = () => {
                 <ul>
                 { 
                     !loading && matches
-                    .filter(x => x.username !== userContext.jwtUsername)
+                    .filter(match => match.username !== userContext.jwtUsername)
                     .map((match, i) => 
-                        <Link to={"user/" + match.username}>
-                            <li className="person-card" key={i}>
-                                <p>{match.knownAs}</p>
-                                <img src={match.photoUrl} alt=""></img>
-                            </li>
+                        <Link to={"user/" + match.id} className="person-card" key={i}>
+                            <p>{match.username}</p>
+                            <img src={match.photoUrl} alt=""></img>
                         </Link>
                     )
                 }

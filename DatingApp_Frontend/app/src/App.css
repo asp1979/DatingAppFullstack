@@ -134,3 +134,8 @@ th {
     background: white;
     box-shadow: 0.1vmin 0.1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
 }
+
+.page .content h1 {
+    width: 100%;
+    border-bottom: 2px solid grey;
+}

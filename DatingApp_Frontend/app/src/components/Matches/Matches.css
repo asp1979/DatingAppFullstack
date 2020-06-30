@@ -1,8 +1,3 @@
-.matches h1 {
-    width: 100%;
-    border-bottom: 2px solid grey;
-}
-
 .matches .content ul {
     display: grid;
     grid-template-columns: 15vmin 15vmin 15vmin 15vmin;

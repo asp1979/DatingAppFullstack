@@ -45,7 +45,7 @@ export const App = () => {
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
-                <PrivateRoute path="/user" component={User} />
+                <PrivateRoute path="/user/:id" component={User} />
                 <PrivateRoute path="/matches" component={Matches} />
                 <PrivateRoute path="/messages" component={Messages} />
 
