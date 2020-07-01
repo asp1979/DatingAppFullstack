@@ -111,6 +111,12 @@ th {
     100% { opacity: 1 }
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    body {
+        display: none;
+    }
+}
+
 /*-----  GLOBAL CSS BELOW  -----*/
 
 .page {
