@@ -26,7 +26,7 @@ export const Navbar = withRouter(({ history }) => {
             <div className="user-nav">
                 { !userContext.loggedIn && <Link to="/register"> Register </Link> }
                 { !userContext.loggedIn && <Link to="/login"> Login </Link> }
-                { userContext.loggedIn && <Link to={"/user/" + userContext.jwtUsername}> { userContext.jwtUsername } </Link> }
+                { userContext.loggedIn && <Link to={"/user/" + userContext.jwtID}> { userContext.jwtUsername } </Link> }
                 { userContext.loggedIn && <button onClick={ logout }> Logout </button> }
             </div>
 

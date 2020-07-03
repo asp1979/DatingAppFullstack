@@ -18,6 +18,7 @@ export const App = () => {
 
     const [userContext, setUserContext] = useState({
         jwt: jwt ? jwt : null,
+        jwtID: jwt ? jwtDecode(jwt).nameid : null,
         jwtUsername: jwt ? jwtDecode(jwt).unique_name : null,
         jwtExpiry: jwt ? jwtDecode(jwt).exp : null,
         loggedIn: jwt ? true : false,
