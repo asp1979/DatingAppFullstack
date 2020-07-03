@@ -17,7 +17,6 @@ export const User = ({ match }) => {
             });
             if(get.ok) {
                 const data = await get.json();
-                console.log(data);
                 setLoading(false);
                 setUser(data);
             } else {
