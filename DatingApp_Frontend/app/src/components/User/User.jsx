@@ -1,6 +1,8 @@
 import React from 'react';
 import { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import './Tabs.css'
 
 export const User = ({ match }) => {
 
@@ -33,25 +35,45 @@ export const User = ({ match }) => {
                 {
                     !loading &&
                     <div className="user-info">
+
                         <h1>{user.username}</h1>
-                        <br></br>
 
-                        <img src={user.photoUrl} alt=""></img>
-                        <br></br>
+                        <Tabs className="react-tabs">
 
-                        <p>{user.gender}</p>
-                        <br></br>
+                            {/* TabList has to be in same order as TabPanels */}
 
-                        <p>{user.introduction}</p>
-                        <br></br>
+                            <TabList>
+                                <Tab>Overview</Tab>
+                                <Tab>Looking for</Tab>
+                                <Tab>Photos</Tab>
+                                <Tab>Location</Tab>
+                            </TabList>
 
-                        <p>{user.lookingFor}</p>
-                        <br></br>
+                            <TabPanel className="overview">
+                                <img src={user.photoUrl} alt=""></img>
+                                <br />
+                                <br />
+                                <p>{user.gender}</p>
+                                <br />
+                                <p>{user.introduction}</p>
+                                <br />
+                                <p>{user.age}</p>
+                            </TabPanel>
 
-                        <p>{user.country}</p>
-                        <br></br>
-                        
-                        <p>{user.city}</p>
+                            <TabPanel className="looking-for">
+                                {}
+                            </TabPanel>
+
+                            <TabPanel className="photos">
+                                {}
+                            </TabPanel>
+                            
+                            <TabPanel className="location">
+                                {}
+                            </TabPanel>
+
+                        </Tabs>
+
                     </div>
                 }
             </div>

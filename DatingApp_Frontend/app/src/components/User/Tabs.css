@@ -1,0 +1,35 @@
+.react-tabs {
+    -webkit-tap-highlight-color: transparent;
+}
+  
+.react-tabs__tab-list {
+    text-align: center;
+    margin: 1vmin 0vmin;
+    padding: 0;
+}
+
+.react-tabs__tab {
+    font-size: 2vmin;
+    display: inline-block;
+    list-style: none;
+    padding: 0.6vmin 1.2vmin;
+    cursor: pointer;
+}
+
+.react-tabs__tab--selected {
+    background: aliceblue;
+    color: grey;
+}
+
+.react-tabs__tab--disabled {
+    color: grey;
+    cursor: default;
+}
+
+.react-tabs__tab-panel {
+    display: none;
+}
+
+.react-tabs__tab-panel--selected {
+    display: block;
+}
