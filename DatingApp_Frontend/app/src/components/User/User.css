@@ -1,3 +1,9 @@
-.page.user {
-    
+.age-text {
+    font-size: 1.8vmin;
+    color: pink;
+}
+
+.age-text i {
+    font-size: 1.8vmin;
+    color: pink;
 }
