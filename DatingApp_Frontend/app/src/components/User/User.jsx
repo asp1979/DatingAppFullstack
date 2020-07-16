@@ -46,14 +46,11 @@ export const User = ({ match }) => {
                             <TabList>
                                 <Tab>Overview</Tab>
                                 <Tab>Looking for</Tab>
-                                <Tab>Photos</Tab>
                                 <Tab>Location</Tab>
                             </TabList>
 
                             <TabPanel className="overview">
                                 <img src={user.photoUrl} alt=""></img>
-                                <br />
-                                <br />
                                 <p className="age-text">
                                     {
                                         user.gender === "female" 
@@ -62,20 +59,31 @@ export const User = ({ match }) => {
                                     }
                                     &nbsp;{user.age}
                                 </p>
-                                <br />
                                 <p>{user.introduction}</p>
                             </TabPanel>
 
                             <TabPanel className="looking-for">
-                                {}
-                            </TabPanel>
-
-                            <TabPanel className="photos">
-                                {}
+                                <img src={user.photoUrl} alt=""></img>
+                                <p className="age-text">
+                                    {
+                                        user.gender === "female" 
+                                        ? <i className="fa fa-female" aria-hidden="true"></i>
+                                        : <i className="fa fa-male" aria-hidden="true"></i>
+                                    }
+                                    &nbsp;{user.age}
+                                </p>
                             </TabPanel>
                             
                             <TabPanel className="location">
-                                {}
+                                <img src={user.photoUrl} alt=""></img>
+                                <p className="age-text">
+                                    {
+                                        user.gender === "female" 
+                                        ? <i className="fa fa-female" aria-hidden="true"></i>
+                                        : <i className="fa fa-male" aria-hidden="true"></i>
+                                    }
+                                    &nbsp;{user.age}
+                                </p>
                             </TabPanel>
 
                         </Tabs>

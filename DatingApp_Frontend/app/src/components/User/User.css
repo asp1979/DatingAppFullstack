@@ -1,9 +1,19 @@
 .age-text {
     font-size: 1.8vmin;
-    color: pink;
+    color: white;
+    background: #78B7CD;
+    width: 4.5vmin;
+    padding: 0.5vmin;
+    border-radius: 1vmin;
+    margin-bottom: 2vmin;
 }
 
 .age-text i {
     font-size: 1.8vmin;
-    color: pink;
+    color: white;
+}
+
+.react-tabs img {
+    border-radius: 1vmin;
+    margin-bottom: 2vmin;
 }

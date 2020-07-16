@@ -17,12 +17,13 @@
 }
 
 .react-tabs__tab--selected {
-    background: aliceblue;
-    color: grey;
+    background: #78B7CD;
+    border-radius: 1vmin;
+    color: white;
 }
 
 .react-tabs__tab--disabled {
-    color: grey;
+    color: white;
     cursor: default;
 }
 
