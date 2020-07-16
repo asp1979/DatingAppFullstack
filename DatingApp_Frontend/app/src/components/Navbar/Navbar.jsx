@@ -14,6 +14,10 @@ export const Navbar = withRouter(({ history }) => {
         setTimeout(() => history.push("/login"), 300);
     }
 
+    const reload = () => {
+        setTimeout(() => window.location.reload(), 10);
+    }
+
     return (
         <div className="navbar">
             
@@ -26,7 +30,7 @@ export const Navbar = withRouter(({ history }) => {
             <div className="user-nav">
                 { !userContext.loggedIn && <Link to="/register"> Register </Link> }
                 { !userContext.loggedIn && <Link to="/login"> Login </Link> }
-                { userContext.loggedIn && <Link to={"/user/" + userContext.jwtID}> { userContext.jwtUsername } </Link> }
+                { userContext.loggedIn && <Link to={"/user/" + userContext.jwtID} onClick={ reload }> { userContext.jwtUsername } </Link> }
                 { userContext.loggedIn && <button onClick={ logout }> Logout </button> }
             </div>
 
