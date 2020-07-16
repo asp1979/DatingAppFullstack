@@ -32,6 +32,7 @@ export const User = ({ match }) => {
 
     return (
         <div className="page user">
+
             <div className="content">
                 {
                     !loading &&
@@ -50,6 +51,7 @@ export const User = ({ match }) => {
                             </TabList>
 
                             <TabPanel className="overview">
+
                                 <img src={user.photoUrl} alt=""></img>
                                 <p className="age-text">
                                     {
@@ -60,9 +62,11 @@ export const User = ({ match }) => {
                                     &nbsp;{user.age}
                                 </p>
                                 <p>{user.introduction}</p>
+
                             </TabPanel>
 
                             <TabPanel className="looking-for">
+
                                 <img src={user.photoUrl} alt=""></img>
                                 <p className="age-text">
                                     {
@@ -72,9 +76,12 @@ export const User = ({ match }) => {
                                     }
                                     &nbsp;{user.age}
                                 </p>
+                                <p>{user.lookingFor}</p>
+
                             </TabPanel>
                             
                             <TabPanel className="location">
+
                                 <img src={user.photoUrl} alt=""></img>
                                 <p className="age-text">
                                     {
@@ -84,6 +91,7 @@ export const User = ({ match }) => {
                                     }
                                     &nbsp;{user.age}
                                 </p>
+
                             </TabPanel>
 
                         </Tabs>
@@ -91,6 +99,7 @@ export const User = ({ match }) => {
                     </div>
                 }
             </div>
+            
         </div>
     )
 }
