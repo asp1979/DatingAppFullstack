@@ -25,14 +25,24 @@
 }
 
 .error-span {
-    font-size: 1.8vmin;
+    font-size: 1.4vmin;
     text-align: center;
-    padding: 1vmin 2.2vmin;
+    padding: 0.6vmin 1.8vmin;
     margin: 0 4vmin;
     border-radius: 1vmin;
-    border: 0.25vmin solid grey;
+    border: 0.2vmin solid grey;
     background-color: white;
     color: grey;
+}
+
+.error-span.regex {
+    color: orange;
+    border-color: orange;
+}
+
+.error-span.fetch {
+    color: crimson;
+    border-color: crimson;
 }
 
 .success-span {
