@@ -24,6 +24,7 @@ export const Login = withRouter(({ history }) => {
             setUserContext({
                 ...userContext,
                 jwt: JWT,
+                jwtID: jwtDecode(localStorage.getItem("jwt")).nameid,
                 jwtUsername: jwtDecode(localStorage.getItem("jwt")).unique_name,
                 jwtExpiry: jwtDecode(localStorage.getItem("jwt")).exp,
                 loggedIn: true
