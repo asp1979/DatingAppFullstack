@@ -1,2 +1,5 @@
 # Frontend React App
-Dependencies excluding React: jwtDecode, react-hook-form
+Dependencies excluding React(CRA):
+jwt-decode,
+react-hook-form,
+react-tabs
