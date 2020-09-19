@@ -6,6 +6,7 @@ using DatingApp_API.Data;
 using DatingApp_API.DTOs;
 using System.Collections.Generic;
 using DatingApp_API.Models;
+using DatingApp_API.Helpers;
 
 namespace DatingApp_API.Controllers
 {
@@ -24,10 +25,13 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
-            var users = await _repo.GetUsers();
+            var users = await _repo.GetUsers(userParams);
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
+
+            Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+
             return Ok(usersToReturn);
         }
 
