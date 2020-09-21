@@ -25,10 +25,10 @@ namespace DatingApp_API.Data
             _context.Remove(entity);
         }
 
-        public async Task<PagedList<User>> GetUsers(UserParams userParams)
+        public async Task<PagedList<User>> GetUsers(GetUsersParams getUsersParams)
         {
             var users = _context.Users.Include(x => x.Photos);
-            return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
+            return await PagedList<User>.CreateAsync(users, getUsersParams.PageNumber, getUsersParams.PageSize);
         }
 
         public async Task<User> GetUser(int id)

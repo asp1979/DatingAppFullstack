@@ -1,6 +1,6 @@
 namespace DatingApp_API.Helpers
 {
-    public class UserParams
+    public class GetUsersParams
     {
         public int PageNumber { get; set; } = 1;
         public int MaxPageSize = 50;
