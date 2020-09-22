@@ -7,6 +7,8 @@ using DatingApp_API.DTOs;
 using System.Collections.Generic;
 using DatingApp_API.Models;
 using DatingApp_API.Helpers;
+using System.Security.Claims;
+using System;
 
 namespace DatingApp_API.Controllers
 {
@@ -27,6 +29,9 @@ namespace DatingApp_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers([FromQuery]GetUsersParams getUsersParams)
         {
+            var currentUserID = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var user = await _repo.GetUser(currentUserID);
+            getUsersParams.UserID = currentUserID;
             var users = await _repo.GetUsers(getUsersParams);
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
 
