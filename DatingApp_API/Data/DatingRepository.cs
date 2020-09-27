@@ -32,14 +32,14 @@ namespace DatingApp_API.Data
 
         public async Task<PagedList<User>> GetUsers(GetUsersParams getUsersParams)
         {
-            var users = _context.Users.Include(x => x.Photos).AsQueryable();
-            users = users.Where(x => x.ID != getUsersParams.UserID);
+            var users = _context.Users.Include(u => u.Photos).AsQueryable();
+            users = users.Where(u => u.ID != getUsersParams.UserID);
 
             if(getUsersParams.MinAge != 18 || getUsersParams.MaxAge != 200)
             {
                 var minDob = DateTime.Today.AddYears(-getUsersParams.MaxAge - 1);
                 var maxDob = DateTime.Today.AddYears(-getUsersParams.MinAge);
-                users = users.Where(x => x.DateOfBirth >= minDob && x.DateOfBirth <= maxDob);
+                users = users.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
             }
 
             return await PagedList<User>.CreateAsync(users, getUsersParams.PageNumber, getUsersParams.PageSize);
@@ -48,14 +48,14 @@ namespace DatingApp_API.Data
 
         public async Task<User> GetUser(int id)
         {
-            var user = await _context.Users.Include(x => x.Photos).FirstOrDefaultAsync(y => y.ID == id);
+            var user = await _context.Users.Include(u => u.Photos).FirstOrDefaultAsync(u => u.ID == id);
             return user;
         }
 
 
         public async Task<Like> GetLike(int userID, int recipientID)
         {
-            return await _context.Likes.FirstOrDefaultAsync(u => u.LikerID == userID && u.LikeeID == recipientID);
+            return await _context.Likes.FirstOrDefaultAsync(l => l.LikerID == userID && l.LikeeID == recipientID);
         }
 
 
@@ -68,20 +68,20 @@ namespace DatingApp_API.Data
         public async Task<PagedList<Message>> GetMessagesForUser(GetMessagesParams getMessagesParams)
         {
             var messages = _context.Messages
-                .Include(u => u.Sender).ThenInclude(u => u.Photos)
-                .Include(u => u.Recipient).ThenInclude(u => u.Photos)
+                .Include(m => m.Sender).ThenInclude(m => m.Photos)
+                .Include(m => m.Recipient).ThenInclude(m => m.Photos)
                 .AsQueryable();
 
             switch(getMessagesParams.MessageContainer)
             {
                 case "Inbox":
-                    messages = messages.Where(u => u.RecipientID == getMessagesParams.UserID);
+                    messages = messages.Where(m => m.RecipientID == getMessagesParams.UserID);
                     break;
                 case "Outbox":
-                    messages = messages.Where(u => u.SenderID == getMessagesParams.UserID);
+                    messages = messages.Where(m => m.SenderID == getMessagesParams.UserID);
                     break;
                 default:
-                    messages = messages.Where(u => u.RecipientID == getMessagesParams.UserID && u.IsRead == false);
+                    messages = messages.Where(m => m.RecipientID == getMessagesParams.UserID && m.IsRead == false);
                     break;
             }
 
