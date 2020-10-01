@@ -40,6 +40,32 @@ namespace DatingApp_API.Controllers
             return Ok(message);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetMessagesForUser(int userID, [FromQuery] GetMessagesParams getMessagesParams)
+        {
+            if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            getMessagesParams.UserID = userID;
+            
+            var messagesFromRepo = await _repo.GetMessagesForUser(getMessagesParams);
+
+            if(messagesFromRepo.Count == 0)
+                return NotFound("There are no messages for this user.");
+
+            var messages = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+
+            Response.AddPagination(
+                messagesFromRepo.CurrentPage,
+                messagesFromRepo.PageSize,
+                messagesFromRepo.TotalCount,
+                messagesFromRepo.TotalPages
+            );
+
+            return Ok(messages);
+            
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateMessage(int userID, MessageForCreationDto msgDto)
         {
