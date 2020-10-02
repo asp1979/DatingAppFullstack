@@ -13,7 +13,7 @@ using System;
 namespace DatingApp_API.Controllers
 {
     [Authorize] // all endpoints require auth
-    [Route("api/v1/users/{userID}/[controller]")] // api/v1/users/5/messages
+    [Route("api/v1/users/{userID}/[controller]")] // api/v1/users/{userID}/messages
     [ApiController]
     public class MessagesController : ControllerBase
     {
@@ -26,7 +26,7 @@ namespace DatingApp_API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{id}", Name = "GetMessage")]
+        [HttpGet("{id}", Name = "GetMessage")] // api/v1/users/{userID}/messages/{id}
         public async Task<IActionResult> GetMessage(int userID, int id)
         {
             if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -40,8 +40,8 @@ namespace DatingApp_API.Controllers
             return Ok(message);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetMessagesForUser(int userID, [FromQuery] GetMessagesParams getMessagesParams)
+        [HttpGet] // api/v1/users/{userID}/messages
+        public async Task<IActionResult> GetMessagesForUser(int userID, [FromQuery]GetMessagesParams getMessagesParams)
         {
             if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
@@ -63,10 +63,25 @@ namespace DatingApp_API.Controllers
             );
 
             return Ok(messages);
-            
         }
 
-        [HttpPost]
+        [HttpGet("thread/{recipientID}")] // api/v1/users/{userID}/messages/thread/{recipientID}
+        public async Task<IActionResult> GetMessagesThread(int userID, int recipientID)
+        {
+            if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var messagesFromRepo = await _repo.GetMessagesThread(userID, recipientID);
+
+            if(messagesFromRepo.Count == 0)
+                return NotFound("No messages thread for these users.");
+
+            var messageThread = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+            
+            return Ok(messageThread);
+        }
+
+        [HttpPost] // api/v1/users/{userID}/messages
         public async Task<IActionResult> CreateMessage(int userID, MessageForCreationDto msgDto)
         {
             if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -92,6 +107,5 @@ namespace DatingApp_API.Controllers
 
             throw new Exception("Creating message failed.");
         }
-        
     }
 }

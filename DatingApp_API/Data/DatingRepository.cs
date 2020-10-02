@@ -4,6 +4,7 @@ using DatingApp_API.Models;
 using DatingApp_API.Helpers;
 using System.Linq;
 using System;
+using System.Collections.Generic;
 
 namespace DatingApp_API.Data
 {
@@ -92,9 +93,17 @@ namespace DatingApp_API.Data
         }
 
 
-        public Task<Message> GetMessageThread(int userID, int recipientID)
+        public async Task<List<Message>> GetMessagesThread(int userID, int recipientID)
         {
-            throw new NotImplementedException();
+            var messages = await _context.Messages
+                .Include(m => m.Sender).ThenInclude(m => m.Photos)
+                .Include(m => m.Recipient).ThenInclude(m => m.Photos)
+                .Where(m => m.RecipientID == userID && m.SenderID == recipientID
+                    || m.RecipientID == recipientID && m.SenderID == userID)
+                .OrderByDescending(m => m.MessageSent)
+                .ToListAsync();
+            
+            return messages;
         }
 
 
