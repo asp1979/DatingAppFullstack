@@ -13,7 +13,7 @@ using System;
 namespace DatingApp_API.Controllers
 {
     [Authorize] // all endpoints require auth
-    [Route("api/v1/users/{userID}/[controller]")] // api/v1/users/{userID}/messages
+    [Route("api/v1/users/{userID}/[controller]")] // [messages]
     [ApiController]
     public class MessagesController : ControllerBase
     {
@@ -106,6 +106,48 @@ namespace DatingApp_API.Controllers
             }
 
             throw new Exception("Creating message failed.");
+        }
+
+        [HttpPost("{id}")] // api/v1/users/{userID}/messages/{id}
+        public async Task<IActionResult> DeleteMessage(int id, int userID)
+        {
+            if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var messageFromRepo = await _repo.GetMessage(id);
+
+            if(messageFromRepo.SenderID == userID)
+                messageFromRepo.SenderDeleted = true;
+
+            if(messageFromRepo.RecipientID == userID)
+                messageFromRepo.RecipientDeleted = true;
+
+            if(messageFromRepo.SenderDeleted && messageFromRepo.RecipientDeleted)
+                _repo.Delete(messageFromRepo);
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new Exception("Error deleting the message.");
+        }
+
+        [HttpPost("{id}/read")] // api/v1/users/{userID}/messages/{id}/read
+        public async Task<IActionResult> MarkMessageAsRead(int userID, int id)
+        {
+            if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var message = await _repo.GetMessage(id);
+
+            if(message.RecipientID != userID)
+                return Unauthorized();
+
+            message.IsRead = true;
+            message.DateRead = DateTime.Now;
+
+            await _repo.SaveAll();
+
+            return NoContent();
         }
     }
 }
