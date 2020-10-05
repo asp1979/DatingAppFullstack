@@ -13,7 +13,7 @@ using System;
 namespace DatingApp_API.Controllers
 {
     [Authorize] // all endpoints require auth
-    [Route("api/v1/[controller]")] // api/v1/users
+    [Route("api/v1/[controller]")] // [users]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -26,7 +26,7 @@ namespace DatingApp_API.Controllers
             _repo = repo;
         }
 
-        [HttpGet]
+        [HttpGet] // api/v1/users
         public async Task<IActionResult> GetUsers([FromQuery]GetUsersParams getUsersParams)
         {
             var currentUserID = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -40,7 +40,7 @@ namespace DatingApp_API.Controllers
             return Ok(usersToReturn);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] // api/v1/users/{id}
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await _repo.GetUser(id);
@@ -48,7 +48,7 @@ namespace DatingApp_API.Controllers
             return Ok(userToReturn);
         }
 
-        [HttpPost("{id}/like/{recipientID}")]
+        [HttpPost("{id}/like/{recipientID}")] // api/v1/users/{id}/like/{recipientID}
         public async Task<IActionResult> LikeUser(int id, int recipientID)
         {
             var like = await _repo.GetLike(id, recipientID);

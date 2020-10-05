@@ -12,7 +12,7 @@ using DatingApp_API.DTOs;
 
 namespace DatingApp_API.Controllers
 {
-    [Route("api/v1/[controller]")] // api/v1/auth
+    [Route("api/v1/[controller]")] // [auth]
     [ApiController]
     public class AuthController : ControllerBase
     {
