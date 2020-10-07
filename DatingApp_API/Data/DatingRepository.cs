@@ -75,10 +75,10 @@ namespace DatingApp_API.Data
 
             switch(getMessagesParams.MessageContainer)
             {
-                case "Inbox":
+                case "inbox":
                     messages = messages.Where(m => m.RecipientID == getMessagesParams.UserID && m.RecipientDeleted == false);
                     break;
-                case "Outbox":
+                case "outbox":
                     messages = messages.Where(m => m.SenderID == getMessagesParams.UserID && m.SenderDeleted == false);
                     break;
                 default:
@@ -90,7 +90,7 @@ namespace DatingApp_API.Data
             messages = messages.OrderByDescending(m => m.MessageSent);
 
             return await PagedList<Message>
-                .CreateAsync(messages, getMessagesParams.PageNumber, getMessagesParams.PageNumber);
+                .CreateAsync(messages, getMessagesParams.PageNumber, getMessagesParams.PageSize);
         }
 
 
