@@ -4,7 +4,7 @@ namespace DatingApp_API.Helpers
     {
         public int PageNumber { get; set; } = 1;
         public int MaxPageSize = 50;
-        private int _pageSize = 10;
+        private int _pageSize = 50;
         public int PageSize
         {
             get { return _pageSize; }

@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 15vmin 15vmin 15vmin 15vmin;
     column-gap: 5vmin;
-    grid-template-rows: 15vmin 15vmin 15vmin;
+    grid-auto-rows: 15vmin;
     row-gap: 5vmin;
 }
 

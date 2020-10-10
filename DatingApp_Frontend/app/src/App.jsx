@@ -8,6 +8,7 @@ import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Matches } from './components/Matches/Matches';
 import { Messages } from './components/Messages/Messages';
+import { Threads } from './components/Threads/Threads';
 import { User } from './components/User/User';
 import { UserContext } from './UserContext';
 import jwtDecode from 'jwt-decode';
@@ -49,6 +50,7 @@ export const App = () => {
                 <PrivateRoute path="/user/:id" component={User} />
                 <PrivateRoute path="/matches" component={Matches} />
                 <PrivateRoute path="/messages" component={Messages} />
+                <PrivateRoute path="/thread/:id" component={Threads} />
 
             </UserContext.Provider>
         </Router>
