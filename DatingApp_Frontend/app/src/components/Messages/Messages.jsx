@@ -43,7 +43,7 @@ export const Messages = () => {
                     !loading && threads
                     .map((user, i) => 
                         // user[0] = ID, user[1] = Username, user[2] = PhotoUrl
-                        <Link to={"threads/" + user[0]} className="thread-link" key={i}>
+                        <Link to={"messages/thread/" + user[0]} className="thread-link" key={i}>
                             <p>{user[1]}</p>
                             <img src={user[2]} alt=""></img>
                         </Link>
