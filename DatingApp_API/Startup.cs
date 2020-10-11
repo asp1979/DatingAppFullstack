@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Http;
 using DatingApp_API.Data;
 using DatingApp_API.Helpers;
 using AutoMapper;
+using DatingApp.API.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DatingApp_API
 {
@@ -34,13 +36,15 @@ namespace DatingApp_API
             {
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
+
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddCors();
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => {
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => 
+            {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
@@ -50,7 +54,18 @@ namespace DatingApp_API
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };
+            });
+
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("IsDataOwner", policy =>
+                {
+                    policy.Requirements.Add(new IsDataOwner());
                 });
+            });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IAuthorizationHandler, IsDataOwnerHandler>();
         }
 
 

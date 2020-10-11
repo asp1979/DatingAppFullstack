@@ -27,11 +27,9 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpGet("{id}", Name = "GetMessage")] // api/v1/users/{userID}/messages/{id}
+        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> GetMessage(int userID, int id)
         {
-            if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
-            
             var message = await _repo.GetMessage(id);
             
             if(message == null)
@@ -41,11 +39,9 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpGet] // api/v1/users/{userID}/messages
+        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> GetMessagesForUser(int userID, [FromQuery]GetMessagesParams getMessagesParams)
         {
-            if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
-
             getMessagesParams.UserID = userID;
             
             var messagesFromRepo = await _repo.GetMessagesForUser(getMessagesParams);
@@ -66,11 +62,9 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpGet("thread/{recipientID}")] // api/v1/users/{userID}/messages/thread/{recipientID}
+        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> GetMessagesThread(int userID, int recipientID)
         {
-            if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
-
             var messagesFromRepo = await _repo.GetMessagesThread(userID, recipientID);
 
             if(messagesFromRepo.Count == 0)
@@ -82,11 +76,9 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpPost] // api/v1/users/{userID}/messages
+        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> CreateMessage(int userID, MessageForCreationDto msgDto)
         {
-            if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
-
             msgDto.SenderID = userID;
 
             var recipient = await _repo.GetUser(msgDto.RecipientID);
@@ -109,11 +101,9 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpPost("{id}")] // api/v1/users/{userID}/messages/{id}
+        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> DeleteMessage(int id, int userID)
         {
-            if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
-
             var messageFromRepo = await _repo.GetMessage(id);
 
             if(messageFromRepo.SenderID == userID)
@@ -132,11 +122,9 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpPost("{id}/read")] // api/v1/users/{userID}/messages/{id}/read
+        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> MarkMessageAsRead(int userID, int id)
         {
-            if(userID != Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
-
             var message = await _repo.GetMessage(id);
 
             if(message.RecipientID != userID)
