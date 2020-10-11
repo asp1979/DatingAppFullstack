@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-export const Threads = () => {
+export const MessagesThread = () => {
 
     return (
         <div className="page messages">
