@@ -43,7 +43,7 @@ namespace DatingApp_API.Data
                 users = users.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
             }
 
-            return await PagedList<User>.CreateAsync(users, getUsersParams.PageNumber, getUsersParams.PageSize);
+            return await PagedList<User>.CreateAsync(users, getUsersParams.CurrentPage, getUsersParams.ItemsPerPage);
         }
 
 
@@ -90,7 +90,7 @@ namespace DatingApp_API.Data
             messages = messages.OrderByDescending(m => m.MessageSent);
 
             return await PagedList<Message>
-                .CreateAsync(messages, getMessagesParams.PageNumber, getMessagesParams.PageSize);
+                .CreateAsync(messages, getMessagesParams.CurrentPage, getMessagesParams.ItemsPerPage);
         }
 
 

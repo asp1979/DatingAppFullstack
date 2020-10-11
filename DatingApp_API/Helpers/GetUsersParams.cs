@@ -2,13 +2,13 @@ namespace DatingApp_API.Helpers
 {
     public class GetUsersParams
     {
-        public int PageNumber { get; set; } = 1;
-        public int MaxPageSize = 50;
-        private int _pageSize = 50;
-        public int PageSize
+        public int CurrentPage { get; set; } = 1;
+        private int _totalItems = 50;
+        public int MaxItemsPerPage = 50;
+        public int ItemsPerPage
         {
-            get { return _pageSize; }
-            set { _pageSize = value > MaxPageSize ? MaxPageSize : value; }
+            get { return _totalItems; }
+            set { _totalItems = value > MaxItemsPerPage ? MaxItemsPerPage : value; }
         }
         public int UserID { get; set; }
         public int MinAge { get; set; } = 18;
