@@ -50,7 +50,7 @@ export const App = () => {
                 <PrivateRoute path="/user/:id" component={User} />
                 <PrivateRoute path="/matches" component={Matches} />
                 <PrivateRoute path="/messages" component={Messages} />
-                <PrivateRoute path="/messages/thread/:id" component={MessagesThread} />
+                <PrivateRoute path="/thread/:id" component={MessagesThread} />
 
             </UserContext.Provider>
         </Router>
