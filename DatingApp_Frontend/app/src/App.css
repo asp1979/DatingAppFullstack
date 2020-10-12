@@ -127,6 +127,10 @@ th {
     min-height: calc(100% - 10vmin);
 }
 
+.content {
+    padding-top: 1vmin;
+}
+
 .page .content {
     position: absolute;
     top: 4%;

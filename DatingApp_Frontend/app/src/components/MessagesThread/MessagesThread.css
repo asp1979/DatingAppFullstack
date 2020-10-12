@@ -1,0 +1,50 @@
+.content.with-h1-img {
+    padding-top: 2.4vmin;
+}
+
+.messages .content ul {
+    display: grid;
+    grid-template-columns: 36vmin;
+    grid-auto-rows: min-content;
+}
+
+.title-img {
+    position: relative;
+    top: 0.4vmin;
+    margin-left: 1vmin;
+    height: 5vmin;
+    width: 5vmin;
+    border-radius: 5vmin;
+}
+
+.message-container {
+    font-size: 1.5vmin;
+    min-height: 4vmin;
+    margin-top: 4vmin;
+    margin-left: 4vmin;
+    background-color: white;
+    border-radius: 2vmin;
+    box-shadow: 0 0 2vmin 0.5vmin rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    animation: opacity-delay;
+    animation-delay: 0.1s;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+.message-container.recipient {
+    position: relative;
+    left: 41vmin;
+    background-color: rgb(62, 200, 255);
+}
+
+.message-container p {
+    margin: 0 1vmin;
+}
+
+.message-container.recipient p {
+    color: white;
+}

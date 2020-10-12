@@ -21,7 +21,7 @@ export const Messages = () => {
                     (put messages into groups for each recipient)
                 */
                 const threads = [...new Set(
-                    res.map(msg => msg.recipientID+" "+msg.recipientUsername+" "+ msg.recipientPhotoUrl)
+                    res.map(msg => msg.recipientID+" "+msg.recipientUsername+" "+msg.recipientPhotoUrl)
                 )].map(recipient => recipient.split(" "));
 
                 setThreads([...threads]);

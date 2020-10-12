@@ -6,6 +6,7 @@ export const MessagesThread = ({ match }) => {
 
     const { userContext } = useContext(UserContext);
     const [messages, setMessages] = useState([]);
+    const [oppositeUser, setOppositeUser] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -17,7 +18,13 @@ export const MessagesThread = ({ match }) => {
             });
             if(get.ok) {
                 const res = await get.json();
+
+                res.sort((a,b) => Date.parse(a.messageSent) - Date.parse(b.messageSent));
                 setMessages([...res]);
+
+                const oppositeUser = res.filter(msg => msg.senderID !== Number(userContext.jwtID));
+                setOppositeUser([...oppositeUser]);
+
                 setLoading(false);
             } else {
                 console.log(get.status, "Error");
@@ -29,13 +36,26 @@ export const MessagesThread = ({ match }) => {
 
     return (
         <div className="page messages">
-            <div className="content">
-                <h1>Messages</h1>
+            <div className="content with-h1-img">
+                {
+                    !loading
+                    ? <h1>Messages<img className="title-img" src={oppositeUser[0].senderPhotoUrl} alt=""></img> </h1>
+                    : <h1>Messages</h1>
+                }
                 <ul>
                 {
-                    !loading && messages 
+                    !loading && messages
                     .map((msg, i) => 
-                        <p key={i}>{msg.content}</p>
+                            msg.senderID === Number(userContext.jwtID)
+                            ? <div key={i} className="message-container">
+                                <p>{msg.content}</p>
+                                <p>{msg.messageSent.substring(11,16)}</p>
+                            </div>
+
+                            : <div key={i} className="message-container recipient">
+                                <p>{msg.content}</p>
+                                <p>{msg.messageSent.substring(11,16)}</p>
+                            </div>
                     )
                 }
                 </ul>
