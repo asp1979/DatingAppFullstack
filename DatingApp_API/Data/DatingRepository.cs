@@ -82,8 +82,9 @@ namespace DatingApp_API.Data
                     messages = messages.Where(m => m.SenderID == getMessagesParams.UserID && m.SenderDeleted == false);
                     break;
                 default:
-                    messages = messages.Where(m => m.RecipientID == getMessagesParams.UserID 
-                                                && m.IsRead == false && m.RecipientDeleted == false);
+                    messages = messages.Where(
+                        m => (m.RecipientID == getMessagesParams.UserID || m.SenderID == getMessagesParams.UserID) && m.RecipientDeleted == false
+                    );
                     break;
             }
 
@@ -99,8 +100,8 @@ namespace DatingApp_API.Data
             var messages = await _context.Messages
                 .Include(m => m.Sender).ThenInclude(m => m.Photos)
                 .Include(m => m.Recipient).ThenInclude(m => m.Photos)
-                .Where(m => m.RecipientID == userID && m.RecipientDeleted == false && m.SenderID == recipientID
-                        || m.RecipientID == recipientID && m.SenderDeleted == false && m.SenderID == userID)
+                .Where(m => (userID == m.RecipientID && recipientID == m.SenderID && m.RecipientDeleted == false)
+                        || (userID == m.SenderID && recipientID == m.RecipientID && m.SenderDeleted == false))
                 .OrderByDescending(m => m.MessageSent)
                 .ToListAsync();
             

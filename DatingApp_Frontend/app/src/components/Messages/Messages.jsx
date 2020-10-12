@@ -18,11 +18,11 @@ export const Messages = () => {
                 const res = await get.json();
                 /*
                     we fetch all messages for the user, so we have to create threads
-                    (put messages into groups for each sender)
+                    (put messages into groups for each recipient)
                 */
                 const threads = [...new Set(
-                    res.map(msg => msg.senderID+" "+msg.senderUsername+" "+ msg.senderPhotoUrl)
-                )].map(sender => sender.split(" "));
+                    res.map(msg => msg.recipientID+" "+msg.recipientUsername+" "+ msg.recipientPhotoUrl)
+                )].map(recipient => recipient.split(" "));
 
                 setThreads([...threads]);
                 setLoading(false);
@@ -41,8 +41,9 @@ export const Messages = () => {
                 <ul>
                 {
                     !loading && threads
+                    .filter(x => x[0] !== userContext.jwtID)
                     .map((user, i) => 
-                        // user[0] = ID, user[1] = Username, user[2] = PhotoUrl
+                    // user[0] = ID, user[1] = Username, user[2] = PhotoUrl
                         <Link to={"thread/" + user[0]} className="thread-link" key={i}>
                             <p>{user[1]}</p>
                             <img src={user[2]} alt=""></img>
