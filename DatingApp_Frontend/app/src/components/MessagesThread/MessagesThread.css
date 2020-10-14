@@ -6,6 +6,10 @@
     display: grid;
     grid-template-columns: 36vmin;
     grid-auto-rows: min-content;
+    grid-row-gap: 2vmin;
+    height: 60vmin;
+    overflow: auto;
+    padding: 2vmin;
 }
 
 .title-img {
@@ -20,13 +24,11 @@
 .message-container {
     font-size: 1.5vmin;
     min-height: 4vmin;
-    margin-top: 4vmin;
-    margin-left: 4vmin;
     background-color: white;
     border-radius: 2vmin;
-    box-shadow: 0 0 2vmin 0.5vmin rgba(0, 0, 0, 0.15);
+    border: 0.2vmin solid grey;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     animation: opacity-delay;
     animation-delay: 0.1s;
@@ -39,12 +41,29 @@
     position: relative;
     left: 41vmin;
     background-color: rgb(62, 200, 255);
+    border: none;
 }
 
 .message-container p {
-    margin: 0 1vmin;
+    margin: 0 2vmin;
 }
 
 .message-container.recipient p {
     color: white;
+}
+
+.form-inputs.send-message {
+    position: fixed;
+    bottom: 5vmin;
+    margin-left: 2vmin;
+}
+
+.form-inputs.send-message input {
+    width: 68vmin;
+}
+
+.form-inputs .send-button {
+    color: white;
+    border: none;
+    background: rgb(62, 200, 255);
 }

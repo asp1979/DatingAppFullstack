@@ -1,6 +1,7 @@
 import './MessagesThread.css';
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../UserContext';
+import { useForm } from 'react-hook-form';
 
 export const MessagesThread = ({ match }) => {
 
@@ -8,12 +9,15 @@ export const MessagesThread = ({ match }) => {
     const [messages, setMessages] = useState([]);
     const [oppositeUser, setOppositeUser] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { register, handleSubmit } = useForm();
+    const [sentMessages, setSentMessages] = useState(0);
+
+    const clientID = userContext.jwtID;
+    const senderID = match.params.id;
 
     useEffect(() => {
         async function getMessages() {
-            const client = userContext.jwtID;
-            const sender = match.params.id;
-            const get = await fetch(`http://localhost:5000/api/v1/users/${client}/messages/thread/${sender}`, {
+            const get = await fetch(`http://localhost:5000/api/v1/users/${clientID}/messages/thread/${senderID}`, {
                 headers: { "Authorization": "Bearer " + userContext.jwt }
             });
             if(get.ok) {
@@ -26,13 +30,27 @@ export const MessagesThread = ({ match }) => {
                 setOppositeUser([...oppositeUser]);
 
                 setLoading(false);
-            } else {
-                console.log(get.status, "Error");
             }
         }
         getMessages();
         // eslint-disable-next-line
-    }, []);
+    }, [sentMessages]);
+
+    const onSubmit = async (formdata) => {
+        formdata.recipientID = senderID;
+        const post = await fetch(`http://localhost:5000/api/v1/users/${clientID}/messages`, {
+            headers: {
+                "Authorization": "Bearer " + userContext.jwt,
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify(formdata)
+        })
+        if(post.ok) {
+            setSentMessages(prev => ++prev);
+            console.log(sentMessages); // this console.log calls the useEffect dependency
+        }
+    }
 
     return (
         <div className="page messages">
@@ -43,9 +61,9 @@ export const MessagesThread = ({ match }) => {
                     : <h1>Messages</h1>
                 }
                 <ul>
-                {
-                    !loading && messages
-                    .map((msg, i) => 
+                    {
+                        !loading && messages
+                        .map((msg, i) => 
                             msg.senderID === Number(userContext.jwtID)
                             ? <div key={i} className="message-container">
                                 <p>{msg.content}</p>
@@ -56,9 +74,23 @@ export const MessagesThread = ({ match }) => {
                                 <p>{msg.content}</p>
                                 <p>{msg.messageSent.substring(11,16)}</p>
                             </div>
-                    )
-                }
+                        )
+                    }
                 </ul>
+
+                <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs send-message">
+                    <p>Send a message</p>
+                    <input 
+                        placeholder="" 
+                        name="content" 
+                        minLength="1" 
+                        maxLength="72" 
+                        autoComplete="off" 
+                        ref={register({ required: true, minLength: 1, maxLength: 72 })}
+                    />
+                    <button className="send-button" type="submit">Send</button>
+                </form>
+
             </div>
         </div>
     )
