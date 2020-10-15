@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 export const Register = () => {
 
     const { register, handleSubmit, errors } = useForm();
-    const [state, setState] = useState({ regSuccess: null });
+    const [regSuccess, setRegSuccess] = useState(null);
 
     const onSubmit = async (formdata) => {
         const post = await fetch("http://localhost:5000/api/v1/auth/register", {
@@ -15,9 +15,9 @@ export const Register = () => {
             body: JSON.stringify(formdata)
         });
         if(post.ok) {
-            setState({ ...state, regSuccess: true });
+            setRegSuccess(true);
         } else {
-            setState({ ...state, regSuccess: false });
+            setRegSuccess(false);
         }
     }
 
@@ -31,11 +31,11 @@ export const Register = () => {
                 { errors.username && <span className="error-span">Username incorrect</span> }
                 { errors.password && <span className="error-span">Password incorrect</span> }
 
-                { state.regSuccess === true && <span className="success-span">Registration successful! Confirm your email!</span> }
-                { state.regSuccess === false && <span className="error-span">Registration failed! Username taken!</span> }
+                { regSuccess === true && <span className="success-span">Registration successful! Confirm your email!</span> }
+                { regSuccess === false && <span className="error-span">Registration failed! Username taken!</span> }
 
-                <input placeholder="Username" name="username" autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
-                <input placeholder="Password" name="password" autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
+                <input placeholder="Username" name="username" maxLength={16} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
+                <input placeholder="Password" name="password" maxLength={32} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
 
                 <button type="submit">Register</button>
                 
