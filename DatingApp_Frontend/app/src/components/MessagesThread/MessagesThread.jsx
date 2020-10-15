@@ -1,5 +1,5 @@
 import './MessagesThread.css';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
 
@@ -11,6 +11,8 @@ export const MessagesThread = ({ match }) => {
     const [loading, setLoading] = useState(true);
     const { register, handleSubmit } = useForm();
     const [sentMessages, setSentMessages] = useState(0);
+    const lastMsgRef = useRef();
+    const scrollToLast = () => lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
 
     const clientID = userContext.jwtID;
     const senderID = match.params.id;
@@ -33,6 +35,7 @@ export const MessagesThread = ({ match }) => {
             }
         }
         getMessages();
+        setTimeout(() => scrollToLast(), 50);
         // eslint-disable-next-line
     }, [sentMessages]);
 
@@ -57,7 +60,7 @@ export const MessagesThread = ({ match }) => {
             <div className="content with-h1-img">
                 {
                     !loading
-                    ? <h1>Messages<img className="title-img" src={oppositeUser[0].senderPhotoUrl} alt=""></img> </h1>
+                    ? <h1>Messages<img className="title-img" src={oppositeUser[0].senderPhotoUrl} alt=""></img></h1>
                     : <h1>Messages</h1>
                 }
                 <ul>
@@ -76,6 +79,7 @@ export const MessagesThread = ({ match }) => {
                             </div>
                         )
                     }
+                    <div ref={lastMsgRef}></div>
                 </ul>
 
                 <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs send-message">
