@@ -14,12 +14,12 @@ export const MessagesThread = ({ match }) => {
     const lastMsgRef = useRef();
     const scrollToLast = () => lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
 
-    const clientID = userContext.jwtID;
-    const senderID = match.params.id;
+    const clientID = Number(userContext.jwtID);
+    const buddyID = match.params.id;
 
     useEffect(() => {
         async function getMessages() {
-            const get = await fetch(`http://localhost:5000/api/v1/users/${clientID}/messages/thread/${senderID}`, {
+            const get = await fetch(`http://localhost:5000/api/v1/users/${clientID}/messages/thread/${buddyID}`, {
                 headers: { "Authorization": "Bearer " + userContext.jwt }
             });
             if(get.ok) {
@@ -28,19 +28,19 @@ export const MessagesThread = ({ match }) => {
                 res.sort((a,b) => Date.parse(a.messageSent) - Date.parse(b.messageSent));
                 setMessages([...res]);
 
-                const oppositeUser = res.filter(msg => msg.senderID !== Number(userContext.jwtID));
+                const oppositeUser = res.filter(msg => msg.senderID !== clientID)
                 setOppositeUser([...oppositeUser]);
 
                 setLoading(false);
             }
         }
         getMessages();
-        setTimeout(() => scrollToLast(), 50);
+        setTimeout(() => scrollToLast(), 100);
         // eslint-disable-next-line
     }, [sentMessages]);
 
     const onSubmit = async (formdata) => {
-        formdata.recipientID = senderID;
+        formdata.recipientID = buddyID;
         const post = await fetch(`http://localhost:5000/api/v1/users/${clientID}/messages`, {
             headers: {
                 "Authorization": "Bearer " + userContext.jwt,
@@ -56,11 +56,11 @@ export const MessagesThread = ({ match }) => {
     }
 
     return (
-        <div className="page messages">
+        <div className="page messages-thread">
             <div className="content with-h1-img">
                 {
                     !loading
-                    ? <h1>Messages<img className="title-img" src={oppositeUser[0].senderPhotoUrl} alt=""></img></h1>
+                    ? <h1> {oppositeUser[0].senderUsername} <img className="title-img" src={oppositeUser[0].senderPhotoUrl} alt=""></img> </h1>
                     : <h1>Messages</h1>
                 }
                 <ul>

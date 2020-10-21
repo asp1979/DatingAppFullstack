@@ -2,7 +2,7 @@
     padding-top: 2.4vmin;
 }
 
-.messages .content ul {
+.messages-thread .content ul {
     display: grid;
     grid-template-columns: 36vmin;
     grid-auto-rows: min-content;

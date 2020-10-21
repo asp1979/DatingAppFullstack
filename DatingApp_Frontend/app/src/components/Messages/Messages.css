@@ -3,11 +3,10 @@
     grid-template-columns: 33vmin 33vmin;
     column-gap: 7vmin;
     grid-auto-rows: 15vmin;
+    padding: 3vmin;
 }
 
 .thread-link {
-    margin-top: 4vmin;
-    margin-left: 4vmin;
     width: 100%;
     height: 10vmin;
     background-color: white;

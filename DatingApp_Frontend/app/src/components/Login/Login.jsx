@@ -44,7 +44,7 @@ export const Login = withRouter(({ history }) => {
 
                 { errors.username && <span className="error-span regex">Username too short or contains unsupported characters</span> }
                 { errors.password && <span className="error-span regex">Password too short or contains unsupported characters</span> }
-                { fetchError && <span className="error-span fetch">User does not exist!</span> }
+                { fetchError && <span className="error-span fetch">Username/password is incorrect</span> }
 
                 <input placeholder="Username" name="username" maxLength={16} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
                 <input placeholder="Password" name="password" maxLength={32} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
