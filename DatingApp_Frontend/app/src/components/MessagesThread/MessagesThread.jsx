@@ -6,20 +6,22 @@ import { useForm } from 'react-hook-form';
 export const MessagesThread = ({ match }) => {
 
     const { userContext } = useContext(UserContext);
+    const { register, handleSubmit } = useForm();
+
     const [messages, setMessages] = useState([]);
     const [oppositeUser, setOppositeUser] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { register, handleSubmit } = useForm();
     const [sentMessages, setSentMessages] = useState(0);
+
     const lastMsgRef = useRef();
     const scrollToLast = () => lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
 
-    const clientID = Number(userContext.jwtID);
-    const buddyID = match.params.id;
+    const userID = Number(userContext.jwtID);
+    const oppositeUserID = Number(match.params.id); // match = current URL
 
     useEffect(() => {
         async function getMessages() {
-            const get = await fetch(`http://localhost:5000/api/v1/users/${clientID}/messages/thread/${buddyID}`, {
+            const get = await fetch(`http://localhost:5000/api/v1/users/${userID}/messages/thread/${oppositeUserID}`, {
                 headers: { "Authorization": "Bearer " + userContext.jwt }
             });
             if(get.ok) {
@@ -28,7 +30,7 @@ export const MessagesThread = ({ match }) => {
                 res.sort((a,b) => Date.parse(a.messageSent) - Date.parse(b.messageSent));
                 setMessages([...res]);
 
-                const oppositeUser = res.filter(msg => msg.senderID !== clientID)
+                const oppositeUser = res.filter(msg => msg.senderID !== userID)
                 setOppositeUser([...oppositeUser]);
 
                 setLoading(false);
@@ -40,8 +42,8 @@ export const MessagesThread = ({ match }) => {
     }, [sentMessages]);
 
     const onSubmit = async (formdata) => {
-        formdata.recipientID = buddyID;
-        const post = await fetch(`http://localhost:5000/api/v1/users/${clientID}/messages`, {
+        formdata.recipientID = oppositeUserID;
+        const post = await fetch(`http://localhost:5000/api/v1/users/${userID}/messages`, {
             headers: {
                 "Authorization": "Bearer " + userContext.jwt,
                 "Content-Type": "application/json"
