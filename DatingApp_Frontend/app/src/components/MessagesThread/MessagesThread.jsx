@@ -8,35 +8,38 @@ export const MessagesThread = ({ match }) => {
     const { userContext } = useContext(UserContext);
     const { register, handleSubmit } = useForm();
 
+    const userID = Number(userContext.jwtID);
+    const oppositeUserID = Number(match.params.id); // match = current URL
+
     const [messages, setMessages] = useState([]);
-    const [oppositeUser, setOppositeUser] = useState([]);
+    const [oppositeUser, setOppositeUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [sentMessages, setSentMessages] = useState(0);
 
     const lastMsgRef = useRef();
     const scrollToLast = () => lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
 
-    const userID = Number(userContext.jwtID);
-    const oppositeUserID = Number(match.params.id); // match = current URL
-
     useEffect(() => {
-        async function getMessages() {
-            const get = await fetch(`http://localhost:5000/api/v1/users/${userID}/messages/thread/${oppositeUserID}`, {
+        async function getData() {
+            const getMessages = await fetch(`http://localhost:5000/api/v1/users/${userID}/messages/thread/${oppositeUserID}`, {
                 headers: { "Authorization": "Bearer " + userContext.jwt }
             });
-            if(get.ok) {
-                const res = await get.json();
+            const getOppositeUser = await fetch(`http://localhost:5000/api/v1/users/${oppositeUserID}`, {
+                headers: { "Authorization": "Bearer " + userContext.jwt }
+            });
 
-                res.sort((a,b) => Date.parse(a.messageSent) - Date.parse(b.messageSent));
-                setMessages([...res]);
+            if(getMessages.ok && getOppositeUser.ok) {
+                const messagesJSON = await getMessages.json();
+                messagesJSON.sort((a,b) => Date.parse(a.messageSent) - Date.parse(b.messageSent));
+                setMessages([...messagesJSON]);
 
-                const oppositeUser = res.filter(msg => msg.senderID !== userID)
-                setOppositeUser([...oppositeUser]);
+                const oppositeUserJSON = await getOppositeUser.json();
+                setOppositeUser(oppositeUserJSON);
 
                 setLoading(false);
             }
         }
-        getMessages();
+        getData();
         setTimeout(() => scrollToLast(), 100);
         // eslint-disable-next-line
     }, [sentMessages]);
@@ -62,7 +65,7 @@ export const MessagesThread = ({ match }) => {
             <div className="content with-h1-img">
                 {
                     !loading
-                    ? <h1> {oppositeUser[0].senderUsername} <img className="title-img" src={oppositeUser[0].senderPhotoUrl} alt=""></img> </h1>
+                    ? <h1> {oppositeUser.username} <img className="title-img" src={oppositeUser.photoUrl} alt=""></img> </h1>
                     : <h1>Messages</h1>
                 }
                 <ul>
@@ -86,14 +89,7 @@ export const MessagesThread = ({ match }) => {
 
                 <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs send-message">
                     <p>Send a message</p>
-                    <input 
-                        placeholder="" 
-                        name="content" 
-                        minLength="1" 
-                        maxLength="72" 
-                        autoComplete="off" 
-                        ref={register({ required: true, minLength: 1, maxLength: 72 })}
-                    />
+                    <input placeholder="" name="content" minLength="1" maxLength="72" autoComplete="off" ref={register({ required: true, minLength: 1, maxLength: 72 })}/>
                     <button className="send-button" type="submit">Send</button>
                 </form>
 

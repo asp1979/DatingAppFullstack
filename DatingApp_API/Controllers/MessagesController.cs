@@ -7,7 +7,6 @@ using DatingApp_API.DTOs;
 using System.Collections.Generic;
 using DatingApp_API.Models;
 using DatingApp_API.Helpers;
-using System.Security.Claims;
 using System;
 
 namespace DatingApp_API.Controllers
@@ -46,9 +45,6 @@ namespace DatingApp_API.Controllers
             
             var messagesFromRepo = await _repo.GetMessagesForUser(getMessagesParams);
 
-            if(messagesFromRepo.Count == 0)
-                return NotFound("There are no messages for this user.");
-
             var messages = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
 
             Response.AddPagination(
@@ -66,9 +62,6 @@ namespace DatingApp_API.Controllers
         public async Task<IActionResult> GetMessagesThread(int userID, int recipientID)
         {
             var messagesFromRepo = await _repo.GetMessagesThread(userID, recipientID);
-
-            if(messagesFromRepo.Count == 0)
-                return NotFound("No messages thread for these users.");
 
             var messageThread = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
             

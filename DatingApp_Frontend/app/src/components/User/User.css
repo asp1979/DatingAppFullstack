@@ -1,3 +1,22 @@
+.user-nav-buttons {
+    font-size: 2vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-nav-buttons a {
+    margin: 0.5vmin 1vmin;
+    padding: 0.5vmin 1vmin;
+    border-radius: 1vmin;
+    color: grey;
+}
+
+.user-nav-buttons .active {
+    background-color: deepskyblue;
+    color: white;
+}
+
 .age-text {
     font-size: 1.8vmin;
     color: white;
@@ -5,7 +24,7 @@
     width: 4.5vmin;
     padding: 0.5vmin;
     border-radius: 1vmin;
-    margin-bottom: 2vmin;
+    margin: 1vmin 0;
 }
 
 .age-text i {
@@ -13,7 +32,6 @@
     color: white;
 }
 
-.react-tabs img {
+.user-info img {
     border-radius: 1vmin;
-    margin-bottom: 2vmin;
 }
