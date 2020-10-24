@@ -9,20 +9,24 @@ export const Messages = () => {
     const [threads, setThreads] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const userID = userContext.jwtID.toString();
+    const username = userContext.jwtUsername.toString();
+
     useEffect(() => {
         async function getMessages() {
-            const get = await fetch(`http://localhost:5000/api/v1/users/${userContext.jwtID}/messages`, {
+            const get = await fetch(`http://localhost:5000/api/v1/users/${userID}/messages`, {
                 headers: { "Authorization": "Bearer " + userContext.jwt }
             });
             if(get.ok) {
                 const res = await get.json();
-                /*
-                    we fetch all messages for the user, so we have to create threads
-                    (put messages into groups for each recipient)
-                */
-                const threads = [...new Set(
-                    res.map(msg => msg.recipientID+" "+msg.recipientUsername+" "+msg.recipientPhotoUrl)
-                )].map(recipient => recipient.split(" "));
+
+                // since we are getting all of the user's messages
+                // this figures out how many unique conversations exist
+                const threads = 
+                    [...new Set(
+                        res.map(msg => msg.senderID + " " + msg.recipientID + " " + msg.senderUsername + " " + msg.recipientUsername))
+                    ]
+                    .map(x => x.split(" ").filter(y => y !== userID && y !== username))
 
                 setThreads([...threads]);
                 setLoading(false);
@@ -41,12 +45,12 @@ export const Messages = () => {
                 <ul>
                 {
                     !loading && threads
-                    .filter(x => x[0] !== userContext.jwtID)
-                    .map((user, i) => 
-                        // user[0] = ID, user[1] = Username, user[2] = PhotoUrl
-                        <Link to={"thread/" + user[0]} className="thread-link" key={i}>
-                            <p>{user[1]}</p>
-                            <img src={user[2]} alt=""></img>
+                    .map((msg, i) => 
+                        // msg[0] = userID
+                        // msg[1] = username
+                        <Link to={"thread/" + msg[0]} className="thread-link" key={i}>
+                            <p>{msg[1]}</p>
+                            {/* <img src={""} alt=""></img> */}
                         </Link>
                     )
                 }
