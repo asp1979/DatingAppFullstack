@@ -40,7 +40,7 @@ export const User = ({ match }) => {
                         <h1>{user.username}</h1>
 
                         <div className="user-nav-buttons">
-                            <Link className="active">Overview</Link>
+                            <Link to={`/user/${userID}`} className="active">Overview</Link>
                             <Link to={`/thread/${userID}`}>Messages</Link> 
                         </div>
 

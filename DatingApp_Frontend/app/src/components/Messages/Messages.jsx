@@ -22,11 +22,25 @@ export const Messages = () => {
 
                 // since we are getting all of the user's messages
                 // this figures out how many unique conversations exist
-                const threads = 
-                    [...new Set(
-                        res.map(msg => msg.senderID + " " + msg.recipientID + " " + msg.senderUsername + " " + msg.recipientUsername))
-                    ]
-                    .map(x => x.split(" ").filter(y => y !== userID && y !== username))
+                for(let i = 0; i < res.length; i++) {
+                    delete res[i].content;
+                    delete res[i].dateRead;
+                    delete res[i].id;
+                    delete res[i].isRead;
+                    delete res[i].messageSent;
+
+                    if(res[i].senderUsername === username) {
+                        delete res[i].senderID;
+                        delete res[i].senderUsername;
+                        delete res[i].senderPhotoUrl;
+                    }
+                    if(res[i].recipientUsername === username) {
+                        delete res[i].recipientID;
+                        delete res[i].recipientUsername;
+                        delete res[i].recipientPhotoUrl;
+                    }
+                }
+                const threads = [...new Set(res.map(x => JSON.stringify(x)))].map(x => JSON.parse(x))
 
                 setThreads([...threads]);
                 setLoading(false);
@@ -46,11 +60,9 @@ export const Messages = () => {
                 {
                     !loading && threads
                     .map((msg, i) => 
-                        // msg[0] = userID
-                        // msg[1] = username
-                        <Link to={"thread/" + msg[0]} className="thread-link" key={i}>
-                            <p>{msg[1]}</p>
-                            {/* <img src={""} alt=""></img> */}
+                        <Link to={"thread/" + (msg.recipientID || msg.senderID)} className="thread-link" key={i}>
+                            <p>{(msg.recipientUsername || msg.senderUsername)}</p>
+                            <img src={(msg.recipientPhotoUrl || msg.senderPhotoUrl)} alt=""></img>
                         </Link>
                     )
                 }
