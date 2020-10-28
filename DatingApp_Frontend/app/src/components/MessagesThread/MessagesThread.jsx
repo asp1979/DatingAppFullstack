@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 export const MessagesThread = ({ match }) => {
 
     const { userContext } = useContext(UserContext);
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const userID = Number(userContext.jwtID);
     const oppositeUserID = Number(match.params.id); // match = current URL
@@ -89,8 +89,15 @@ export const MessagesThread = ({ match }) => {
 
                 <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs send-message">
                     <p>Send a message</p>
-                    <input placeholder="" name="content" minLength="1" maxLength="72" autoComplete="off" ref={register({ required: true, minLength: 1, maxLength: 72 })}/>
-                    <button className="send-button" type="submit">Send</button>
+                    <input
+                        placeholder=""
+                        name="content"
+                        minLength="1"
+                        maxLength="72"
+                        autoComplete="off" 
+                        ref={register({ required: true, minLength: 1, maxLength: 72 })}
+                    />
+                    <button onClick={() => setTimeout(() => reset(), 200)} className="send-button" type="submit">Send</button>
                 </form>
 
             </div>

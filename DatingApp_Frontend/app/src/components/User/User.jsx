@@ -41,7 +41,10 @@ export const User = ({ match }) => {
 
                         <div className="user-nav-buttons">
                             <Link to={`/user/${userID}`} className="active">Overview</Link>
-                            <Link to={`/thread/${userID}`}>Messages</Link> 
+                            {
+                                (userContext.jwtID !== userID)
+                                && <Link to={`/thread/${userID}`}>Messages</Link> 
+                            }
                         </div>
 
                         <img src={user.photoUrl} alt=""></img>
