@@ -6,21 +6,21 @@
 }
 
 .user-nav-buttons a {
-    margin: 0.5vmin 1vmin;
+    margin: 0.75vmin 1vmin;
     padding: 0.5vmin 1vmin;
     border-radius: 1vmin;
-    color: grey;
+    color: white;
 }
 
 .user-nav-buttons .active {
-    background-color: deepskyblue;
+    background-color: purple;
     color: white;
 }
 
 .age-text {
     font-size: 1.8vmin;
     color: white;
-    background: rgb(62, 200, 255);
+    background: purple;
     width: 4.5vmin;
     padding: 0.5vmin;
     border-radius: 1vmin;

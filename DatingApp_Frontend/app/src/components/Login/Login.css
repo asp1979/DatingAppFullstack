@@ -12,15 +12,17 @@
     border-radius: 1vmin;
     width: 36vmin;
     height: 44vmin;
-    background: white;
+    border: 0.25vmin solid white;
+    background: transparent;
     box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
 }
 
 .form-inputs input, .form-inputs button {
     border-color: white;
-    border: 0.25vmin solid grey;
+    border: 0.25vmin solid white;
     border-radius: 0.6vmin;
-    color: grey;
+    background: transparent;
+    color: white;
     font-size: 1.6vmin;
 }
 
@@ -30,9 +32,9 @@
     padding: 0.6vmin 1.8vmin;
     margin: 0 4vmin;
     border-radius: 1vmin;
-    border: 0.2vmin solid grey;
-    background-color: white;
-    color: grey;
+    border: 0.2vmin solid white;
+    background-color: transparent;
+    color: white;
 }
 
 .error-span.regex {
@@ -59,5 +61,5 @@
 .page.login h1 {
     font-size: 4vmin;
     text-decoration: underline;
-    color: grey;
+    color: white;
 }

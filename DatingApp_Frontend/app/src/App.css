@@ -6,7 +6,7 @@
     box-sizing: border-box;
     text-decoration: none;
     font-family: sans-serif;
-    color: grey;
+    color: white;
     outline: none;
 }
 
@@ -17,7 +17,7 @@ html {
 
 body {
     height: 100%;
-    background: linear-gradient(to right, #77a1d3, #79cbca, #e684ae);
+    background: #151515;
     overflow-x: hidden;
 }
 
@@ -41,12 +41,12 @@ button {
     border-radius: 1vmin;
     border: 0.25vmin solid white;
     background-color: white;
-    color: grey;
+    color: transparent;
 }
 
 input {
     padding: 0.75vmin;
-    border: 0.25vmin solid grey;
+    border: 0.25vmin solid white;
 }
 
 input:focus::-webkit-input-placeholder {
@@ -67,7 +67,7 @@ input:focus:-ms-input-placeholder {
 
 textarea {
     padding: 1vmin;
-    border: 0.25vmin solid grey;
+    border: 0.25vmin solid white;
     overflow: hidden;
 }
 
@@ -93,17 +93,17 @@ select {
 
 table {
     padding: 1vmin;
-    border: 2px solid grey;
+    border: 2px solid white;
 }
 
 td {
     padding: 4vmin;
-    border: 2px solid grey;
+    border: 2px solid white;
 }
 
 th {
     padding: 1vmin;
-    border: 2px solid grey;
+    border: 2px solid white;
 }
 
 @keyframes opacity-delay {
@@ -141,11 +141,11 @@ th {
     padding: 4vmin;
     margin-bottom: 2%;
     border-radius: 2vmin;
-    background: white;
+    background: #32153d;
     box-shadow: 0.1vmin 0.1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
 }
 
 .page .content h1 {
     width: 100%;
-    border-bottom: 2px solid grey;
+    border-bottom: 0.25vmin solid white;
 }

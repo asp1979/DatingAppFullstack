@@ -8,13 +8,13 @@
     width: 100%;
     padding: 0 4vmin;
     height: 9vmin;
-    background-color:white;
+    background-color: #32153d;
     box-shadow: 0 1vmin 1vmin 0 rgba(0,0,0,0.1);
     z-index: 99;
 }
 
 .navbar h1 {
-    color: grey;
+    color: white;
     font-size: 5vmin;
     margin: 0 4vmin;
 }
@@ -24,10 +24,10 @@
     font-size: 2.2vmin;
     margin: 0 2vmin;
     padding: 1vmin 2.2vmin;
-    border: 0.25vmin solid grey;
+    border: 0.25vmin solid white;
     border-radius: 1vmin;
-    background-color: white;
-    color: grey;
+    background-color: #32153d;
+    color: white;
 }
 
 .route-nav {
@@ -44,6 +44,6 @@
     font-size: 2.2vmin;
     padding: 1vmin 2.2vmin;
     border-radius: 1vmin;
-    background-color: white;
-    color: grey;
+    background-color: #32153d;
+    color: white;
 }
