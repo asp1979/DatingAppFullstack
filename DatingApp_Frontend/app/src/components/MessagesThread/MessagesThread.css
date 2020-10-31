@@ -55,6 +55,7 @@
 }
 
 .form-inputs.send-message input {
+    background: #151515;
     width: 68vmin;
 }
 
