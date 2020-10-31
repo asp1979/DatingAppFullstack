@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import './User.css';
 
 export const User = ({ match }) => {
@@ -35,30 +36,32 @@ export const User = ({ match }) => {
             <div className="content">
                 {
                     !loading &&
-                    <div className="user-info">
+                    <motion.div
+                    className="user-info"
+                    initial={{ opacity: 0, y: 100 }}
+                    animate={{ opacity: 1, y: 0   }}
+                    transition={{ delay: 0.25, duration: 0.5 }}>
+                        
+                        <motion.h1 initial={{ opacity: 0, y: -100 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
+                            {user.username}
+                        </motion.h1>
 
-                        <h1>{user.username}</h1>
+                        <img src={user.photoUrl} alt=""/>
 
-                        <div className="user-nav-buttons">
-                            <Link to={`/user/${userID}`} className="active">Overview</Link>
-                            {
-                                (userContext.jwtID !== userID)
-                                && <Link to={`/thread/${userID}`}>Messages</Link> 
-                            }
-                        </div>
-
-                        <img src={user.photoUrl} alt=""></img>
-                        <p className="age-text">
+                        <div className="age-box">
                             {
                                 user.gender === "female" 
                                 ? <i className="fa fa-female" aria-hidden="true"></i>
                                 : <i className="fa fa-male" aria-hidden="true"></i>
                             }
                             &nbsp;{user.age}
-                        </p>
-                        <p>{user.introduction}</p>
+                        </div>
 
-                    </div>
+                        <motion.p initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
+                            {user.introduction}
+                        </motion.p>
+                        
+                    </motion.div>
                 }
             </div>
             

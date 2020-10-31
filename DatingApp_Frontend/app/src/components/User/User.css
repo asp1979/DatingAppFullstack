@@ -1,37 +1,33 @@
-.user-nav-buttons {
-    font-size: 2vmin;
+.user .content {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.user-nav-buttons a {
-    margin: 0.75vmin 1vmin;
-    padding: 0.5vmin 1vmin;
-    border-radius: 1vmin;
-    color: white;
+.user-info {
+    width: 64vmin;
+    height: 60vmin;
+    padding: 5vmin;
+    background: #151515;
+    border-radius: 2vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.user-nav-buttons .active {
-    background-color: purple;
-    color: white;
-}
-
-.age-text {
-    font-size: 1.8vmin;
-    color: white;
-    background: purple;
-    width: 4.5vmin;
-    padding: 0.5vmin;
-    border-radius: 1vmin;
-    margin: 1vmin 0;
-}
-
-.age-text i {
-    font-size: 1.8vmin;
-    color: white;
+.user-info h1 {
+    text-align: center;
+    margin-bottom: 5vmin;
 }
 
 .user-info img {
+    border-radius: 50%;
+}
+
+.age-box {
+    margin: 2vmin;
+    background: purple;
     border-radius: 1vmin;
+    padding: 0.5vmin;
 }
