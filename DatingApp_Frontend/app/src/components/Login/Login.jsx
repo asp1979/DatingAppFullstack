@@ -29,7 +29,7 @@ export const Login = withRouter(({ history }) => {
                 jwtExpiry: jwtDecode(localStorage.getItem("jwt")).exp,
                 loggedIn: true
             });
-            history.push("/user/" + userContext.jwtID); // redirect
+            history.push("/matches"); // redirect
         } else {
             setFetchError(true);
         }
