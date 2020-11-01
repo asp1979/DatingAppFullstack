@@ -11,7 +11,7 @@ export const Navbar = withRouter(({ history }) => {
     const logout = () => { 
         setUserContext({ ...userContext, loggedIn: false, jwt: null });
         localStorage.removeItem("jwt");
-        setTimeout(() => history.push("/login"), 300);
+        setTimeout(() => history.push("/"), 300);
     }
 
     const reload = () => {

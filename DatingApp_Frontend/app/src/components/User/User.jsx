@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './User.css';
 
@@ -46,16 +45,23 @@ export const User = ({ match }) => {
                             {user.username}
                         </motion.h1>
 
+                        <motion.div className="user-info-nav" initial={{ opacity: 0, y: -100 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
+
+                            <motion.a to={"/user/" + userID}   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>Overview</motion.a>
+                            <motion.a to={"/thread/" + userID} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>Messages</motion.a>
+
+                        </motion.div>
+
                         <img src={user.photoUrl} alt=""/>
 
-                        <div className="age-box">
+                        <motion.div className="age-box" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>
                             {
                                 user.gender === "female" 
                                 ? <i className="fa fa-female" aria-hidden="true"></i>
                                 : <i className="fa fa-male" aria-hidden="true"></i>
                             }
                             &nbsp;{user.age}
-                        </div>
+                        </motion.div>
 
                         <motion.p initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
                             {user.introduction}

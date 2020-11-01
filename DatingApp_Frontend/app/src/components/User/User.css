@@ -4,6 +4,20 @@
     align-items: center;
 }
 
+.user-info-nav {
+    margin-bottom: 5vmin;
+}
+
+.user-info-nav > :nth-child(1) {
+    background: purple;
+}
+
+.user-info-nav a {
+    padding: 0.5vmin 1vmin;
+    border-radius: 1vmin;
+    margin: 1vmin;
+}
+
 .user-info {
     width: 64vmin;
     height: 60vmin;
@@ -18,7 +32,7 @@
 
 .user-info h1 {
     text-align: center;
-    margin-bottom: 5vmin;
+    margin-bottom: 1.5vmin;
 }
 
 .user-info img {

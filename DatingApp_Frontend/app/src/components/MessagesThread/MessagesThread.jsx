@@ -2,6 +2,7 @@ import './MessagesThread.css';
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 export const MessagesThread = ({ match }) => {
 
@@ -65,7 +66,9 @@ export const MessagesThread = ({ match }) => {
             <div className="content with-h1-img">
                 {
                     !loading
-                    ? <h1> {oppositeUser.username} <img className="title-img" src={oppositeUser.photoUrl} alt=""></img> </h1>
+                    ? <Link to={"/user/" + oppositeUserID}>
+                        <h1> {oppositeUser.username} <img className="title-img" src={oppositeUser.photoUrl} alt=""></img> </h1>
+                    </Link>
                     : <h1>Messages</h1>
                 }
                 <ul>
