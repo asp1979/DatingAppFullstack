@@ -1,39 +1,30 @@
-// arr is an array of message objects
-// since we are getting all of the user's messages
-// we need to figure out how many unique conversations exist
-// the algorithm is somewhat verbose for easier reading
+export function createMessageThreads(arr, userID) {
 
-export function createUniqueConversations(arr, username) {
+    // arr is an array of message objects
+    // since we are getting all of the user's messages
+    // we need to figure out how many unique conversations exist
+
+    let uselessKeys = ["content", "dateRead", "id", "isRead", "messageSent"]
+    arr.forEach(obj => Object.keys(obj).forEach(key => uselessKeys.includes(key) ? delete obj[key] : null))
+
     for(let i = 0; i < arr.length; i++) {
-        delete arr[i].content;
-        delete arr[i].dateRead;
-        delete arr[i].id;
-        delete arr[i].isRead;
-        delete arr[i].messageSent;
-    
-        if(arr[i].senderUsername === username) {
+        if(arr[i].senderID === userID) {
             delete arr[i].senderID;
             delete arr[i].senderUsername;
             delete arr[i].senderPhotoUrl;
-        }
-    
-        if(arr[i].recipientUsername === username) {
+        } else {
             delete arr[i].recipientID;
             delete arr[i].recipientUsername;
             delete arr[i].recipientPhotoUrl;
         }
     
-        arr[i].ID = (arr[i].recipientID || arr[i].senderID)
+        arr[i].userID = (arr[i].recipientID || arr[i].senderID)
         arr[i].username = (arr[i].recipientUsername || arr[i].senderUsername)
         arr[i].photoUrl = (arr[i].recipientPhotoUrl || arr[i].senderPhotoUrl)
-    
-        delete arr[i].recipientID;
-        delete arr[i].recipientUsername;
-        delete arr[i].recipientPhotoUrl;
-        delete arr[i].senderID;
-        delete arr[i].senderUsername;
-        delete arr[i].senderPhotoUrl;
     }
+
+    uselessKeys = ["recipientID", "recipientUsername", "recipientPhotoUrl", "senderID", "senderUsername", "senderPhotoUrl"]
+    arr.forEach(obj => Object.keys(obj).forEach(key => uselessKeys.includes(key) ? delete obj[key] : null))
     
-    return [...new Set(arr.map(x => JSON.stringify(x)))].map(x => JSON.parse(x));
+    return [ ...new Set(arr.map(x => JSON.stringify(x))) ].map(x => JSON.parse(x));
 }

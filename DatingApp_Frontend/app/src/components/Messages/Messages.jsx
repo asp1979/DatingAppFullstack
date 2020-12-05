@@ -2,16 +2,14 @@ import './Messages.css';
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom';
-import { createUniqueConversations } from './messagesAlgorithms';
+import { createMessageThreads } from './messagesAlgorithms';
 
 export const Messages = () => {
 
     const { userContext } = useContext(UserContext);
     const [threads, setThreads] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const userID = userContext.jwtID.toString();
-    const username = userContext.jwtUsername.toString();
+    const userID = Number(userContext.jwtID);
 
     useEffect(() => {
         async function getMessages() {
@@ -20,7 +18,7 @@ export const Messages = () => {
             });
             if(get.ok) {
                 const res = await get.json();
-                const threads = createUniqueConversations(res, username);
+                const threads = createMessageThreads(res, userID);
                 setThreads([...threads]);
                 setLoading(false);
             } else {
@@ -39,7 +37,7 @@ export const Messages = () => {
                 {
                     !loading && threads
                     .map((msg, i) => 
-                        <Link to={"thread/" + msg.ID} className="thread-link" key={i}>
+                        <Link to={"thread/" + msg.userID} className="thread-link" key={i}>
                             <p>{msg.username}</p>
                             <img src={msg.photoUrl} alt=""></img>
                         </Link>
