@@ -11,6 +11,8 @@ export const MessagesThread = ({ match }) => {
 
     const userID = Number(userContext.jwtID);
     const oppositeUserID = Number(match.params.id); // match = current URL
+    const baseURL = "http://localhost:5000/api/v1/users";
+    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
 
     const [messages, setMessages] = useState([]);
     const [oppositeUser, setOppositeUser] = useState(null);
@@ -22,12 +24,8 @@ export const MessagesThread = ({ match }) => {
 
     useEffect(() => {
         async function getData() {
-            const getMessages = await fetch(`http://localhost:5000/api/v1/users/${userID}/messages/thread/${oppositeUserID}`, {
-                headers: { "Authorization": "Bearer " + userContext.jwt }
-            });
-            const getOppositeUser = await fetch(`http://localhost:5000/api/v1/users/${oppositeUserID}`, {
-                headers: { "Authorization": "Bearer " + userContext.jwt }
-            });
+            const getMessages = await fetch(baseURL + `/${userID}/messages/thread/${oppositeUserID}`, headers);
+            const getOppositeUser = await fetch(baseURL + `/${oppositeUserID}`, headers);
 
             if(getMessages.ok && getOppositeUser.ok) {
                 const messagesJSON = await getMessages.json();
@@ -47,7 +45,7 @@ export const MessagesThread = ({ match }) => {
 
     const onSubmit = async (formdata) => {
         formdata.recipientID = oppositeUserID;
-        const post = await fetch(`http://localhost:5000/api/v1/users/${userID}/messages`, {
+        const post = await fetch(baseURL + `/${userID}/messages`, {
             headers: {
                 "Authorization": "Bearer " + userContext.jwt,
                 "Content-Type": "application/json"
@@ -76,12 +74,12 @@ export const MessagesThread = ({ match }) => {
                         !loading && messages
                         .map((msg, i) => 
                             msg.senderID === Number(userContext.jwtID)
-                            ? <div key={i} className="message-container">
+                            ? <div key={i} className="message-container logged-user">
                                 <p>{msg.content}</p>
                                 <p>{msg.messageSent.substring(11,16)}</p>
                             </div>
 
-                            : <div key={i} className="message-container recipient">
+                            : <div key={i} className="message-container opposite-user">
                                 <p>{msg.content}</p>
                                 <p>{msg.messageSent.substring(11,16)}</p>
                             </div>

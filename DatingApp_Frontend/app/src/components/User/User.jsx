@@ -11,12 +11,12 @@ export const User = ({ match }) => {
 
     const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(true);
+    const baseURL = "http://localhost:5000/api/v1/users";
+    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } }
     
     useEffect(() => {
         async function getUser() {
-            const get = await fetch("http://localhost:5000/api/v1/users/" + userID, {
-                headers: { "Authorization": "Bearer " + userContext.jwt }
-            });
+            const get = await fetch(baseURL + `/${userID}`, headers);
             if(get.ok) {
                 const data = await get.json();
                 setLoading(false);
@@ -35,13 +35,9 @@ export const User = ({ match }) => {
             <div className="content">
                 {
                     !loading &&
-                    <motion.div
-                    className="user-info"
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0   }}
-                    transition={{ delay: 0.25, duration: 0.5 }}>
+                    <motion.div className="user-info" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0   }} transition={{ delay: 0.25, duration: 0.5 }}>
                         
-                        <motion.h1 initial={{ opacity: 0, y: -100 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
+                        <motion.h1 initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
                             {user.username}
                         </motion.h1>
 
@@ -61,7 +57,7 @@ export const User = ({ match }) => {
                             &nbsp;{user.age}
                         </motion.div>
 
-                        <motion.p initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
+                        <motion.p initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
                             {user.introduction}
                         </motion.p>
                         

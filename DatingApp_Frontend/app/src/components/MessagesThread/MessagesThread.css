@@ -24,7 +24,6 @@
 .message-container {
     font-size: 1.5vmin;
     min-height: 4vmin;
-    background-color: purple;
     border-radius: 2vmin;
     display: flex;
     justify-content: space-between;
@@ -36,11 +35,16 @@
     opacity: 0;
 }
 
-.message-container.recipient {
+.message-container.logged-user {
     position: relative;
     left: 41vmin;
+    background-color: purple;
+}
+
+.message-container.opposite-user {
+    position: relative;
+    left: 0vmin;
     background-color: deepskyblue;
-    border: none;
 }
 
 .message-container p {
