@@ -13,6 +13,7 @@ export const User = ({ match }) => {
     const [loading, setLoading] = useState(true);
     const baseURL = "http://localhost:5000/api/v1/users";
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } }
+    const isSelf = (+userID) === (+userContext.jwtID) ? true : false;
     
     useEffect(() => {
         async function getUser() {
@@ -42,8 +43,19 @@ export const User = ({ match }) => {
                         </motion.h1>
 
                         <motion.div className="user-info-nav not-flex" initial={{ opacity: 0, y: -100 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
-                            <motion.a href={"/user/" + userID}   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>Overview</motion.a>
-                            <motion.a href={"/thread/" + userID} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>Messages</motion.a>
+
+                            <motion.a href={"/user/" + userID} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>
+                                Overview
+                            </motion.a>
+
+                            { !isSelf && <motion.a href={"/thread/" + userID} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>
+                                Messages
+                            </motion.a> }
+
+                            {  isSelf && <motion.a href={""} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>
+                                Edit <i class="fas fa-edit"></i>
+                            </motion.a> }
+
                         </motion.div>
 
                         <img src={user.photoUrl} alt=""/>

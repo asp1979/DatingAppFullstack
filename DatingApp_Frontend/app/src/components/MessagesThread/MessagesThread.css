@@ -8,10 +8,26 @@
     grid-auto-rows: min-content;
     grid-row-gap: 2vmin;
     height: 60vmin;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 2vmin;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 1vmin;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #353535;
+}
+  
 .title-img {
     position: relative;
     top: 0.4vmin;
@@ -23,8 +39,8 @@
 
 .message-container {
     font-size: 1.5vmin;
-    min-height: 4vmin;
-    border-radius: 2vmin;
+    padding: 1vmin 0.5vmin;
+    border-radius: 1vmin;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,6 +49,10 @@
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
     opacity: 0;
+}
+
+.message-container > :nth-child(1) {
+    word-break: break-all;
 }
 
 .message-container.logged-user {

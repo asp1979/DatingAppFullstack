@@ -39,6 +39,7 @@ export const MessagesThread = ({ match }) => {
             }
         }
         getData();
+        setInterval(() => getData(), 5000);
         setTimeout(() => scrollToLast(), 100);
         // eslint-disable-next-line
     }, [sentMessages]);
@@ -94,9 +95,9 @@ export const MessagesThread = ({ match }) => {
                         placeholder=""
                         name="content"
                         minLength="1"
-                        maxLength="72"
+                        maxLength="56"
                         autoComplete="off" 
-                        ref={register({ required: true, minLength: 1, maxLength: 72 })}
+                        ref={register({ required: true, minLength: 1, maxLength: 56 })}
                     />
                     <button onClick={() => setTimeout(() => reset(), 200)} className="send-button" type="submit">Send</button>
                 </form>
