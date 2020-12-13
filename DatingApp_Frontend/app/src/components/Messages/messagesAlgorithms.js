@@ -1,30 +1,31 @@
-export function createMessageThreads(arr, userID) {
+export function createMessageThreads(messages) {
 
-    // arr is an array of message objects
-    // since we are getting all of the user's messages
-    // we need to figure out how many unique conversations exist
+    // this groups messages for each unique sender
 
-    let uselessKeys = ["content", "dateRead", "id", "isRead", "messageSent"]
-    arr.forEach(obj => Object.keys(obj).forEach(key => uselessKeys.includes(key) ? delete obj[key] : null))
-
-    for(let i = 0; i < arr.length; i++) {
-        if(arr[i].senderID === userID) {
-            delete arr[i].senderID;
-            delete arr[i].senderUsername;
-            delete arr[i].senderPhotoUrl;
-        } else {
-            delete arr[i].recipientID;
-            delete arr[i].recipientUsername;
-            delete arr[i].recipientPhotoUrl;
-        }
-    
-        arr[i].userID = (arr[i].recipientID || arr[i].senderID)
-        arr[i].username = (arr[i].recipientUsername || arr[i].senderUsername)
-        arr[i].photoUrl = (arr[i].recipientPhotoUrl || arr[i].senderPhotoUrl)
+    function groupBy(list, keyGetter) {
+        const map = new Map();
+        list.forEach((item) => {
+            const key = keyGetter(item);
+            const collection = map.get(key);
+            if (!collection) {
+                map.set(key, [item]);
+            } else {
+                collection.push(item);
+            }
+        });
+        return map;
     }
 
-    uselessKeys = ["recipientID", "recipientUsername", "recipientPhotoUrl", "senderID", "senderUsername", "senderPhotoUrl"]
-    arr.forEach(obj => Object.keys(obj).forEach(key => uselessKeys.includes(key) ? delete obj[key] : null))
-    
-    return [ ...new Set(arr.map(x => JSON.stringify(x))) ].map(x => JSON.parse(x));
+    const grouped = [...groupBy(messages, msg => msg.senderID)];
+    grouped.forEach(x => x.push(x[1][0].senderUsername));
+    grouped.forEach(x => x.push(x[1][0].senderPhotoUrl));
+    grouped.forEach(x => x.push(x[1].reduce((a,x) => x.isRead ? 0 : a + 1, 0)));
+
+    // grouped[0][0] is the senderID 
+    // grouped[0][1] is all the message objects of the user
+    // grouped[0][2] is the senderUsername 
+    // grouped[0][3] is the senderPhotoUrl
+    // grouped[0][4] is is the amount of unread messages 
+
+    return grouped;
 }

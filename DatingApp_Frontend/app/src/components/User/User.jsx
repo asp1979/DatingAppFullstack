@@ -53,7 +53,7 @@ export const User = ({ match }) => {
                             </motion.a> }
 
                             {  isSelf && <motion.a href={""} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>
-                                Edit <i class="fas fa-edit"></i>
+                                Edit <i className="fas fa-edit"></i>
                             </motion.a> }
 
                         </motion.div>

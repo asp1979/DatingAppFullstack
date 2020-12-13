@@ -11,6 +11,6 @@ namespace DatingApp_API.Helpers
             set { _totalItems = value > MaxItemsPerPage ? MaxItemsPerPage : value; }
         }
         public int UserID { get; set; }
-        public string MessageContainer { get; set; } = "Unread";
+        public string MessageContainer { get; set; } = "inbox";
     }
 }
