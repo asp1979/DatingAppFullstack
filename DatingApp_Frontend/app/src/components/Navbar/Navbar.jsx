@@ -30,22 +30,26 @@ export const Navbar = withRouter(({ history }) => {
     }
 
     useEffect(() => {
-        if(userContext.loggedIn === true) {
-            async function getUnreadMessagesCount() {
+        async function getUnreadMessagesCount() {
+            if(userContext.loggedIn === true) {
                 const messages = await fetch(baseURL + `/v1/users/${userContext.jwtID}/messages`, headers) 
                 if(messages.ok) {
                     const messagesJSON = await messages.json();
-                    console.log(messagesJSON)
                     const unreadCount = messagesJSON.reduce((a,msg) => msg.isRead ? a + 0 : a + 1, 0);
-                    console.log(unreadCount)
+
                     setUnread(unreadCount);
                     setLoading(false);
                 }
             }
-            getUnreadMessagesCount();
         }
-        //eslint-disable-next-line
-    }, [])
+        getUnreadMessagesCount();
+
+        const update = setInterval(() => getUnreadMessagesCount(), 5000);
+
+        return () => clearInterval(update);
+
+        // eslint-disable-next-line
+    }, [userContext.loggedIn, userContext.jwtID])
 
     return (
         <div className="navbar">

@@ -45,6 +45,7 @@ export const MessagesThread = ({ match }) => {
         const updateMessages = setInterval(() => getData(), 5000);
 
         return () => clearInterval(updateMessages);
+
         // eslint-disable-next-line
     }, [sentMessages]);
 
@@ -57,7 +58,7 @@ export const MessagesThread = ({ match }) => {
         })
         if(post.ok) {
             setSentMessages(prev => ++prev);
-            console.log(sentMessages); // this console.log calls the useEffect dependency
+            (() => sentMessages)(); // call useEffect dependency to trigger update
         }
     }
 
