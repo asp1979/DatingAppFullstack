@@ -30,6 +30,7 @@ export const Login = withRouter(({ history }) => {
                 loggedIn: true
             });
             history.push("/matches"); // redirect
+            window.location.reload();
         } else {
             setFetchError(true);
         }

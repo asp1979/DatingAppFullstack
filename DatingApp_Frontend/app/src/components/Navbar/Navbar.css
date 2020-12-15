@@ -47,3 +47,11 @@
     background-color: #32153d;
     color: white;
 }
+
+.route-nav .unread-count {
+    padding: 0.5vmin 0.75vmin;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    font-size: 1.5vmin;
+}
