@@ -30,12 +30,14 @@ export const Navbar = withRouter(({ history }) => {
     }
 
     useEffect(() => {
-        if(userContext.loggedIn) {
+        if(userContext.loggedIn === true) {
             async function getUnreadMessagesCount() {
                 const messages = await fetch(baseURL + `/v1/users/${userContext.jwtID}/messages`, headers) 
                 if(messages.ok) {
                     const messagesJSON = await messages.json();
-                    const unreadCount = messagesJSON.reduce((a,msg) => msg.IsRead ? 0 : a + 1, 0);
+                    console.log(messagesJSON)
+                    const unreadCount = messagesJSON.reduce((a,msg) => msg.isRead ? a + 0 : a + 1, 0);
+                    console.log(unreadCount)
                     setUnread(unreadCount);
                     setLoading(false);
                 }
@@ -56,7 +58,7 @@ export const Navbar = withRouter(({ history }) => {
                     <p>Matches</p>
                 </Link> }
                 { userContext.loggedIn && <Link to="/messages">
-                    <p>Messages {!loading && unread && <span className="unread-count">{unread}</span>}</p>
+                    <p>Messages {!loading && unread > 0 && <span className="unread-count">{unread}</span>}</p>
                 </Link> }
             </div>
 

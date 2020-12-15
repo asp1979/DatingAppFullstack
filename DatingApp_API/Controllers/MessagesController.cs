@@ -1,13 +1,13 @@
+using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using DatingApp_API.Data;
 using DatingApp_API.DTOs;
-using System.Collections.Generic;
 using DatingApp_API.Models;
 using DatingApp_API.Helpers;
-using System;
 
 namespace DatingApp_API.Controllers
 {
@@ -57,13 +57,23 @@ namespace DatingApp_API.Controllers
             return Ok(messages);
         }
 
-        [HttpGet("thread/{recipientID}")] // api/v1/users/{userID}/messages/thread/{recipientID}
+        [HttpGet("thread/{oppositeUserID}")] // api/v1/users/{userID}/messages/thread/{oppositeUserID}
         [Authorize(Policy = "IsDataOwner")]
-        public async Task<IActionResult> GetMessagesThread(int userID, int recipientID)
+        public async Task<IActionResult> GetMessagesThread(int userID, int oppositeUserID)
         {
-            var messagesFromRepo = await _repo.GetMessagesThread(userID, recipientID);
+            var messagesFromRepo = await _repo.GetMessagesThread(userID, oppositeUserID);
+
+            foreach(var msg in messagesFromRepo) {
+                if(msg.RecipientID == userID)
+                {
+                    msg.IsRead = true;
+                    msg.DateRead = DateTime.Now;
+                }
+            }
 
             var messageThread = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+
+            await _repo.SaveAll();
             
             return Ok(messageThread);
         }

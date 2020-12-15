@@ -19,7 +19,7 @@ export function createMessageThreads(inbox, outbox) {
     let threads = [...groupBy(inbox, msg => msg.senderID)];
     threads.forEach(x => x.push(x[1][0].senderUsername));
     threads.forEach(x => x.push(x[1][0].senderPhotoUrl));
-    threads.forEach(x => x.push(x[1].reduce((a,x) => x.isRead ? 0 : a + 1, 0)));
+    threads.forEach(x => x.push(x[1].reduce((a,x) => x.isRead ? a + 0 : a + 1, 0)));
 
     // threads[0][0] is the senderID 
     // threads[0][1] is all the message objects of the user
