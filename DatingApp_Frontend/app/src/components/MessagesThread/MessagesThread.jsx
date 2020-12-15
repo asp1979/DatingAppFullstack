@@ -17,7 +17,7 @@ export const MessagesThread = ({ match }) => {
     const [messages, setMessages] = useState([]);
     const [oppositeUser, setOppositeUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [sentMessages, setSentMessages] = useState(0);
+    const [sentMessagesCount, setSentMessagesCount] = useState(0);
 
     const lastMsgRef = useRef();
     const scrollToLast = () => lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
@@ -40,14 +40,14 @@ export const MessagesThread = ({ match }) => {
         }
         getData();
 
-        setTimeout(() => scrollToLast(), 100);
+        setTimeout(() => scrollToLast(), 500);
 
-        const updateMessages = setInterval(() => getData(), 5000);
+        const updateMessages = setInterval(() => getData(), 1000);
 
         return () => clearInterval(updateMessages);
 
         // eslint-disable-next-line
-    }, [sentMessages]);
+    }, [messages.length, sentMessagesCount]);
 
     const onSubmit = async (formdata) => {
         formdata.recipientID = oppositeUserID;
@@ -57,8 +57,7 @@ export const MessagesThread = ({ match }) => {
             body: JSON.stringify(formdata)
         })
         if(post.ok) {
-            setSentMessages(prev => ++prev);
-            (() => sentMessages)(); // call useEffect dependency to trigger update
+            setSentMessagesCount(prev => ++prev);
         }
     }
 

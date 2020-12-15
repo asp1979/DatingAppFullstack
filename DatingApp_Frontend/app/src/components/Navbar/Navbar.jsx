@@ -44,7 +44,7 @@ export const Navbar = withRouter(({ history }) => {
         }
         getUnreadMessagesCount();
 
-        const update = setInterval(() => getUnreadMessagesCount(), 5000);
+        const update = setInterval(() => getUnreadMessagesCount(), 1000);
 
         return () => clearInterval(update);
 
