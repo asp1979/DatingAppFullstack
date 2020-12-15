@@ -12,7 +12,7 @@ export const MessagesThread = ({ match }) => {
     const userID = Number(userContext.jwtID);
     const oppositeUserID = Number(match.params.id); // match = current URL
     const baseURL = "http://localhost:5000/api/v1/users";
-    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
+    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt, "Content-Type": "application/json"} };
 
     const [messages, setMessages] = useState([]);
     const [oppositeUser, setOppositeUser] = useState(null);
@@ -39,18 +39,19 @@ export const MessagesThread = ({ match }) => {
             }
         }
         getData();
-        setInterval(() => getData(), 5000);
+
         setTimeout(() => scrollToLast(), 100);
+
+        const updateMessages = setInterval(() => getData(), 5000);
+
+        return () => clearInterval(updateMessages);
         // eslint-disable-next-line
     }, [sentMessages]);
 
     const onSubmit = async (formdata) => {
         formdata.recipientID = oppositeUserID;
         const post = await fetch(baseURL + `/${userID}/messages`, {
-            headers: {
-                "Authorization": "Bearer " + userContext.jwt,
-                "Content-Type": "application/json"
-            },
+            ...headers,
             method: "POST",
             body: JSON.stringify(formdata)
         })

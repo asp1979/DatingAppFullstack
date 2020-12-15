@@ -10,20 +10,20 @@ export const Messages = () => {
     const [threads, setThreads] = useState([]);
     const [loading, setLoading] = useState(true);
     const userID = Number(userContext.jwtID);
+    const baseURL = `http://localhost:5000/api/v1/users/${userID}/messages`;
+    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
 
     useEffect(() => {
         async function getMessages() {
-            const get = await fetch(`http://localhost:5000/api/v1/users/${userID}/messages`, {
-                headers: { "Authorization": "Bearer " + userContext.jwt }
-            });
-            if(get.ok) {
-                const res = await get.json();
-                const threads = createMessageThreads(res);
+            const inbox = await fetch(baseURL + "?messageContainer=inbox", headers);
+            const outbox = await fetch(baseURL + "?messageContainer=outbox", headers);
+            if(inbox.ok && outbox.ok) {
+                const inboxJSON = await inbox.json();
+                const outboxJSON = await outbox.json();
+                const threads = createMessageThreads(inboxJSON, outboxJSON);
                 setThreads([...threads]);
                 setLoading(false);
-            } else {
-                console.log(get.status, "Error");
-            }
+            } 
         }
         getMessages();
         // eslint-disable-next-line
@@ -45,7 +45,7 @@ export const Messages = () => {
                         <Link to={"thread/" + user[0]} className="thread-link" key={i}>
                             <img className="photo" src={user[3]} alt=""></img>
                             <p className="username">{user[2]}</p>
-                            <p className="unread-count">{user[4]}</p>
+                            { user[4] > 0 ? <p className="unread-count">{user[4]}</p> : null }
                         </Link>
                     )
                 }
