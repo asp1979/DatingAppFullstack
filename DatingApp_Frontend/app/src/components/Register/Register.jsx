@@ -34,8 +34,15 @@ export const Register = () => {
                 { regSuccess === true && <span className="success-span">Registration successful! Confirm your email!</span> }
                 { regSuccess === false && <span className="error-span">Registration failed! Username taken!</span> }
 
-                <input placeholder="Username" name="username" maxLength={16} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
-                <input placeholder="Password" name="password" maxLength={32} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
+                <div>
+                    <span>Username</span>
+                    <input name="username" maxLength={16} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
+                </div>
+
+                <div>
+                    <span>Password</span>
+                    <input name="password" maxLength={32} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
+                </div>
 
                 <button type="submit">Register</button>
                 
