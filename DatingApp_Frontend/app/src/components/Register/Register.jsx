@@ -28,8 +28,8 @@ export const Register = () => {
 
                 <h1>Register</h1>
 
-                { errors.username && <span className="error-span">Username incorrect</span> }
-                { errors.password && <span className="error-span">Password incorrect</span> }
+                { errors.username && <span className="error-span">Username too short or not alphanumeric</span> }
+                { errors.password && <span className="error-span">Password too short or not alphanumeric</span> }
 
                 { regSuccess === true && <span className="success-span">Registration successful! Confirm your email!</span> }
                 { regSuccess === false && <span className="error-span">Registration failed! Username taken!</span> }

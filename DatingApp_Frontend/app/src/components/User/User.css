@@ -2,6 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 60vmin;
+}
+
+.user .content h1 {
+    color: darkgrey;
+    border-color: darkgrey;
 }
 
 .user-info-nav {
@@ -10,6 +16,7 @@
 
 .user-info-nav > :nth-child(1) {
     background: purple;
+    color: white;
 }
 
 .user-info-nav a {
@@ -19,10 +26,10 @@
 }
 
 .user-info {
-    width: 64vmin;
+    width: 40vmin;
     height: 60vmin;
     padding: 5vmin;
-    background: #151515;
+    background: white;
     border-radius: 2vmin;
     display: flex;
     flex-direction: column;
@@ -42,6 +49,11 @@
 .age-box {
     margin: 2vmin;
     background: purple;
+    color: white;
     border-radius: 1vmin;
     padding: 0.5vmin;
+}
+
+.age-box i {
+    color: white;
 }

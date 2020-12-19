@@ -15,7 +15,7 @@
 
 /* width */
 ::-webkit-scrollbar {
-    width: 1vmin;
+    width: 0.8vmin;
 }
 
 /* Track */
@@ -25,7 +25,7 @@
   
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #353535;
+    background: white;
 }
   
 .title-img {
@@ -78,8 +78,13 @@
     margin-left: 2vmin;
 }
 
+.form-inputs.send-message p {
+    color: white;
+}
+
 .form-inputs.send-message input {
-    background: #151515;
+    background: white;
+    color: darkgrey;
     width: 68vmin;
 }
 

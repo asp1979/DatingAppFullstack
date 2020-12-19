@@ -6,7 +6,7 @@
     box-sizing: border-box;
     text-decoration: none;
     font-family: sans-serif;
-    color: white;
+    color: darkgrey;
     outline: none;
 }
 
@@ -17,7 +17,7 @@ html {
 
 body {
     height: 100%;
-    background: #151515;
+    background: white;
     overflow-x: hidden;
 }
 
@@ -30,7 +30,7 @@ li {
 }
 
 a {
-    color: white;
+    color: darkgrey;
 }
 
 button {
@@ -39,14 +39,14 @@ button {
     padding: 1vmin 2.2vmin;
     margin: 0 2vmin;
     border-radius: 1vmin;
-    border: 0.25vmin solid white;
-    background-color: white;
+    border: 0.25vmin solid darkgrey;
+    background-color: darkgrey;
     color: transparent;
 }
 
 input {
     padding: 0.75vmin;
-    border: 0.25vmin solid white;
+    border: 0.25vmin solid darkgrey;
 }
 
 input:focus::-webkit-input-placeholder {
@@ -67,7 +67,7 @@ input:focus:-ms-input-placeholder {
 
 textarea {
     padding: 1vmin;
-    border: 0.25vmin solid white;
+    border: 0.25vmin solid darkgrey;
     overflow: hidden;
 }
 
@@ -93,17 +93,17 @@ select {
 
 table {
     padding: 1vmin;
-    border: 2px solid white;
+    border: 2px solid darkgrey;
 }
 
 td {
     padding: 4vmin;
-    border: 2px solid white;
+    border: 2px solid darkgrey;
 }
 
 th {
     padding: 1vmin;
-    border: 2px solid white;
+    border: 2px solid darkgrey;
 }
 
 @keyframes opacity-delay {
@@ -146,6 +146,7 @@ th {
 }
 
 .page .content h1 {
+    color: white;
     width: 100%;
     border-bottom: 0.25vmin solid white;
 }

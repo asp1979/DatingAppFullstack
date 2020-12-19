@@ -12,22 +12,31 @@
     border-radius: 1vmin;
     width: 36vmin;
     height: 44vmin;
-    border: 0.25vmin solid white;
+    border: 0.4vmin solid darkgrey;
     background: transparent;
     box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
 }
 
 .form-inputs input, .form-inputs button {
-    border-color: white;
-    border: 0.25vmin solid white;
+    border-color: darkgrey;
+    border: 0.25vmin solid darkgrey;
     border-radius: 0.6vmin;
-    background: #040404;
-    color: white;
+    color: darkgrey;
     font-size: 1.6vmin;
 }
 
 .form-inputs button {
-    background-color: #040404;
+    color: white;
+    background-color: darkgrey;
+}
+
+.form-inputs span {
+    position: absolute;
+    margin: -0.5vmin 2vmin;
+    padding: 0 1vmin;
+    font-size: 1.2vmin;
+    background: white;
+    color: darkgrey;
 }
 
 .error-span {
@@ -36,9 +45,9 @@
     padding: 0.6vmin 1.8vmin;
     margin: 0 4vmin;
     border-radius: 1vmin;
-    border: 0.2vmin solid white;
+    border: 0.2vmin solid darkgrey;
     background-color: transparent;
-    color: white;
+    color: darkgrey;
 }
 
 .error-span.regex {
@@ -58,12 +67,12 @@
     margin: 0 4vmin;
     border-radius: 1vmin;
     border: 0.25vmin solid limegreen;
-    background-color: white;
+    background-color: transparent;
     color: limegreen;
 }
 
 .page.login h1 {
     font-size: 4vmin;
     text-decoration: underline;
-    color: white;
+    color: darkgrey;
 }

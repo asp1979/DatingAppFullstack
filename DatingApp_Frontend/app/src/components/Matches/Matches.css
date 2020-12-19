@@ -10,7 +10,7 @@
     margin: 3.3vmin;
     width: 15vmin;
     height: 17vmin;
-    background-color: #151515;
+    background-color: white;
     border-radius: 2vmin;
     box-shadow: 0 0 2vmin 0.5vmin rgba(0, 0, 0, 0.15);
     display: flex;
@@ -25,7 +25,7 @@
 }
 
 .person-card:hover {
-    border: 0.25vmin solid white;
+    border: 0.25vmin solid darkgrey;
 }
 
 .person-card img {
