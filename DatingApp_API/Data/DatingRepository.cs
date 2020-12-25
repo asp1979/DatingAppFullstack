@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using DatingApp_API.Models;
-using DatingApp_API.Helpers;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using DatingApp_API.Models;
+using DatingApp_API.Helpers;
 
 namespace DatingApp_API.Data
 {
@@ -31,10 +31,38 @@ namespace DatingApp_API.Data
         }
 
 
+        private async Task<IEnumerable<int>> GetUserLikes(int id, string likersOrLikees)
+        {
+            var user = await _context.Users
+                        .Include(u => u.Likers)
+                        .Include(u => u.Likees)
+                        .FirstOrDefaultAsync(u => u.ID == id);
+
+            if(likersOrLikees == "likers")
+            {
+                return user.Likers.Where(l => l.LikeeID == id).Select(l => l.LikerID);
+            }
+            if(likersOrLikees == "likees")
+            {
+                return user.Likees.Where(l => l.LikerID == id).Select(l => l.LikeeID);
+            }
+            else
+            {
+                return new int[] {};
+            }
+        }
+
+
         public async Task<PagedList<User>> GetUsers(GetUsersParams getUsersParams)
         {
             var users = _context.Users.Include(u => u.Photos).AsQueryable();
             users = users.Where(u => u.ID != getUsersParams.UserID);
+
+            if(getUsersParams.LikersOrLikees == "likers" || getUsersParams.LikersOrLikees == "likees")
+            {
+                var likes = await GetUserLikes(getUsersParams.UserID, getUsersParams.LikersOrLikees);
+                users = users.Where(u => likes.Contains(u.ID));
+            }
 
             if(getUsersParams.MinAge != 18 || getUsersParams.MaxAge != 200)
             {
