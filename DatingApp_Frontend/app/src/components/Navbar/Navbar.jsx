@@ -58,9 +58,15 @@ export const Navbar = withRouter(({ history }) => {
                 <Link to="/">
                     <h1>Timder</h1>
                 </Link>
+
+                <Link to="/find">
+                    <p>Find</p>
+                </Link>
+
                 { userContext.loggedIn && <Link to="/matches">
                     <p>Matches</p>
                 </Link> }
+
                 { userContext.loggedIn && <Link to="/messages">
                     <p>Messages {!loading && unread > 0 && <span className="unread-count">{unread}</span>}</p>
                 </Link> }

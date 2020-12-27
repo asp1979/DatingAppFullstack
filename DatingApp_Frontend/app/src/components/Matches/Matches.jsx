@@ -11,7 +11,7 @@ export const Matches = () => {
 
     useEffect(() => {
         async function getMatches() {
-            const get = await fetch("http://localhost:5000/api/v1/users", {
+            const get = await fetch("http://localhost:5000/api/v1/users?likersOrLikees=likees", {
                 headers: { "Authorization": "Bearer " + userContext.jwt }
             });
             if(get.ok) {

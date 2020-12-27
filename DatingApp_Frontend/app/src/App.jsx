@@ -5,6 +5,7 @@ import { PrivateRoute } from './utils/PrivateRoute';
 import { Navbar } from './components/Navbar/Navbar';
 import { Home } from './components/Home/Home';
 import { Login } from './components/Login/Login';
+import { Find } from './components/Find/Find';
 import { Register } from './components/Register/Register';
 import { Matches } from './components/Matches/Matches';
 import { Messages } from './components/Messages/Messages';
@@ -49,6 +50,7 @@ export const App = () => {
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <PrivateRoute path="/user/:id" component={User} />
+                <PrivateRoute path="/find" component={Find} />
                 <PrivateRoute path="/matches" component={Matches} />
                 <PrivateRoute path="/messages" component={Messages} />
                 <PrivateRoute path="/thread/:id" component={MessagesThread} />
