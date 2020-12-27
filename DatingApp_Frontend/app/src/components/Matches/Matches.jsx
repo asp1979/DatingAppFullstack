@@ -18,8 +18,6 @@ export const Matches = () => {
                 const res = await get.json();
                 setMatches([...res]);
                 setLoading(false);
-            } else {
-                console.log(get.status, "Error");
             }
         }
         getMatches();

@@ -1,2 +1,15 @@
-.page .find {
+.find .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60vmin;
+}
+
+.find .content h1 {
+    color: darkgrey;
+    border-color: darkgrey;
+}
+
+.next-button {
+    color: white;
 }

@@ -12,7 +12,7 @@ export const User = ({ match }) => {
     const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(true);
     const baseURL = "http://localhost:5000/api/v1/users";
-    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } }
+    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
     const isSelf = (+userID) === (+userContext.jwtID) ? true : false;
     
     useEffect(() => {
@@ -22,8 +22,6 @@ export const User = ({ match }) => {
                 const data = await get.json();
                 setLoading(false);
                 setUser(data);
-            } else {
-                console.log(get.status, "Error");
             }
         }
         getUser();
@@ -36,7 +34,7 @@ export const User = ({ match }) => {
             <div className="content">
                 {
                     !loading &&
-                    <motion.div className="user-info" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0   }} transition={{ delay: 0.25, duration: 0.5 }}>
+                    <motion.div className="user-info" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.5 }}>
                         
                         <motion.h1 initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
                             {user.username}
