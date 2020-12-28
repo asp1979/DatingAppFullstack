@@ -17,9 +17,15 @@ export const Find = () => {
     const nextUserIndex = () => {
         if((usersIndex + 1) < (users.length)) {
             setUsersIndex(usersIndex + 1)
-        } else {
-            
         }
+    }
+
+    const likeUser = (userID) => {
+        fetch(baseURL + `v1/users/${userContext.jwtID}/like/${userID}`, {
+            ...headers,
+            method: "POST"
+        });
+        nextUserIndex();
     }
 
     useEffect(() => {
@@ -45,7 +51,7 @@ export const Find = () => {
         <div className="page find">
             <div className="content">
                 {
-                    !loading &&
+                    (!loading && users.length) &&
                     <motion.div className="user-info" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.5 }}>
                                 
                         <motion.h1 initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
@@ -75,7 +81,10 @@ export const Find = () => {
                             {users[usersIndex].introduction}
                         </motion.p>
 
-                        <button className="next-button" onClick={() => nextUserIndex()}> Next </button>
+                        <div className="buttons-container">
+                            <button className="like-button" onClick={() => likeUser(users[usersIndex].id)}> Like </button>
+                            <button className="next-button" onClick={() => nextUserIndex()}> Next </button>
+                        </div>
                         
                     </motion.div>
                 } 
