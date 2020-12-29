@@ -49,8 +49,8 @@ namespace DatingApp_API.Controllers
 
             Response.AddPagination(
                 messagesFromRepo.CurrentPage,
-                messagesFromRepo.PageSize,
-                messagesFromRepo.TotalCount,
+                messagesFromRepo.ItemsPerPage,
+                messagesFromRepo.TotalItems,
                 messagesFromRepo.TotalPages
             );
 
