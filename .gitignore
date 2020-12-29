@@ -4,3 +4,4 @@ datingapp.db
 datingapp.db-shm
 datingapp.db-wal
 node_modules/
+debug.log
