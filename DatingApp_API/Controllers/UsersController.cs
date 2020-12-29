@@ -1,14 +1,14 @@
+using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using DatingApp_API.Data;
 using DatingApp_API.DTOs;
-using System.Collections.Generic;
 using DatingApp_API.Models;
 using DatingApp_API.Helpers;
-using System.Security.Claims;
-using System;
 
 namespace DatingApp_API.Controllers
 {
@@ -65,6 +65,22 @@ namespace DatingApp_API.Controllers
                 return Ok("Liked successfully.");
             else 
                 return BadRequest("Failed to like user.");
+        }
+
+        [HttpDelete("{id}/like/{recipientID}")] // api/v1/users/{id}/like/{recipientID}
+        public async Task<IActionResult> UnlikeUser(int id, int recipientID)
+        {
+            var like = await _repo.GetLike(id, recipientID);
+
+            if(like == null)
+                return BadRequest("You already unliked this user.");
+
+            _repo.Delete<Like>(like);
+
+            if(await _repo.SaveAll())
+                return Ok("Unliked successfully.");
+            else 
+                return BadRequest("Failed to unlike user.");
         }
     }
 }

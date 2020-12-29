@@ -17,12 +17,17 @@
 .user-info-nav > :nth-child(1) {
     background: purple;
     color: white;
+    margin-right: 1vmin;
+}
+
+.user-info-nav > :nth-child(2):hover {
+    color: purple;
 }
 
 .user-info-nav a {
     padding: 0.5vmin 1vmin;
     border-radius: 1vmin;
-    margin: 1vmin;
+    margin: 0vmin;
 }
 
 .user-info {
@@ -56,4 +61,14 @@
 
 .age-box i {
     color: white;
+}
+
+.unlike {
+    margin-top: 2vmin;
+    font-size: 3vmin;
+    cursor: pointer;
+}
+
+.unlike i:hover {
+    color: purple;
 }

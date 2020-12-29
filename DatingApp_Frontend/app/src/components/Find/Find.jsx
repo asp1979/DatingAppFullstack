@@ -2,13 +2,13 @@ import './Find.css';
 // NOTE: some css inherited from User.css
 import React, { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
-import { motion } from 'framer-motion';
 
 export const Find = () => {
 
     const { userContext } = useContext(UserContext);
     const [users, setUsers] = useState([]);
     const [usersIndex, setUsersIndex] = useState(0);
+    const [swipingLimit, setSwipingLimit] = useState(false);
     const [loading, setLoading] = useState(true);
     
     const baseURL = "http://localhost:5000/api/";
@@ -17,6 +17,8 @@ export const Find = () => {
     const nextUserIndex = () => {
         if((usersIndex + 1) < (users.length)) {
             setUsersIndex(usersIndex + 1)
+        } else {
+            setSwipingLimit(true);
         }
     }
 
@@ -36,8 +38,8 @@ export const Find = () => {
                 const getAllJSON = await getAll.json();
                 const getLikeesJSON = await getLikees.json();
 
-                const getLikeesStr = getLikeesJSON.map(x => JSON.stringify(x));
-                const usersNotYetLiked = getAllJSON.filter(user => getLikeesStr.includes(JSON.stringify(user)) === false);
+                const getLikeesStr = getLikeesJSON.map(user => JSON.stringify(user));
+                const usersNotYetLiked = getAllJSON.filter(user => !getLikeesStr.includes(JSON.stringify(user)));
 
                 setUsers([...usersNotYetLiked]);
                 setLoading(false);
@@ -51,42 +53,48 @@ export const Find = () => {
         <div className="page find">
             <div className="content">
                 {
-                    (!loading && users.length) &&
-                    <motion.div className="user-info" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.5 }}>
-                                
-                        <motion.h1 initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
+                    !loading && (swipingLimit || users.length === 0) &&
+                    <div className="swiping-limit">
+                        <h3>You have {swipingLimit ? "swiped through" : "liked"} all available users...</h3>
+                    </div>
+                }
+                {
+                    !loading && (users.length > 0 && !swipingLimit) &&
+                    <div className="user-info">
+                        <h1>
                             {users[usersIndex].username}
-                        </motion.h1>
+                        </h1>
 
-                        <motion.div className="user-info-nav not-flex" initial={{ opacity: 0, y: -100 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
-
-                            <motion.a href={""} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>
+                        <div className="user-info-nav not-flex">
+                            <a href={"/find"}>
                                 Overview
-                            </motion.a>
-
-                        </motion.div>
+                            </a>
+                        </div>
 
                         <img src={users[usersIndex].photoUrl} alt=""/>
 
-                        <motion.div className="age-box" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.5 }}>
+                        <div className="age-box">
                             {
                                 users[usersIndex].gender === "female" 
                                 ? <i className="fa fa-female" aria-hidden="true"></i>
                                 : <i className="fa fa-male" aria-hidden="true"></i>
                             }
                             &nbsp;{users[usersIndex].age}
-                        </motion.div>
+                        </div>
 
-                        <motion.p initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
+                        <p>
                             {users[usersIndex].introduction}
-                        </motion.p>
+                        </p>
 
                         <div className="buttons-container">
-                            <button className="like-button" onClick={() => likeUser(users[usersIndex].id)}> Like </button>
-                            <button className="next-button" onClick={() => nextUserIndex()}> Next </button>
+                            <button className="like-button" onClick={() => likeUser(users[usersIndex].id)}>
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button className="next-button" onClick={() => nextUserIndex()}>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
                         </div>
-                        
-                    </motion.div>
+                    </div>
                 } 
             </div>
         </div>

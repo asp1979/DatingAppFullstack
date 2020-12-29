@@ -3,6 +3,8 @@
     justify-content: center;
     align-items: center;
     width: 60vmin;
+    background: transparent;
+    box-shadow: unset;
 }
 
 .find .content h1 {
@@ -11,5 +13,17 @@
 }
 
 .buttons-container button {
+    background: transparent;
     color: white;
+}
+
+.buttons-container button:hover i {
+    color: purple;
+}
+
+.swiping-limit h3 {
+    padding: 2vmin;
+    border-radius: 2vmin;
+    background: white;
+    text-align: center;
 }
