@@ -88,10 +88,10 @@ export const Find = () => {
 
                         <div className="buttons-container">
                             <button className="like-button" onClick={() => likeUser(users[usersIndex].id)}>
-                                <i class="fas fa-heart"></i>
+                                <i className="fas fa-heart"></i>
                             </button>
                             <button className="next-button" onClick={() => nextUserIndex()}>
-                                <i class="fas fa-arrow-right"></i>
+                                <i className="fas fa-arrow-right"></i>
                             </button>
                         </div>
                     </div>
