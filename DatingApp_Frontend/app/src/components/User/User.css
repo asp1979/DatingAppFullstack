@@ -22,7 +22,8 @@
     margin-right: 1vmin;
 }
 
-.user-info-nav > :nth-child(2):hover {
+.user-info-nav > :nth-child(2):hover,
+.user-info-nav > :nth-child(2):hover i {
     color: purple;
 }
 

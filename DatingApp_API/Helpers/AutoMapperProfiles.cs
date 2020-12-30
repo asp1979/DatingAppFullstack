@@ -13,12 +13,6 @@ namespace DatingApp_API.Helpers
                 .ForMember(x => x.PhotoUrl, y => y.MapFrom( z => z.Photos.FirstOrDefault(q => q.IsMain).Url ))
                 .ForMember(x => x.Age, y => y.MapFrom( z => z.DateOfBirth.CalculateAge() ));
 
-            CreateMap<User, UserForDetailedDto>()
-                .ForMember(x => x.PhotoUrl, y => y.MapFrom( z => z.Photos.FirstOrDefault(q => q.IsMain).Url ))
-                .ForMember(x => x.Age, y => y.MapFrom( z => z.DateOfBirth.CalculateAge() ));
-
-            CreateMap<Photo, PhotosForDetailedDto>();
-
             CreateMap<MessageForCreationDto, Message>().ReverseMap();
 
             CreateMap<Message, MessageToReturnDto>()
