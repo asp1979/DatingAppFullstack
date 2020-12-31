@@ -28,19 +28,19 @@ export const Register = () => {
 
                 <h1>Register</h1>
 
-                { errors.username && <span className="error-span">Username too short or not alphanumeric</span> }
-                { errors.password && <span className="error-span">Password too short or not alphanumeric</span> }
+                { errors.username && <span className="error-span regex">Username too short or not alphanumeric</span> }
+                { errors.password && <span className="error-span regex">Password too short or not alphanumeric</span> }
 
                 { regSuccess === true && <span className="success-span">Registration successful! Confirm your email!</span> }
                 { regSuccess === false && <span className="error-span">Registration failed! Username taken!</span> }
 
                 <div>
-                    <span>Username</span>
+                    <span className="input-name">Username</span>
                     <input name="username" maxLength={16} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
                 </div>
 
                 <div>
-                    <span>Password</span>
+                    <span className="input-name">Password</span>
                     <input name="password" maxLength={32} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
                 </div>
 
