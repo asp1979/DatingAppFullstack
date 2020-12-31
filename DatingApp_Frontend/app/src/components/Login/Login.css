@@ -30,7 +30,7 @@
     background-color: darkgrey;
 }
 
-.form-inputs span {
+.form-inputs .input-name {
     position: absolute;
     margin: -0.5vmin 2vmin;
     padding: 0 1vmin;
