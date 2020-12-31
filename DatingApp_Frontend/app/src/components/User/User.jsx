@@ -9,7 +9,7 @@ export const User = ({ match, history }) => {
     const userID = match.params.id; // user ID derived from the current URL
     const { userContext } = useContext(UserContext);
 
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const baseURL = "http://localhost:5000/api";
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
@@ -31,7 +31,7 @@ export const User = ({ match, history }) => {
             if(get.ok) {
                 const data = await get.json();
                 setLoading(false);
-                setUser(data);
+                setUser({ ...data });
             }
         }
         getUser();
