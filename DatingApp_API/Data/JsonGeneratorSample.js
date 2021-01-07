@@ -1,5 +1,8 @@
 // this is a sample that you can use on json-generator.com
 // to generate random users that fit our models
+// once the json's are generated
+// make sure you replace /male to /men and /female to /women in the photo url's
+// you have to do that manually dont ask why
 
 [
     '{{repeat(2)}}',
