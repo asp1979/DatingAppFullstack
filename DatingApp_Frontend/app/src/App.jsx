@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { PrivateRoute } from './utils/PrivateRoute';
+import { PrivateRoute } from './PrivateRoute';
 import { Navbar } from './components/Navbar/Navbar';
 import { Home } from './components/Home/Home';
 import { Login } from './components/Login/Login';
