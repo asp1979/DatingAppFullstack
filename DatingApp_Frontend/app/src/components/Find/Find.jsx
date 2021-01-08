@@ -41,7 +41,18 @@ export const Find = () => {
                 const getLikeesStr = getLikeesJSON.map(user => JSON.stringify(user));
                 const usersNotYetLiked = getAllJSON.filter(user => !getLikeesStr.includes(JSON.stringify(user)));
 
-                setUsers([...usersNotYetLiked]);
+                function shuffleArray(array) {
+                    // randomize array order using Durstenfeld shuffle algorithm
+                    for(let i = array.length - 1; i > 0; i--) {
+                        let j = Math.floor(Math.random() * (i + 1));
+                        let temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
+                    return array;
+                }
+
+                setUsers([...shuffleArray(usersNotYetLiked)]);
                 setLoading(false);
             }
         }

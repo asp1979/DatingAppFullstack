@@ -4,14 +4,15 @@
     column-gap: 5vmin;
     grid-auto-rows: 15vmin;
     row-gap: 5vmin;
+    padding: 3.3vmin;
 }
 
 .person-card {
-    margin: 3.3vmin;
     width: 15vmin;
     height: 17vmin;
     background-color: white;
     border-radius: 2vmin;
+    border: 0.25vmin solid darkgrey;
     box-shadow: 0 0 2vmin 0.5vmin rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column-reverse;
@@ -25,7 +26,7 @@
 }
 
 .person-card:hover {
-    border: 0.25vmin solid darkgrey;
+    background: aliceblue;
 }
 
 .person-card img {
@@ -35,5 +36,5 @@
 }
 
 .person-card p {
-    margin: 2vmin 0 0 0;
+    margin-top: 1.5vmin;
 }
