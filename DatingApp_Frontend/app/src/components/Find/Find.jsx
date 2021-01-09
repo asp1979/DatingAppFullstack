@@ -71,31 +71,24 @@ export const Find = () => {
                 }
                 {
                     !loading && (users.length > 0 && !swipingLimit) &&
-                    <div className="user-info">
-                        <h1>
-                            {users[usersIndex].username}
-                        </h1>
+                    <div className="find-container">
 
-                        <div className="user-info-nav not-flex">
-                            <a href={"/find"}>
-                                Overview
-                            </a>
+                        <div className="user-info">
+                            <h1>{users[usersIndex].username}</h1>
+                            <div className="user-info-nav not-flex">
+                                <a href={"/find"}>Overview</a>
+                            </div>
+                            <img src={users[usersIndex].photoUrl} alt=""/>
+                            <div className="age-box">
+                                {
+                                    users[usersIndex].gender === "female" 
+                                    ? <i className="fa fa-female" aria-hidden="true"></i>
+                                    : <i className="fa fa-male" aria-hidden="true"></i>
+                                }
+                                &nbsp;{users[usersIndex].age}
+                            </div>
+                            <p>{users[usersIndex].introduction}</p>
                         </div>
-
-                        <img src={users[usersIndex].photoUrl} alt=""/>
-
-                        <div className="age-box">
-                            {
-                                users[usersIndex].gender === "female" 
-                                ? <i className="fa fa-female" aria-hidden="true"></i>
-                                : <i className="fa fa-male" aria-hidden="true"></i>
-                            }
-                            &nbsp;{users[usersIndex].age}
-                        </div>
-
-                        <p>
-                            {users[usersIndex].introduction}
-                        </p>
 
                         <div className="buttons-container">
                             <button className="like-button" onClick={() => likeUser(users[usersIndex].id)}>
@@ -105,6 +98,7 @@ export const Find = () => {
                                 <i className="fas fa-arrow-right"></i>
                             </button>
                         </div>
+
                     </div>
                 } 
             </div>
