@@ -49,7 +49,7 @@
 }
 
 .route-nav .unread-count {
-    padding: 0.5vmin 0.75vmin;
+    padding: 0.5vmin 1vmin;
     background: darkgrey;
     color: white;
     border-radius: 50%;

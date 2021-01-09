@@ -42,7 +42,7 @@
 .thread-link .unread-count {
     background: darkgrey;
     color: white;
-    padding: 0.5vmin 0.75vmin;
+    padding: 0.5vmin 1vmin;
     font-size: 1.75vmin;
     border-radius: 50%;
     margin-left: 5vmin;
