@@ -7,14 +7,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using DatingApp_API.Data;
 using DatingApp_API.Helpers;
-using AutoMapper;
 using DatingApp.API.Helpers;
-using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
 
 namespace DatingApp_API
 {
