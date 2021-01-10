@@ -69,7 +69,7 @@ export const Find = () => {
                                 <a href={"/find"}>Overview</a>
                             </div>
                             <img src={users[usersIndex].photoUrl} alt=""/>
-                            <div className="age-box">
+                            <div className="age-gender-box">
                                 {
                                     users[usersIndex].gender === "female" 
                                     ? <i className="fa fa-female" aria-hidden="true"></i>
@@ -82,12 +82,12 @@ export const Find = () => {
 
                         <div className="buttons-container">
                             <button className="like-button" onClick={() => likeUser(users[usersIndex].id)}>
-                                <i className="fas fa-heart"></i>
-                                <i className="fas fa-heart hover"></i>
+                                <i className="fas fa-heart small"></i>
+                                <i className="fas fa-heart big"></i>
                             </button>
                             <button className="next-button" onClick={() => nextUserIndex()}>
-                                <i className="fas fa-arrow-right"></i>
-                                <i className="fas fa-arrow-right hover"></i>
+                                <i className="fas fa-arrow-right small"></i>
+                                <i className="fas fa-arrow-right big"></i>
                             </button>
                         </div>
 

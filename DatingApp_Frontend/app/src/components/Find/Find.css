@@ -39,7 +39,7 @@
     text-align: center;
 }
 
-.next-button > :nth-child(2) {
+.next-button .big {
     position: absolute;
     left: 70vmin;
     top: 28vmin;
@@ -47,11 +47,11 @@
     color: darkgrey;
 }
 
-.next-button:hover > :nth-child(2) {
+.next-button:hover .big {
     color: purple;
 }
 
-.like-button > :nth-child(2) {
+.like-button .big {
     position: absolute;
     left: -30vmin;
     top: 28vmin;
@@ -59,6 +59,6 @@
     color: darkgrey;
 }
 
-.like-button:hover > :nth-child(2) {
+.like-button:hover .big {
     color: purple;
 }

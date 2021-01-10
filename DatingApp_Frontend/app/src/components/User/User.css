@@ -55,7 +55,7 @@
     border-radius: 50%;
 }
 
-.age-box {
+.age-gender-box {
     margin: 2vmin;
     background: purple;
     color: white;
@@ -63,7 +63,7 @@
     padding: 0.5vmin;
 }
 
-.age-box i {
+.age-gender-box i {
     color: white;
 }
 
