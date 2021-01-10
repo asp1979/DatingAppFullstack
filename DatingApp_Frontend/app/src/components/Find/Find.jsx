@@ -2,6 +2,7 @@ import './Find.css';
 // NOTE: some css inherited from User.css
 import React, { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
+import { shuffleUsers } from './shuffleUsers';
 
 export const Find = () => {
 
@@ -41,18 +42,7 @@ export const Find = () => {
                 const getLikeesStr = getLikeesJSON.map(user => JSON.stringify(user));
                 const usersNotYetLiked = getAllJSON.filter(user => !getLikeesStr.includes(JSON.stringify(user)));
 
-                function shuffleArray(array) {
-                    // randomize array order using Durstenfeld shuffle algorithm
-                    for(let i = array.length - 1; i > 0; i--) {
-                        let j = Math.floor(Math.random() * (i + 1));
-                        let temp = array[i];
-                        array[i] = array[j];
-                        array[j] = temp;
-                    }
-                    return array;
-                }
-
-                setUsers([...shuffleArray(usersNotYetLiked)]);
+                setUsers([...shuffleUsers(usersNotYetLiked)]);
                 setLoading(false);
             }
         }
@@ -93,9 +83,11 @@ export const Find = () => {
                         <div className="buttons-container">
                             <button className="like-button" onClick={() => likeUser(users[usersIndex].id)}>
                                 <i className="fas fa-heart"></i>
+                                <i className="fas fa-heart hover"></i>
                             </button>
                             <button className="next-button" onClick={() => nextUserIndex()}>
                                 <i className="fas fa-arrow-right"></i>
+                                <i className="fas fa-arrow-right hover"></i>
                             </button>
                         </div>
 

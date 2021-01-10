@@ -38,3 +38,27 @@
     background: white;
     text-align: center;
 }
+
+.next-button > :nth-child(2) {
+    position: absolute;
+    left: 70vmin;
+    top: 28vmin;
+    font-size: 20vmin;
+    color: darkgrey;
+}
+
+.next-button:hover > :nth-child(2) {
+    color: purple;
+}
+
+.like-button > :nth-child(2) {
+    position: absolute;
+    left: -30vmin;
+    top: 28vmin;
+    font-size: 20vmin;
+    color: darkgrey;
+}
+
+.like-button:hover > :nth-child(2) {
+    color: purple;
+}
