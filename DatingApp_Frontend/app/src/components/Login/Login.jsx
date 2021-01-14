@@ -27,7 +27,8 @@ export const Login = withRouter(({ history }) => {
                 jwtID: jwtDecode(localStorage.getItem("jwt")).nameid,
                 jwtUsername: jwtDecode(localStorage.getItem("jwt")).unique_name,
                 jwtExpiry: jwtDecode(localStorage.getItem("jwt")).exp,
-                loggedIn: true
+                loggedIn: true,
+                unreadMatches: 0
             });
             history.push("/matches"); // redirect
         } else {

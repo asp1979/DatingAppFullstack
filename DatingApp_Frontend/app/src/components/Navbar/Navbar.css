@@ -50,8 +50,8 @@
 
 .route-nav .unread-count {
     padding: 0.5vmin 1vmin;
-    background: darkgrey;
-    color: white;
+    background: white;
+    color: black;
     border-radius: 50%;
     font-size: 1.5vmin;
 }

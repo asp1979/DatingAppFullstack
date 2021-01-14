@@ -7,10 +7,11 @@ import { withRouter } from 'react-router-dom';
 export const Navbar = withRouter(({ history }) => {
 
     const { userContext, setUserContext } = useContext(UserContext);
-    const [unread, setUnread] = useState(0);
+    const [unreadMessages, setUnreadMessages] = useState(0);
     const [loading, setLoading] = useState(true);
     const baseURL = "http://localhost:5000/api";
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
+    const unreadMatches = userContext.unreadMatches;
 
     const logout = () => { 
         setUserContext({
@@ -20,6 +21,7 @@ export const Navbar = withRouter(({ history }) => {
             jwtUsername: null,
             jwtExpiry: null,
             loggedIn: false,
+            unreadMatches: 0
         });
         localStorage.removeItem("jwt");
         history.push("/")
@@ -35,9 +37,8 @@ export const Navbar = withRouter(({ history }) => {
                 const messages = await fetch(baseURL + `/v1/users/${userContext.jwtID}/messages`, headers) 
                 if(messages.ok) {
                     const messagesJSON = await messages.json();
-                    const unreadCount = messagesJSON.reduce((a,msg) => msg.isRead ? a + 0 : a + 1, 0);
-
-                    setUnread(unreadCount);
+                    const unreadMessagesCount = messagesJSON.reduce((a,msg) => msg.isRead ? a + 0 : a + 1, 0);
+                    setUnreadMessages(unreadMessagesCount);
                     setLoading(false);
                 }
             }
@@ -64,11 +65,11 @@ export const Navbar = withRouter(({ history }) => {
                 </Link>
 
                 { userContext.loggedIn && <Link to="/matches">
-                    <p>Matches</p>
+                    <p>Matches {!loading && unreadMatches > 0 && <span className="unread-count">{unreadMatches}</span>}</p>
                 </Link> }
 
                 { userContext.loggedIn && <Link to="/messages">
-                    <p>Messages {!loading && unread > 0 && <span className="unread-count">{unread}</span>}</p>
+                    <p>Messages {!loading && unreadMessages > 0 && <span className="unread-count">{unreadMessages}</span>}</p>
                 </Link> }
             </div>
 

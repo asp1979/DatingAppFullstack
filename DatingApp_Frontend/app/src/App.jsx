@@ -23,7 +23,8 @@ export const App = () => {
         jwtID: jwt ? jwtDecode(jwt).nameid : null,
         jwtUsername: jwt ? jwtDecode(jwt).unique_name : null,
         jwtExpiry: jwt ? jwtDecode(jwt).exp : null,
-        loggedIn: jwt ? true : false
+        loggedIn: jwt ? true : false,
+        unreadMatches: 0
     })
 
     useEffect(() => {

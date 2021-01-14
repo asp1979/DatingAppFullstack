@@ -6,7 +6,7 @@ import { shuffleUsers } from './shuffleUsers';
 
 export const Find = () => {
 
-    const { userContext } = useContext(UserContext);
+    const { userContext, setUserContext } = useContext(UserContext);
     const [users, setUsers] = useState([]);
     const [usersIndex, setUsersIndex] = useState(0);
     const [swipingLimit, setSwipingLimit] = useState(false);
@@ -23,12 +23,18 @@ export const Find = () => {
         }
     }
 
-    const likeUser = (userID) => {
-        fetch(baseURL + `v1/users/${userContext.jwtID}/like/${userID}`, {
+    const likeUser = async (userID) => {
+        const like = await fetch(baseURL + `v1/users/${userContext.jwtID}/like/${userID}`, {
             ...headers,
             method: "POST"
         });
-        nextUserIndex();
+        if(like.ok) {
+            setUserContext({
+                ...userContext,
+                unreadMatches: userContext.unreadMatches + 1
+            });
+            nextUserIndex();
+        }
     }
 
     useEffect(() => {

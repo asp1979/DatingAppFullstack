@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export const Matches = () => {
 
-    const { userContext } = useContext(UserContext);
+    const { userContext, setUserContext } = useContext(UserContext);
     const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -18,6 +18,10 @@ export const Matches = () => {
                 const res = await get.json();
                 setMatches([...res]);
                 setLoading(false);
+                setUserContext({
+                    ...userContext,
+                    unreadMatches: 0
+                });
             }
         }
         getMatches();
