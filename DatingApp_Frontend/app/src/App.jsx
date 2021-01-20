@@ -6,7 +6,6 @@ import { Navbar } from './components/Navbar/Navbar';
 import { Home } from './components/Home/Home';
 import { Login } from './components/Login/Login';
 import { Find } from './components/Find/Find';
-import { Register } from './components/Register/Register';
 import { Matches } from './components/Matches/Matches';
 import { Messages } from './components/Messages/Messages';
 import { MessagesThread } from './components/MessagesThread/MessagesThread';
@@ -49,7 +48,6 @@ export const App = () => {
                 <Navbar />
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
                 <PrivateRoute path="/user/:id" component={User} />
                 <PrivateRoute path="/find" component={Find} />
                 <PrivateRoute path="/matches" component={Matches} />

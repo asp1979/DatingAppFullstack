@@ -39,26 +39,29 @@
     text-align: center;
 }
 
-.next-button .big {
+.next-button .big, .like-button .big {
     position: absolute;
-    left: 70vmin;
     top: 28vmin;
     font-size: 20vmin;
     color: darkgrey;
+    opacity: 0;
+    animation: opacity-delay;
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards;
 }
 
-.next-button:hover .big {
-    color: purple;
+.next-button .big {
+    left: 70vmin;
 }
 
 .like-button .big {
-    position: absolute;
     left: -30vmin;
-    top: 28vmin;
-    font-size: 20vmin;
-    color: darkgrey;
 }
 
 .like-button:hover .big {
+    color: purple;
+}
+
+.next-button:hover .big {
     color: purple;
 }

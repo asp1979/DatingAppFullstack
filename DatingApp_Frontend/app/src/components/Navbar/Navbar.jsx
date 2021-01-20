@@ -74,7 +74,6 @@ export const Navbar = withRouter(({ history }) => {
             </div>
 
             <div className="user-nav">
-                { !userContext.loggedIn && <Link to="/register"> Register </Link> }
                 { !userContext.loggedIn && <Link to="/login"> Login </Link> }
                 { userContext.loggedIn && <Link to={"/user/" + userContext.jwtID} onClick={ reload }> { userContext.jwtUsername } </Link> }
                 { userContext.loggedIn && <button onClick={ logout }> Logout </button> }

@@ -39,14 +39,6 @@ export const Home = () => {
                                 Login
                             </motion.a>
 
-                            <motion.a
-                            href="/register"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 1.00, duration: 0.5 }}>
-                                Register
-                            </motion.a>
-
                         </div>
 
                     </motion.h1>

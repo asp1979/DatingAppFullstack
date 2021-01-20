@@ -13,8 +13,13 @@
     width: 36vmin;
     height: 44vmin;
     border: 0.4vmin solid darkgrey;
-    background: white;
+    background: #EDF0F5;
     box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
+    opacity: 0;
+    animation: opacity-delay;
+    animation-duration: 0.9s;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
 }
 
 .form-inputs input, .form-inputs button {
@@ -23,6 +28,7 @@
     border-radius: 0.6vmin;
     color: darkgrey;
     font-size: 1.6vmin;
+    background: #EDF0F5;
 }
 
 .form-inputs button {
@@ -35,7 +41,7 @@
     margin: -0.5vmin 2vmin;
     padding: 0 1vmin;
     font-size: 1.2vmin;
-    background: white;
+    background: #EDF0F5;
     color: darkgrey;
 }
 
@@ -75,4 +81,20 @@
     font-size: 4vmin;
     text-decoration: underline;
     color: darkgrey;
+}
+
+.login-help {
+    width: 36vmin;
+    height: 44vmin;
+    margin-left: 2vmin;
+    font-size: 2vmin;
+    border: 0.4vmin solid darkgrey;
+    border-radius: 1vmin;
+    box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
+    padding: 4vmin;
+    opacity: 0;
+    animation: opacity-delay;
+    animation-duration: 0.9s;
+    animation-delay: 0.6s;
+    animation-fill-mode: forwards;
 }
