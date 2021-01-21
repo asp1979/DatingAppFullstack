@@ -69,8 +69,18 @@ export const MessagesThread = ({ match }) => {
                     ? <Link to={"/user/" + oppositeUserID}>
                         <h1> {oppositeUser.username} <img className="title-img" src={oppositeUser.photoUrl} alt=""></img> </h1>
                     </Link>
-                    : <h1>Messages</h1>
+                    : <h1>User</h1>
                 }
+
+                <div className="thread-legend">
+                    <div>
+                        {!loading ? oppositeUser.username : "Buddy"} <i className="fas fa-circle blue-circle"></i>
+                    </div>
+                    <div>
+                        You <i className="fas fa-circle purple-circle"></i>
+                    </div>
+                </div>
+
                 <ul>
                     {
                         !loading && messages
