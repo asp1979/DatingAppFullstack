@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build-env
 WORKDIR /app
 
-# Copy the CSPROJ filee and restore/install dependencies (with NUGET)
+# Copy the CSPROJ file and restore/install dependencies (with NUGET)
 COPY *.csproj ./
 RUN dotnet restore
 
@@ -15,4 +15,4 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
 WORKDIR /app
 EXPOSE 80
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", DatingApp_API.dll]
+ENTRYPOINT ["dotnet", "DatingApp_API.dll"]
