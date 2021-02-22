@@ -11,12 +11,12 @@ export const User = ({ match, history }) => {
 
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
-    const baseURL = "http://localhost:5000/api";
+    const baseURL = userContext.baseURL;
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
     const isSelf = (+userID) === (+userContext.jwtID) ? true : false;
 
     const unlikeUser = async () => {
-        const unlike = await fetch(baseURL + `/v1/users/${userContext.jwtID}/like/${userID}`, {
+        const unlike = await fetch(baseURL + `v1/users/${userContext.jwtID}/like/${userID}`, {
             ...headers,
             method: "DELETE"
         });
@@ -27,7 +27,7 @@ export const User = ({ match, history }) => {
     
     useEffect(() => {
         async function getUser() {
-            const get = await fetch(baseURL + `/v1/users/${userID}`, headers);
+            const get = await fetch(baseURL + `v1/users/${userID}`, headers);
             if(get.ok) {
                 const data = await get.json();
                 setLoading(false);

@@ -9,7 +9,7 @@ export const Navbar = withRouter(({ history }) => {
     const { userContext, setUserContext } = useContext(UserContext);
     const [unreadMessages, setUnreadMessages] = useState(0);
     const [loading, setLoading] = useState(true);
-    const baseURL = "http://localhost:5000/api";
+    const baseURL = userContext.baseURL;
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
     const unreadMatches = userContext.unreadMatches;
 
@@ -34,7 +34,7 @@ export const Navbar = withRouter(({ history }) => {
     useEffect(() => {
         async function getUnreadMessagesCount() {
             if(userContext.loggedIn === true) {
-                const messages = await fetch(baseURL + `/v1/users/${userContext.jwtID}/messages`, headers) 
+                const messages = await fetch(baseURL + `v1/users/${userContext.jwtID}/messages`, headers) 
                 if(messages.ok) {
                     const messagesJSON = await messages.json();
                     const unreadMessagesCount = messagesJSON.reduce((a,msg) => msg.isRead ? a + 0 : a + 1, 0);

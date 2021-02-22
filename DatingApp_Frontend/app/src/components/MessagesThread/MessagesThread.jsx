@@ -11,7 +11,7 @@ export const MessagesThread = ({ match }) => {
 
     const userID = Number(userContext.jwtID);
     const oppositeUserID = Number(match.params.id); // match = current URL
-    const baseURL = "http://localhost:5000/api/v1/users";
+    const baseURL = userContext.baseURL + "v1/users";
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt, "Content-Type": "application/json"} };
 
     const [messages, setMessages] = useState([]);

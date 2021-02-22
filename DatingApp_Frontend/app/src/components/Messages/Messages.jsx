@@ -10,7 +10,7 @@ export const Messages = () => {
     const [threads, setThreads] = useState([]);
     const [loading, setLoading] = useState(true);
     const userID = Number(userContext.jwtID);
-    const baseURL = `http://localhost:5000/api/v1/users/${userID}/messages`;
+    const baseURL = userContext.baseURL + `v1/users/${userID}/messages`;
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
 
     useEffect(() => {

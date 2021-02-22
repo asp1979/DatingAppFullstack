@@ -12,7 +12,7 @@ export const Find = () => {
     const [swipingLimit, setSwipingLimit] = useState(false);
     const [loading, setLoading] = useState(true);
     
-    const baseURL = "http://localhost:5000/api/";
+    const baseURL = userContext.baseURL;
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
 
     const nextUserIndex = () => {

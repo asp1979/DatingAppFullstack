@@ -12,7 +12,7 @@ export const Login = withRouter(({ history }) => {
     const [fetchError, setFetchError] = useState(false);
 
     const onSubmit = async (formdata) => {
-        const post = await fetch("http://localhost:5000/api/v1/auth/login", {
+        const post = await fetch(userContext.baseURL + "v1/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formdata)
