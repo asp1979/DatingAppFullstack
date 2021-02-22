@@ -152,3 +152,15 @@ th {
     width: 100%;
     border-bottom: 0.25vmin solid white;
 }
+
+.sort-by {
+    position: relative;
+    top: -4vmin;
+    margin-left: auto;
+    padding: 0 0 0.2vmin 1vmin;
+    width: 20vmin;
+    background-color: white;
+    color: grey;
+    border: 0.25vmin solid white;
+    border-radius: 4vmin;
+}

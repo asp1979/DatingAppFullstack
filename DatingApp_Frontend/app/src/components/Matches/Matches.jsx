@@ -32,6 +32,7 @@ export const Matches = () => {
         <div className="page matches">
             <div className="content">
                 <h1>Matches</h1>
+                <div className="sort-by">Sort by </div>
                 <ul>
                 { 
                     !loading && matches

@@ -33,6 +33,7 @@ export const Messages = () => {
         <div className="page messages">
             <div className="content">
                 <h1>Messages</h1>
+                <div className="sort-by">Sort by </div>
                 <ul>
                 {
                     !loading && threads
