@@ -153,14 +153,40 @@ th {
     border-bottom: 0.25vmin solid white;
 }
 
-.sort-by {
+.sortby {
     position: relative;
-    top: -4vmin;
+    top: -4.4vmin;
+    width: 30vmin;
+    text-align: center;
     margin-left: auto;
-    padding: 0 0 0.2vmin 1vmin;
-    width: 20vmin;
     background-color: white;
-    color: grey;
-    border: 0.25vmin solid white;
-    border-radius: 4vmin;
+    border-radius: 2vmin 2vmin 0 0;
+    cursor: pointer;
+}
+
+.sortby-btn {
+    font-size: 1.8vmin;
+    border: none;
+    background-color: transparent;
+    color:darkgrey;
+}
+
+.sortby-content {
+    width: 30vmin;
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 0 0 2vmin 2vmin;
+    z-index: 1;
+}
+
+.sortby-content p {
+    font-size: 1.8vmin;
+    color:darkgrey;
+    padding: 1vmin;
+    display: block;
+}
+
+.sortby:hover .sortby-content {
+    display: block;
 }

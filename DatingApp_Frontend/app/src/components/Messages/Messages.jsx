@@ -9,6 +9,7 @@ export const Messages = () => {
     const { userContext } = useContext(UserContext);
     const [threads, setThreads] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [sortBy, setSortBy] = useState("Username");
     const userID = Number(userContext.jwtID);
     const baseURL = userContext.baseURL + `v1/users/${userID}/messages`;
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
@@ -33,7 +34,16 @@ export const Messages = () => {
         <div className="page messages">
             <div className="content">
                 <h1>Messages</h1>
-                <div className="sort-by">Sort by </div>
+
+                <div className="sortby">
+                    <button className="sortby-btn">Sort by: {sortBy}</button>
+                    <div className="sortby-content">
+                        <p>Username</p>
+                        <p>Age</p>
+                        <p>Gender</p>
+                    </div>
+                </div>
+
                 <ul>
                 {
                     !loading && threads
