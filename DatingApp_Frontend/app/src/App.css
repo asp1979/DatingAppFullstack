@@ -177,6 +177,7 @@ th {
 }
 
 .sortby-btn {
+    white-space: nowrap;
     font-size: 1.8vmin;
     border: none;
     background-color: transparent;
@@ -184,6 +185,7 @@ th {
 }
 
 .sortby-content p {
+    white-space: nowrap;
     font-size: 1.8vmin;
     color:darkgrey;
     padding: 1vmin;

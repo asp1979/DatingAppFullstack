@@ -8,22 +8,7 @@ export const Matches = () => {
     const { userContext, setUserContext } = useContext(UserContext);
     const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [sortBy, setSortBy] = useState("Username");
-
-    function sortMatchesState(sortBy) {
-        if(sortBy === "Username") {
-            setMatches([...matches.sort((a,b) => a.username.localeCompare(b.username))]);
-            setSortBy("Username");
-        }
-        else if(sortBy === "Age") {
-            setMatches([...matches.sort((a,b) => a.age - b.age)]);
-            setSortBy("Age");
-        }
-        else if(sortBy === "Gender") {
-            setMatches([...matches.sort((a,b) => a.gender.localeCompare(b.gender))]);
-            setSortBy("Gender");
-        }
-    }
+    const [sortBy, setSortBy] = useState("Username"); // response is sorted by username
 
     useEffect(() => {
         async function getMatches() {
@@ -44,6 +29,25 @@ export const Matches = () => {
         // eslint-disable-next-line
     }, []);
 
+    function sortMatchesState(sortBy) {
+        if(sortBy === "Username") {
+            setMatches([...matches.sort((a,b) => a.username.localeCompare(b.username))]);
+            setSortBy("Username");
+        }
+        else if(sortBy === "Age Ascending") {
+            setMatches([...matches.sort((a,b) => a.age - b.age)]);
+            setSortBy("Age Ascending");
+        }
+        else if(sortBy === "Age Descending") {
+            setMatches([...matches.sort((a,b) => b.age - a.age)]);
+            setSortBy("Age Descending");
+        }
+        else if(sortBy === "Gender") {
+            setMatches([...matches.sort((a,b) => a.gender.localeCompare(b.gender))]);
+            setSortBy("Gender");
+        }
+    }
+
     return (
         <div className="page matches">
             <div className="content">
@@ -53,7 +57,8 @@ export const Matches = () => {
                     <button className="sortby-btn">Sort by: {sortBy}</button>
                     <div className="sortby-content">
                         <p onClick={() => sortMatchesState("Username")}>Username</p>
-                        <p onClick={() => sortMatchesState("Age")}>Age</p>
+                        <p onClick={() => sortMatchesState("Age Ascending")}>Age Ascending</p>
+                        <p onClick={() => sortMatchesState("Age Descending")}>Age Descending</p>
                         <p onClick={() => sortMatchesState("Gender")}>Gender</p>
                     </div>
                 </div>
