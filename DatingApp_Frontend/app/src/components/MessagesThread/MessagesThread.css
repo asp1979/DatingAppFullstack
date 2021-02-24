@@ -80,6 +80,7 @@
 
 .form-inputs.send-message p {
     color: white;
+    font-size: 2vmin;
 }
 
 .form-inputs.send-message input {

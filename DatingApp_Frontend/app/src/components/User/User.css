@@ -34,8 +34,9 @@
 }
 
 .user-info {
+    font-size: 2vmin;
     width: 40vmin;
-    height: 60vmin;
+    height: 66vmin;
     padding: 5vmin;
     background: white;
     border-radius: 2vmin;

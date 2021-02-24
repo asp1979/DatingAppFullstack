@@ -148,6 +148,7 @@ th {
 }
 
 .page .content h1 {
+    font-size: 4vmin;
     color: white;
     width: 100%;
     border-bottom: 0.25vmin solid white;
