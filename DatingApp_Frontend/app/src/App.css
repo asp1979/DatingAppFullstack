@@ -155,29 +155,32 @@ th {
 
 .sortby {
     position: relative;
-    top: -4.4vmin;
+    top: -4.7vmin;
     width: 30vmin;
     text-align: center;
     margin-left: auto;
-    background-color: white;
+    background-color: #32153d;
+    border: 0.25vmin solid white;
     border-radius: 2vmin 2vmin 0 0;
     cursor: pointer;
-}
-
-.sortby-btn {
-    font-size: 1.8vmin;
-    border: none;
-    background-color: transparent;
-    color:darkgrey;
 }
 
 .sortby-content {
     width: 30vmin;
     display: none;
     position: absolute;
-    background-color: white;
+    left: -0.25vmin;
+    background-color: #32153d;
+    border: 0.25vmin solid white;
     border-radius: 0 0 2vmin 2vmin;
     z-index: 1;
+}
+
+.sortby-btn {
+    font-size: 1.8vmin;
+    border: none;
+    background-color: transparent;
+    color: white;
 }
 
 .sortby-content p {
@@ -190,3 +193,11 @@ th {
 .sortby:hover .sortby-content {
     display: block;
 }
+
+.sortby-content p:hover {
+    color: white;
+}
+
+.sortby-content > :nth-child(3):hover {
+    border-radius: 0 0 2vmin 2vmin;
+} 
