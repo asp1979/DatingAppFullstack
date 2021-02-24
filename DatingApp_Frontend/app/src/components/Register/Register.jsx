@@ -38,7 +38,7 @@ export const Register = () => {
 
                 <div>
                     <span className="input-name">Username</span>
-                    <input name="username" maxLength={16} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
+                    <input name="username" maxLength={16} autoComplete="off" ref={register({ required: true, minLength: 2, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
                 </div>
 
                 <div>

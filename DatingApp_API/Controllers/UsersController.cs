@@ -66,6 +66,18 @@ namespace DatingApp_API.Controllers
             like = new Like { LikerID = id, LikeeID = recipientID };
             _repo.Add<Like>(like);
 
+            // demo code below: auto like user back
+            var likeBack = await _repo.GetLike(recipientID, id);
+
+            if(likeBack != null)
+                return BadRequest("You already liked this user.");
+            if(await _repo.GetUser(id) == null)
+                return NotFound("User doesn't exist.");
+
+            likeBack = new Like { LikerID = recipientID, LikeeID = id};
+            _repo.Add<Like>(likeBack);
+            // delete block above if u want to remove demo feature
+
             if(await _repo.SaveAll())
                 return Ok("Liked successfully.");
             else 
@@ -81,6 +93,15 @@ namespace DatingApp_API.Controllers
                 return BadRequest("You already unliked this user.");
 
             _repo.Delete<Like>(like);
+
+            // demo code below: auto unlike both users
+            var like2 = await _repo.GetLike(recipientID, id);
+
+            if(like2 == null)
+                return BadRequest("You already unliked this user.");
+
+            _repo.Delete<Like>(like2);
+            // delete block above if u want to remove demo feature
 
             if(await _repo.SaveAll())
                 return Ok("Unliked successfully.");
