@@ -70,6 +70,12 @@ export const Messages = () => {
                     </div>
                 </div>
 
+                {
+                    !loading && threads.length === 0
+                    ? <div className="empty-list">No messages yet.</div>
+                    : null
+                }
+
                 <ul>
                 {
                     !loading && threads

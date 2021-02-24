@@ -30,7 +30,7 @@ export const Login = withRouter(({ history }) => {
                 loggedIn: true,
                 unreadMatches: 0
             });
-            history.push("/matches"); // redirect
+            history.push("/find"); // redirect
         } else {
             setFetchError(true);
         }

@@ -63,6 +63,12 @@ export const Matches = () => {
                     </div>
                 </div>
 
+                {
+                    !loading && matches.length === 0
+                    ? <div className="empty-list">No matches yet.</div>
+                    : null
+                }
+
                 <ul>
                 { 
                     !loading && matches
