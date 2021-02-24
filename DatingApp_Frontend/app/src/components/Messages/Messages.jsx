@@ -9,7 +9,8 @@ export const Messages = () => {
     const { userContext } = useContext(UserContext);
     const [threads, setThreads] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [sortBy, setSortBy] = useState("Username");
+    const [sortBy, setSortBy] = useState("Newest"); // already sorted by newest in response
+
     const userID = Number(userContext.jwtID);
     const baseURL = userContext.baseURL + `v1/users/${userID}/messages`;
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
@@ -30,6 +31,29 @@ export const Messages = () => {
         // eslint-disable-next-line
     }, []);
 
+    function sortThreadsState(sortBy) {
+        if(sortBy === "Newest") {
+            setThreads([...threads.sort((a,b) => Date.parse(b[1][0].messageSent) - Date.parse(a[1][0].messageSent))]);
+            setSortBy("Newest");
+        }
+        else if(sortBy === "Oldest") {
+            setThreads([...threads.sort((a,b) => Date.parse(a[1][0].messageSent) - Date.parse(b[1][0].messageSent))]);
+            setSortBy("Oldest");
+        }
+        else if(sortBy === "Recieved") {
+            setThreads([...threads.sort((a,b) => b[1].length - a[1].length)]);
+            setSortBy("Recieved");
+        }
+        else if(sortBy === "Unread") {
+            setThreads([...threads.sort((a,b) => b[4] - a[4])]);
+            setSortBy("Unread");
+        }
+        else if(sortBy === "Username") {
+            setThreads([...threads.sort((a,b) => a[2].localeCompare(b[2]))]);
+            setSortBy("Username");
+        }
+    }
+
     return (
         <div className="page messages">
             <div className="content">
@@ -38,9 +62,11 @@ export const Messages = () => {
                 <div className="sortby">
                     <button className="sortby-btn">Sort by: {sortBy}</button>
                     <div className="sortby-content">
-                        <p>Username</p>
-                        <p>Age</p>
-                        <p>Gender</p>
+                        <p onClick={() => sortThreadsState("Newest")}>Newest</p>
+                        <p onClick={() => sortThreadsState("Oldest")}>Oldest</p>
+                        <p onClick={() => sortThreadsState("Recieved")}>Recieved</p>
+                        <p onClick={() => sortThreadsState("Unread")}>Unread</p>
+                        <p onClick={() => sortThreadsState("Username")}>Username</p>
                     </div>
                 </div>
 
