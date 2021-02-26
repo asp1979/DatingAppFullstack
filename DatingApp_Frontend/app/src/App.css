@@ -201,7 +201,7 @@ th {
     color: white;
 }
 
-.sortby-content > :nth-child(3):hover {
+.sortby-content > :last-child():hover {
     border-radius: 0 0 2vmin 2vmin;
 } 
 
