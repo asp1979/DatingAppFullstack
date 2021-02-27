@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using DatingApp_API.Models;
 using DatingApp_API.Helpers;
+using DatingApp_API.QueryParams;
 
 namespace DatingApp_API.Data
 {

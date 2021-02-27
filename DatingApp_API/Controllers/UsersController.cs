@@ -9,6 +9,7 @@ using DatingApp_API.Data;
 using DatingApp_API.DTOs;
 using DatingApp_API.Models;
 using DatingApp_API.Helpers;
+using DatingApp_API.QueryParams;
 
 namespace DatingApp_API.Controllers
 {

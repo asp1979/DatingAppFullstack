@@ -1,6 +1,6 @@
-namespace DatingApp_API.Helpers
+namespace DatingApp_API.QueryParams
 {
-    public class GetUsersParams
+    public class GetMessagesParams
     {
         public int CurrentPage { get; set; } = 1;
         private int _totalItems = 50;
@@ -11,8 +11,6 @@ namespace DatingApp_API.Helpers
             set { _totalItems = value > MaxItemsPerPage ? MaxItemsPerPage : value; }
         }
         public int UserID { get; set; }
-        public int MinAge { get; set; } = 18;
-        public int MaxAge { get; set; } = 200;
-        public string LikersOrLikees { get; set; }
+        public string MessageContainer { get; set; } = "inbox";
     }
 }

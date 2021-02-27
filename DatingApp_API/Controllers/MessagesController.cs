@@ -8,10 +8,12 @@ using DatingApp_API.Data;
 using DatingApp_API.DTOs;
 using DatingApp_API.Models;
 using DatingApp_API.Helpers;
+using DatingApp_API.QueryParams;
+using Newtonsoft.Json;
 
 namespace DatingApp_API.Controllers
 {
-    [Authorize] // all endpoints require auth
+    [Authorize] // all endpoints require auth and {userID}
     [Route("api/v1/users/{userID}/[controller]")] // [messages]
     [ApiController]
     public class MessagesController : ControllerBase
@@ -103,25 +105,37 @@ namespace DatingApp_API.Controllers
             throw new Exception("Creating message failed.");
         }
 
-        [HttpPost("{id}")] // api/v1/users/{userID}/messages/{id}
+        [HttpDelete("{id}")] // api/v1/users/{userID}/messages/{id}
         [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> DeleteMessage(int id, int userID)
         {
             var messageFromRepo = await _repo.GetMessage(id);
 
-            if(messageFromRepo.SenderID == userID)
-                messageFromRepo.SenderDeleted = true;
-
-            if(messageFromRepo.RecipientID == userID)
-                messageFromRepo.RecipientDeleted = true;
-
-            if(messageFromRepo.SenderDeleted && messageFromRepo.RecipientDeleted)
-                _repo.Delete(messageFromRepo);
+            _repo.Delete(messageFromRepo);
 
             if(await _repo.SaveAll())
                 return NoContent();
 
-            throw new Exception("Error deleting the message.");
+            return BadRequest("Error deleting the message. Message probably doesn't exist.");
+        }
+
+        [HttpDelete] // api/v1/users/{userID}/messages
+        [Authorize(Policy = "IsDataOwner")]
+        public async Task<IActionResult> DeleteMultipleMessages([FromQuery]DeleteMessagesParams deleteMessagesParams, int userID)
+        {
+            List<int> msgIDs = JsonConvert.DeserializeObject<List<int>>(deleteMessagesParams.MsgIDs);
+
+            for(int i = 0; i < msgIDs.Count; i++)
+            {
+                var messageFromRepo = await _repo.GetMessage(msgIDs[i]);
+                if(messageFromRepo == null) continue;
+                _repo.Delete(messageFromRepo);
+            }
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            return BadRequest("Error deleting messages. Messages probably dont exist.");
         }
 
         [HttpPost("{id}/read")] // api/v1/users/{userID}/messages/{id}/read
