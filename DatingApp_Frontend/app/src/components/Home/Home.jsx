@@ -36,7 +36,7 @@ export const Home = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 1.00, duration: 0.5 }}>
-                                Login
+                                Sign in
                             </motion.a>
 
                         </div>

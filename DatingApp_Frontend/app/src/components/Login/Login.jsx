@@ -41,7 +41,7 @@ export const Login = withRouter(({ history }) => {
 
             <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs">
 
-                <h1>Login</h1>
+                <h1>Sign in</h1>
 
                 { errors.username && <span className="error-span regex">Username too short or contains unsupported characters</span> }
                 { errors.password && <span className="error-span regex">Password too short or contains unsupported characters</span> }
@@ -57,7 +57,7 @@ export const Login = withRouter(({ history }) => {
                     <input name="password" maxLength={32} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
                 </div>
 
-                <button type="submit">Login</button>
+                <button type="submit">Sign in</button>
                 
             </form>
 
