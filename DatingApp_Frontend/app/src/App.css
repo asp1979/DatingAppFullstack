@@ -119,6 +119,21 @@ th {
     }
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 0.8vmin;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: white;
+}
+
 /*-----  GLOBAL CSS BELOW  -----*/
 
 .page {

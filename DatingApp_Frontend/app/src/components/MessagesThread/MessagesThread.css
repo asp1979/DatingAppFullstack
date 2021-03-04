@@ -2,6 +2,10 @@
     padding-top: 2.4vmin;
 }
 
+.content.with-h1-img h1 a {
+    color: white;
+}
+
 .messages-thread .content ul {
     display: grid;
     grid-template-columns: 36vmin;
@@ -11,21 +15,6 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 2vmin;
-}
-
-/* width */
-::-webkit-scrollbar {
-    width: 0.8vmin;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-}
-  
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: white;
 }
   
 .title-img {
@@ -114,4 +103,15 @@
 
 .thread-legend .blue-circle {
     color: deepskyblue;
+}
+
+.delete-all {
+    position: absolute;
+    top: 4vmin;
+    right: 2vmin;
+    color: white;
+    background-color: transparent;
+    border: 0.25vmin solid white;
+    border-radius: 2vmin 2vmin 0 0;
+    border-bottom: none;
 }

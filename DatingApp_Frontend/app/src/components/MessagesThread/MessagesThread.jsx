@@ -66,9 +66,13 @@ export const MessagesThread = ({ match }) => {
             <div className="content with-h1-img">
                 {
                     !loading
-                    ? <Link to={"/user/" + oppositeUserID}>
-                        <h1> {oppositeUser.username} <img className="title-img" src={oppositeUser.photoUrl} alt=""></img> </h1>
-                    </Link>
+                    ? <h1>
+                        <Link to={"/user/" + oppositeUserID}>
+                            {oppositeUser.username}
+                            <img className="title-img" src={oppositeUser.photoUrl} alt=""></img>
+                        </Link>
+                        <button className="delete-all">Delete all</button>
+                    </h1>
                     : <h1>User</h1>
                 }
 
