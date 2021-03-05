@@ -17,10 +17,26 @@ export const MessagesThread = ({ match }) => {
     const [messages, setMessages] = useState([]);
     const [oppositeUser, setOppositeUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [sentMessagesCount, setSentMessagesCount] = useState(0);
 
     const lastMsgRef = useRef();
     const scrollToLast = () => lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
+
+    const onSubmit = async (formdata) => {
+        formdata.recipientID = oppositeUserID;
+        await fetch(baseURL + `/${userID}/messages`, {
+            ...headers,
+            method: "POST",
+            body: JSON.stringify(formdata)
+        })
+    }
+
+    const deleteAll = async () => {
+        const messageIDs = messages.map(x => x.id)
+        await fetch(baseURL + `/${userID}/messages?msgIDs=${JSON.stringify(messageIDs)}`, {
+            ...headers,
+            method: "DELETE",
+        })
+    }
 
     useEffect(() => {
         async function getData() {
@@ -42,24 +58,12 @@ export const MessagesThread = ({ match }) => {
 
         setTimeout(() => scrollToLast(), 500);
 
-        const updateMessages = setInterval(() => getData(), 1000);
+        const updateMessages = setInterval(() => getData(), 500);
 
         return () => clearInterval(updateMessages);
 
         // eslint-disable-next-line
-    }, [messages.length, sentMessagesCount]);
-
-    const onSubmit = async (formdata) => {
-        formdata.recipientID = oppositeUserID;
-        const post = await fetch(baseURL + `/${userID}/messages`, {
-            ...headers,
-            method: "POST",
-            body: JSON.stringify(formdata)
-        })
-        if(post.ok) {
-            setSentMessagesCount(prev => ++prev);
-        }
-    }
+    }, [messages.length]);
 
     return (
         <div className="page messages-thread">
@@ -71,7 +75,7 @@ export const MessagesThread = ({ match }) => {
                             {oppositeUser.username}
                             <img className="title-img" src={oppositeUser.photoUrl} alt=""></img>
                         </Link>
-                        <button className="delete-all">Delete all</button>
+                        <button onClick={() => deleteAll()} className="delete-all">Delete all</button>
                     </h1>
                     : <h1>User</h1>
                 }
