@@ -63,7 +63,7 @@ export const Login = withRouter(({ history }) => {
 
             <div className="login-help">
                 <p>
-                    Since this is a demo application, I have disabled registrations to prevent spam.
+                    I know you are too lazy to create an account.
                     <br/>
                     <br/>
                     Here is a list of available demo accounts: </p>
