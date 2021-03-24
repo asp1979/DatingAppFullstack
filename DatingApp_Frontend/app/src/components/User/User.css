@@ -36,7 +36,7 @@
 .user-info {
     font-size: 2vmin;
     width: 40vmin;
-    height: 66vmin;
+    height: 62vmin;
     padding: 5vmin;
     background: white;
     border-radius: 2vmin;
@@ -54,6 +54,7 @@
 
 .user-info img {
     border-radius: 50%;
+    height: 17vmin;
 }
 
 .age-gender-box {

@@ -19,7 +19,7 @@ export const Home = () => {
                     animate={{ opacity: 1, y: 0,    scale: 2 }}
                     transition={{ delay: 0.25, duration: 0.5 }}>
 
-                        Welcome to Timder!<br/>
+                        Welcome to <span className="color-text">Timder!</span><br/>
 
                         <motion.p
                         className="motion-p"
@@ -32,6 +32,7 @@ export const Home = () => {
                         <div className="call-to-action">
 
                             <motion.a
+                            className="cta-button"
                             href="/login"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
