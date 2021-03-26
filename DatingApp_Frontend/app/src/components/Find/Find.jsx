@@ -3,39 +3,16 @@ import './Find.css';
 import React, { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
 import { shuffleUsers } from './shuffleUsers';
+import { Card } from './Card';
 
 export const Find = () => {
 
-    const { userContext, setUserContext } = useContext(UserContext);
+    const { userContext } = useContext(UserContext);
     const [users, setUsers] = useState([]);
-    const [usersIndex, setUsersIndex] = useState(0);
-    const [swipingLimit, setSwipingLimit] = useState(false);
     const [loading, setLoading] = useState(true);
     
     const baseURL = userContext.baseURL;
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
-
-    const nextUserIndex = () => {
-        if((usersIndex + 1) < (users.length)) {
-            setUsersIndex(usersIndex + 1)
-        } else {
-            setSwipingLimit(true);
-        }
-    }
-
-    const likeUser = async (userID) => {
-        const like = await fetch(baseURL + `v1/users/${userContext.jwtID}/like/${userID}`, {
-            ...headers,
-            method: "POST"
-        });
-        if(like.ok) {
-            setUserContext({
-                ...userContext,
-                unreadMatches: userContext.unreadMatches + 1
-            });
-            nextUserIndex();
-        }
-    }
 
     useEffect(() => {
         async function getUsers() {
@@ -60,43 +37,11 @@ export const Find = () => {
         <div className="page find">
             <div className="content">
                 {
-                    !loading && (swipingLimit || users.length === 0) &&
-                    <div className="swiping-limit">
-                        <h3>You have {swipingLimit ? "swiped through" : "liked"} all available users...</h3>
-                    </div>
-                }
-                {
-                    !loading && (users.length > 0 && !swipingLimit) &&
+                    !loading && (users.length > 0) &&
                     <div className="find-container">
-
-                        <div className="user-info">
-                            <h1>{users[usersIndex].username}</h1>
-                            <div className="user-info-nav not-flex">
-                                <a href={"/find"}>Overview</a>
-                            </div>
-                            <img src={users[usersIndex].photoUrl} alt=""/>
-                            <div className="age-gender-box">
-                                {
-                                    users[usersIndex].gender === "female" 
-                                    ? <i className="fa fa-female" aria-hidden="true"></i>
-                                    : <i className="fa fa-male" aria-hidden="true"></i>
-                                }
-                                &nbsp;{users[usersIndex].age}
-                            </div>
-                            <p>{users[usersIndex].introduction}</p>
-                        </div>
-
-                        <div className="buttons-container">
-                            <button className="like-button" onClick={() => likeUser(users[usersIndex].id)}>
-                                <i className="fas fa-heart small"></i>
-                                <i className="fas fa-heart big"></i>
-                            </button>
-                            <button className="next-button" onClick={() => nextUserIndex()}>
-                                <i className="fas fa-arrow-right small"></i>
-                                <i className="fas fa-arrow-right big"></i>
-                            </button>
-                        </div>
-
+                        <ul>
+                        {users.map((user, i) => <Card user={user} key={i}/>)}
+                        </ul>
                     </div>
                 } 
             </div>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/react-router-dom": "^5.1.5",
+    "framer": "^1.2.28",
     "framer-motion": "^2.9.4",
     "jwt-decode": "^2.2.0",
     "react": "^17.0.1",
