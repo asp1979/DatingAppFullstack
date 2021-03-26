@@ -59,15 +59,11 @@ export const Card = ({ user }) => {
             if (Math.abs(info.offset.x) <= 150) {
                 animControls.start({ x: 0 });
             }
-            else if(info.offset.x < 150) {
-                console.log("left");
-
+            else if(info.offset.x < 150) { // left
                 likeUser(user.id);
                 animControls.start({ x: info.point.x < 0 ? -300 : 300 });
             }
-            else if(info.offset.x < -150) {
-                console.log("right")
-
+            else if(info.offset.x < -150) { // right
                 animControls.start({ x: info.point.x < 0 ? -300 : 300 });
             }
         }}>
