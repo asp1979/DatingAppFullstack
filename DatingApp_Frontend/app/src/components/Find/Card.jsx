@@ -28,13 +28,16 @@ export const Card = ({ user }) => {
     const animControls = useAnimation();
 
     const style = {
+        fontSize: "2vmin",
+        width: "40vmin",
+        height: "62vmin",
+        padding: "5vmin",
         background: "white",
-        height: "50vmin",
-        width: "30vmin",
-        display: display ? "flex" : "none",
-        flexDirection: "column",
-        padding: "4vmin",
         borderRadius: "2vmin",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
     }
     
     return (
@@ -50,23 +53,23 @@ export const Card = ({ user }) => {
                 animControls.set({ x: 0 });
             }
             else if(info.offset.x < 150) { // left
-                setDisplay(false);
+                if(display) setDisplay(false);
                 likeUser(user.id);
             }
             else if(info.offset.x > -150) { // right
-                setDisplay(false);
+                if(display) setDisplay(false);
             }
         }}>
-            <h1>{user.username}</h1>
-            <div>
-                <a href={"/find"}>Overview</a>
+            <h1 style={{ textAlign: "center", marginBottom: "1.5vmin" }}>{user.username}</h1>
+            <div style={{ marginBottom: "5vmin" }}>
+                <a style={{ background: "purple", color: "white", padding: "0.5vmin 1vmin", borderRadius: "1vmin" }} href={"/find"}>Overview</a>
             </div>
-            <img src={user.photoUrl} alt=""/>
-            <div>
+            <img style={{ borderRadius: "50%", height: "21vmin" }} src={user.photoUrl} alt=""/>
+            <div style={{ margin: "2vmin", padding: "0.5vmin", background: "purple", color: "white", borderRadius: "1vmin" }}>
                 {
                     user.gender === "female" 
-                    ? <i className="fa fa-female" aria-hidden="true"></i>
-                    : <i className="fa fa-male" aria-hidden="true"></i>
+                    ? <i className="fa fa-female" style={{ color: "white" }} aria-hidden="true"></i>
+                    : <i className="fa fa-male" style={{ color: "white" }} aria-hidden="true"></i>
                 }
                 &nbsp;{user.age}
             </div>
