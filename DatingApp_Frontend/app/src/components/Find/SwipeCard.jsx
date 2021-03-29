@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Frame, useMotionValue, useTransform, useAnimation } from "framer";
 import { UserContext } from '../../UserContext';
 
-export const Card = ({ user }) => {
+export const SwipeCard = ({ user }) => {
 
-    const [display, setDisplay] = useState(true);
     const { userContext, setUserContext } = useContext(UserContext);
     const baseURL = userContext.baseURL;
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
@@ -28,14 +27,14 @@ export const Card = ({ user }) => {
 
     const handleDragEnd = (event, info) => {
         if (Math.abs(info.offset.x) <= 150) {
-            animControls.set({ x: 0 });
+            animControls.start({ x: 0 });
         }
         else if(info.offset.x < 150) { // left
-            if(display) setDisplay(false);
+            animControls.start({ display: "none" });
             likeUser(user.id);
         }
         else if(info.offset.x > -150) { // right
-            if(display) setDisplay(false);
+            animControls.start({ display: "none" });
         }
     }
 
@@ -56,6 +55,7 @@ export const Card = ({ user }) => {
     return (
         <Frame
         center
+        animate={animControls}
         style={frameStyle}
         className="user-info"
         drag="x"

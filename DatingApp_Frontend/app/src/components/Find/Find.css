@@ -17,6 +17,35 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: opacity-delay;
+    animation-delay: 0.1s;
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+.find-container .swipe-guide {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    font-size: 3vmin;
+}
+
+.find-container .fas.fa-heart, .fas.fa-arrow-right {
+    position: absolute;
+    font-size: 15vmin;
+    z-index: -1;
+}
+
+.find-container .fas.fa-heart {
+    left: -25vmin;
+}
+
+.find-container .fas.fa-arrow-right {
+    right: -25vmin;
 }
 
 .buttons-container button {
@@ -37,31 +66,4 @@
     border-radius: 2vmin;
     background: white;
     text-align: center;
-}
-
-.next-button .big, .like-button .big {
-    position: absolute;
-    top: 28vmin;
-    font-size: 20vmin;
-    color: darkgrey;
-    opacity: 0;
-    animation: opacity-delay;
-    animation-duration: 0.9s;
-    animation-fill-mode: forwards;
-}
-
-.next-button .big {
-    left: 70vmin;
-}
-
-.like-button .big {
-    left: -30vmin;
-}
-
-.like-button:hover .big {
-    color: purple;
-}
-
-.next-button:hover .big {
-    color: purple;
 }

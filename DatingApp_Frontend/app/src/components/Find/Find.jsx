@@ -3,7 +3,7 @@ import './Find.css';
 import React, { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
 import { shuffleUsers } from './shuffleUsers';
-import { Card } from './Card';
+import { SwipeCard } from './SwipeCard';
 
 export const Find = () => {
 
@@ -39,9 +39,15 @@ export const Find = () => {
                 {
                     !loading && (users.length > 0) &&
                     <div className="find-container">
+                        <div className="swipe-guide">
+                            <i className="far fa-hand-rock"></i>
+                            <i class="fas fa-arrows-alt-h"></i>
+                        </div>
+                        <i className="fas fa-heart"></i>
                         <ul>
-                        {users.map((user, i) => <Card user={user} key={i}/>)}
+                        {users.map((user, i) => <SwipeCard user={user} key={i}/>)}
                         </ul>
+                        <i className="fas fa-arrow-right"></i>
                     </div>
                 } 
             </div>
