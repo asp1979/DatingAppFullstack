@@ -41,7 +41,7 @@ export const Find = () => {
                     <div className="find-container">
                         <div className="swipe-guide">
                             <i className="far fa-hand-rock"></i>
-                            <i class="fas fa-arrows-alt-h"></i>
+                            <i className="fas fa-arrows-alt-h"></i>
                         </div>
                         <i className="fas fa-heart"></i>
                         <ul>

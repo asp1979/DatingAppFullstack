@@ -22,7 +22,8 @@ export const SwipeCard = ({ user }) => {
     }
 
     const motionValue = useMotionValue(0);
-    const opacityValue = useTransform(motionValue, [-300, -150, 0, 150, 300], [0, 1, 1, 1, 0]);
+    const opacityValue = useTransform(motionValue, [-300, -150, 0, 150, 300], [0.2, 1, 1, 1, 0.2]);
+    const scaleValue = useTransform(motionValue, [-300, -150, 0, 150, 300], [0.80, 0.90, 1, 0.90, 0.80]);
     const animControls = useAnimation();
 
     const handleDragEnd = (event, info) => {
@@ -61,6 +62,7 @@ export const SwipeCard = ({ user }) => {
         drag="x"
         x={motionValue}
         opacity={opacityValue}
+        scale={scaleValue}
         dragConstraints={{ left: -300, right: 300 }}
         onDragEnd={(event, info) => handleDragEnd(event, info)}>
 
@@ -70,7 +72,7 @@ export const SwipeCard = ({ user }) => {
                 <a href={"/find"}>Overview</a>
             </div>
 
-            <img src={user.photoUrl} alt=""/>
+            <img src={user.photoUrl} style={{ pointerEvents: "none" }} alt=""/>
 
             <div className="age-gender-box">
                 {
