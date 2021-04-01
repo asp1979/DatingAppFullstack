@@ -53,7 +53,7 @@ export const Home = () => {
                     initial={{ opacity: 0, scale: 1.5 }}
                     animate={{ opacity: 1, scale: 1.5 }}
                     transition={{ delay: 0.25, duration: 1 }}>
-                        I hope you are enjoying Timder!<br/>
+                        I hope you enjoy <span className="color-text">Timder!</span><br/>
                     </motion.h1>
 
                 </div>

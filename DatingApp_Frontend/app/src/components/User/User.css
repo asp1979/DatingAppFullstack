@@ -16,6 +16,12 @@
     margin-bottom: 5vmin;
 }
 
+.user-info-nav .country-icon {
+    position: relative;
+    top: 0.4vmin;
+    height: 2.2vmin;
+}
+
 .user-info-nav > :nth-child(1) {
     background: purple;
     color: white;
@@ -34,17 +40,17 @@
 }
 
 .user-info {
-    font-size: 2vmin;
-    width: 40vmin;
-    height: 62vmin;
-    padding: 5vmin;
-    background: white;
-    border-radius: 2vmin;
-    box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
+    font-size: 2vmin !important;
+    width: 40vmin !important;
+    height: 62vmin !important;
+    padding: 5vmin !important;
+    background: white !important;
+    border-radius: 2vmin !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
 }
 
 .user-info h1 {

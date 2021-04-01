@@ -1,5 +1,4 @@
 import './Find.css';
-// NOTE: some css inherited from User.css
 import React, { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
 import { shuffleUsers } from './shuffleUsers';

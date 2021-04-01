@@ -38,26 +38,12 @@ export const SwipeCard = ({ user }) => {
             animControls.start({ display: "none" });
         }
     }
-
-    const frameStyle = {
-        fontSize: "2vmin",
-        width: "40vmin",
-        height: "62vmin",
-        padding: "5vmin",
-        background: "white",
-        borderRadius: "2vmin",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        boxShadow: "none",
-    }
     
     return (
         <Frame
         center
         animate={animControls}
-        style={frameStyle}
+        style={{ display: "flex", boxShadow: "none" }}
         className="user-info"
         drag="x"
         x={motionValue}
@@ -69,7 +55,11 @@ export const SwipeCard = ({ user }) => {
             <h1>{user.username}</h1>
 
             <div className="user-info-nav not-flex">
-                <a href={"/find"}>Overview</a>
+                <a href={"/find"}>
+                    {user.country}
+                    &nbsp;
+                    <img className="country-icon" src="https://www.countryflags.io/ca/shiny/64.png" alt=""></img>
+                </a>
             </div>
 
             <img src={user.photoUrl} style={{ pointerEvents: "none" }} alt=""/>
