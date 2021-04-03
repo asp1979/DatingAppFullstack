@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Frame, useMotionValue, useTransform, useAnimation } from "framer";
 import { UserContext } from '../../UserContext';
 
-export const SwipeCard = ({ user }) => {
+export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
 
     const { userContext, setUserContext } = useContext(UserContext);
     const baseURL = userContext.baseURL;
@@ -31,10 +31,12 @@ export const SwipeCard = ({ user }) => {
             animControls.start({ x: 0 });
         }
         else if(info.offset.x < 150) { // left
+            setSwipeCount(swipeCount + 1);
             animControls.start({ display: "none" });
             likeUser(user.id);
         }
         else if(info.offset.x > -150) { // right
+            setSwipeCount(swipeCount + 1);
             animControls.start({ display: "none" });
         }
     }

@@ -9,6 +9,7 @@ export const Find = () => {
     const { userContext } = useContext(UserContext);
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [swipeCount, setSwipeCount] = useState(0);
     
     const baseURL = userContext.baseURL;
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
@@ -38,15 +39,21 @@ export const Find = () => {
                 {
                     !loading && (users.length > 0) &&
                     <div className="find-container">
+                        <i className="fas fa-heart"></i>
+                        {
+                            swipeCount === users.length
+                            ? <div className="swiping-limit">
+                                <h3>Refresh!</h3>
+                            </div>
+                            : <ul>
+                                {users.map((user, i) => <SwipeCard user={user} swipeCount={swipeCount} setSwipeCount={setSwipeCount} key={i}/>)}
+                            </ul>
+                        }
+                        <i className="fas fa-arrow-right"></i>
                         <div className="swipe-guide">
                             <i className="far fa-hand-rock"></i>
                             <i className="fas fa-arrows-alt-h"></i>
                         </div>
-                        <i className="fas fa-heart"></i>
-                        <ul>
-                        {users.map((user, i) => <SwipeCard user={user} key={i}/>)}
-                        </ul>
-                        <i className="fas fa-arrow-right"></i>
                     </div>
                 } 
             </div>
