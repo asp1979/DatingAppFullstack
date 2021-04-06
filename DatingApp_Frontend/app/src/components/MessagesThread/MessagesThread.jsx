@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { Modal } from '../Modal/Modal';
 
 export const MessagesThread = ({ match }) => {
 
@@ -17,6 +18,7 @@ export const MessagesThread = ({ match }) => {
     const [messages, setMessages] = useState([]);
     const [oppositeUser, setOppositeUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
 
     const lastMsgRef = useRef();
     const scrollToLast = () => lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
@@ -75,7 +77,16 @@ export const MessagesThread = ({ match }) => {
                             {oppositeUser.username}
                             <img className="title-img" src={oppositeUser.photoUrl} alt=""></img>
                         </Link>
-                        <button onClick={() => deleteAll()} className="delete-all">Delete all</button>
+                        <button onClick={() => setOpenModal(true)} className="delete-all">Delete all</button>
+                        <Modal open={openModal} closeModal={() => setOpenModal(false)}>
+                            <p>Are you sure you want to delete all messages?</p>
+                            <button onClick={() => { deleteAll(); setOpenModal(false) }}>
+                                Yes
+                            </button>
+                            <button onClick={() => setOpenModal(false)}>
+                                No
+                            </button>
+                        </Modal>
                     </h1>
                     : <h1>User</h1>
                 }

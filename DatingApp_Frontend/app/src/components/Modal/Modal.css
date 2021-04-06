@@ -1,0 +1,34 @@
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    z-index: 998;
+}
+  
+.modal {
+    background-color: white;
+    border: 0.3vmin solid darkgrey;
+    border-radius: 2vmin;
+    text-align: center;
+    padding: 2vmin;
+    z-index: 999;
+}
+
+.modal p {
+    font-size: 2vmin;
+}
+
+.modal button {
+    margin-top: 1.5vmin;
+    color: white;
+}
+  
+.hidden {
+    display: none;
+}
