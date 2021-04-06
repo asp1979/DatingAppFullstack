@@ -66,7 +66,8 @@ export const Login = withRouter(({ history }) => {
                     I know you are too lazy to create an account.
                     <br/>
                     <br/>
-                    Here is a list of available demo accounts: </p>
+                    Here is a list of available demo accounts:
+                    <br/>
                     <br/>
                     Username: Buck
                     <br/>
@@ -76,7 +77,10 @@ export const Login = withRouter(({ history }) => {
                     Username: Donna
                     <br/>
                     Password: timder321
-                <p/>
+                    <br/>
+                    <br/>
+                    Enjoy!
+                </p>
             </div>
 
         </div>
