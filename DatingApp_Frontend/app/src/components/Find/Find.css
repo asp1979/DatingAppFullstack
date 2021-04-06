@@ -66,4 +66,8 @@
     border-radius: 2vmin;
     background: white;
     text-align: center;
+    opacity: 0;
+    animation: opacity-delay;
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards;
 }

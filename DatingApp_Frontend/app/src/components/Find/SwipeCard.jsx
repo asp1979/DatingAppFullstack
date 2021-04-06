@@ -32,12 +32,12 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
         }
         else if(info.offset.x < 150) { // left
             setSwipeCount(swipeCount + 1);
-            animControls.start({ display: "none" });
+            animControls.start({ x: -4000, opacity: 0, transition: { duration: 2 } });
             likeUser(user.id);
         }
         else if(info.offset.x > -150) { // right
             setSwipeCount(swipeCount + 1);
-            animControls.start({ display: "none" });
+            animControls.start({ x: 4000, opacity: 0, transition: { duration: 2 } });
         }
     }
     
