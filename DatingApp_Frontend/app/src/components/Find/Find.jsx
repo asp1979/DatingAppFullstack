@@ -39,6 +39,7 @@ export const Find = () => {
                 {
                     !loading && (users.length > 0) &&
                     <div className="find-container">
+
                         <i className="fas fa-heart"></i>
                         {
                             swipeCount === users.length
@@ -50,10 +51,12 @@ export const Find = () => {
                             </ul>
                         }
                         <i className="fas fa-arrow-right"></i>
+
                         <div className="swipe-guide">
                             <i className="far fa-hand-rock"></i>
                             <i className="fas fa-arrows-alt-h"></i>
                         </div>
+
                     </div>
                 } 
             </div>

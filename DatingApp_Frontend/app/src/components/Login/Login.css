@@ -29,6 +29,7 @@
 }
 
 .form-inputs input, .form-inputs button {
+    color: white;
     border: 0.25vmin solid white;
     border-radius: 0.6vmin;
     font-size: 1.6vmin;
@@ -102,5 +103,5 @@
 }
 
 .login-help p {
-    color: white;
+    color: darkgrey;
 }

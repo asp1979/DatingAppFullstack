@@ -63,6 +63,9 @@ export const Login = withRouter(({ history }) => {
 
             <div className="login-help">
                 <p>
+                    Hello!
+                    <br/>
+                    <br/>
                     I know you are too lazy to create an account.
                     <br/>
                     <br/>

@@ -63,6 +63,10 @@
     height: 21vmin;
 }
 
+.user-info p {
+    font-size: 1.7vmin;
+}
+
 .age-gender-box {
     margin: 2vmin;
     background: purple;
@@ -76,7 +80,7 @@
 }
 
 .unlike {
-    margin-top: 2vmin;
+    margin-top: 1vmin;
     font-size: 3vmin;
     cursor: pointer;
 }
