@@ -1,6 +1,5 @@
-export function createMessageThreads(inbox, outbox) {
-
-    // this groups messages for each unique sender
+// this groups messages for each unique sender
+export function messageThreads(inbox, outbox) {
 
     function groupBy(list, keyGetter) {
         let map = new Map();
@@ -31,6 +30,8 @@ export function createMessageThreads(inbox, outbox) {
     noReplyThreads = [...groupBy(noReplyThreads, msg => msg.recipientID)];
     noReplyThreads.forEach(x => x.push(x[1][0].recipientUsername));
     noReplyThreads.forEach(x => x.push(x[1][0].recipientPhotoUrl));
+
+    // same format as threads
     
     return [threads, noReplyThreads].flat();
 }

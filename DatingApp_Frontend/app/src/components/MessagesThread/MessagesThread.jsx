@@ -4,6 +4,7 @@ import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Modal } from '../Modal/Modal';
+import { messageTimestamp } from './messageTimestamp';
 
 export const MessagesThread = ({ match }) => {
 
@@ -107,12 +108,12 @@ export const MessagesThread = ({ match }) => {
                             msg.senderID === Number(userContext.jwtID)
                             ? <div key={i} className="message-container logged-user">
                                 <p>{msg.content}</p>
-                                <p>{msg.messageSent.substring(11,16)}</p>
+                                <p>{messageTimestamp(msg.messageSent)}</p>
                             </div>
 
                             : <div key={i} className="message-container opposite-user">
                                 <p>{msg.content}</p>
-                                <p>{msg.messageSent.substring(11,16)}</p>
+                                <p>{messageTimestamp(msg.messageSent)}</p>
                             </div>
                         )
                     }
@@ -131,7 +132,6 @@ export const MessagesThread = ({ match }) => {
                     />
                     <button onClick={() => setTimeout(() => reset(), 200)} className="send-button" type="submit">Send</button>
                 </form>
-
             </div>
         </div>
     )

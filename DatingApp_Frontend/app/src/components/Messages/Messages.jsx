@@ -2,7 +2,7 @@ import './Messages.css';
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom';
-import { createMessageThreads } from './messagesAlgorithms';
+import { messageThreads } from './messageThreads';
 
 export const Messages = () => {
 
@@ -22,7 +22,7 @@ export const Messages = () => {
             if(inbox.ok && outbox.ok) {
                 const inboxJSON = await inbox.json();
                 const outboxJSON = await outbox.json();
-                const threads = createMessageThreads(inboxJSON, outboxJSON);
+                const threads = messageThreads(inboxJSON, outboxJSON);
                 setThreads([...threads]);
                 setLoading(false);
             } 

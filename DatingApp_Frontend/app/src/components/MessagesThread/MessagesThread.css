@@ -62,8 +62,8 @@
 }
 
 .form-inputs.send-message {
-    position: fixed;
-    bottom: 5vmin;
+    position: absolute;
+    bottom: 3vmin;
     margin-left: 2vmin;
 }
 
