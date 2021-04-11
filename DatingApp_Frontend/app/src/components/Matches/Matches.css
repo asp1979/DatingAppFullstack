@@ -11,9 +11,9 @@
     font-size: 2vmin;
     width: 15vmin;
     height: 17vmin;
-    background-color: white;
+    background-color: #3e1b4b;
+    border: 0.4vmin solid transparent;
     border-radius: 2vmin;
-    border: 0.25vmin solid darkgrey;
     box-shadow: 0 0 2vmin 0.5vmin rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column-reverse;
@@ -27,7 +27,7 @@
 }
 
 .person-card:hover {
-    background: aliceblue;
+    border: 0.4vmin solid #3d0066;
 }
 
 .person-card img {
@@ -37,5 +37,6 @@
 }
 
 .person-card p {
+    color: white;
     margin-top: 1.5vmin;
 }
