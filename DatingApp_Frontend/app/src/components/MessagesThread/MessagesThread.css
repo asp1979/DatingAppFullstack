@@ -115,3 +115,23 @@
     border-radius: 2vmin 2vmin 0 0;
     border-bottom: none;
 }
+
+.delete-message {
+    position: relative;
+    left: 1vmin;
+    color: white;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.message-container.logged-user:hover {
+    background-color: #5a005a;
+}
+
+.message-container.opposite-user:hover {
+    background-color: #00a4db;
+}
+
+.message-container:hover .delete-message {
+    opacity: 1;
+}

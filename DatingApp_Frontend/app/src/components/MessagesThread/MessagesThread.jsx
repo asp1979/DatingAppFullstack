@@ -33,6 +33,13 @@ export const MessagesThread = ({ match }) => {
         })
     }
 
+    const deleteMessage = async (messageID) => {
+        await fetch(baseURL + `/${userID}/messages/${messageID}`, {
+            ...headers,
+            method: "DELETE",
+        })
+    }
+
     const deleteAll = async () => {
         const messageIDs = messages.map(x => x.id)
         await fetch(baseURL + `/${userID}/messages?msgIDs=${JSON.stringify(messageIDs)}`, {
@@ -108,12 +115,18 @@ export const MessagesThread = ({ match }) => {
                             msg.senderID === Number(userContext.jwtID)
                             ? <div key={i} className="message-container logged-user">
                                 <p>{msg.content}</p>
-                                <p>{messageTimestamp(msg.messageSent)}</p>
+                                <p>
+                                    {messageTimestamp(msg.messageSent)}
+                                    <i onClick={() => deleteMessage(msg.id)} className="delete-message fas fa-times"></i>
+                                </p>
                             </div>
 
                             : <div key={i} className="message-container opposite-user">
                                 <p>{msg.content}</p>
-                                <p>{messageTimestamp(msg.messageSent)}</p>
+                                <p>
+                                    {messageTimestamp(msg.messageSent)}
+                                    <i onClick={() => deleteMessage(msg.id)} className="delete-message fas fa-times"></i>
+                                </p>
                             </div>
                         )
                     }
