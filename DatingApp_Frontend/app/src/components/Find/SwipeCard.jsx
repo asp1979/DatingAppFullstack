@@ -46,12 +46,12 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
         center
         animate={animControls}
         style={{ display: "flex", boxShadow: "none" }}
-        className="user-info"
         drag="x"
         x={motionValue}
         opacity={opacityValue}
         scale={scaleValue}
         dragConstraints={{ left: -300, right: 300 }}
+        className="user-info"
         onDragEnd={(event, info) => handleDragEnd(event, info)}>
 
             <h1>{user.username}</h1>
@@ -64,7 +64,7 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
                 </a>
             </div>
 
-            <img src={user.photoUrl} style={{ pointerEvents: "none" }} alt=""/>
+            <img className="user-img" src={user.photoUrl} style={{ pointerEvents: "none" }} alt=""/>
 
             <div className="age-gender-box">
                 {

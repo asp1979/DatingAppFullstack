@@ -66,7 +66,7 @@ export const User = ({ match, history }) => {
 
                         </motion.div>
 
-                        <img src={user.photoUrl} alt=""/>
+                        <img className="user-img" src={user.photoUrl} alt=""/>
 
                         <motion.div className="age-gender-box" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.68, duration: 0.5 }}>
                             {
