@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Frame, useMotionValue, useTransform, useAnimation } from "framer";
 import { UserContext } from '../../UserContext';
+import { UserCard } from '../User/UserCard';
 
 export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
 
@@ -45,7 +46,7 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
         <Frame
         center
         animate={animControls}
-        style={{ display: "flex", boxShadow: "none" }}
+        style={{ display: "flex" }}
         drag="x"
         x={motionValue}
         opacity={opacityValue}
@@ -54,28 +55,7 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
         className="user-info"
         onDragEnd={(event, info) => handleDragEnd(event, info)}>
 
-            <h1>{user.username}</h1>
-
-            <div className="user-info-nav not-flex">
-                <a href={"/find"}>
-                    {user.country}
-                    &nbsp;
-                    <img className="country-icon" src="https://www.countryflags.io/ca/shiny/64.png" alt=""></img>
-                </a>
-            </div>
-
-            <img className="user-img" src={user.photoUrl} style={{ pointerEvents: "none" }} alt=""/>
-
-            <div className="age-gender-box">
-                {
-                    user.gender === "female" 
-                    ? <i className="fa fa-female" aria-hidden="true"></i>
-                    : <i className="fa fa-male" aria-hidden="true"></i>
-                }
-                &nbsp;{user.age}
-            </div>
-
-            <p>{user.introduction}</p>
+            <UserCard user={user} userID={user.ID} unlikeUser={null} canBeUnliked={false} />
 
         </Frame>
     )

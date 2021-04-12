@@ -2,79 +2,64 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60vmin;
     background: transparent;
     box-shadow: unset;
-}
-
-.user .content h1 {
-    color: darkgrey;
-    border-color: darkgrey;
-}
-
-.user-info-nav {
-    margin-bottom: 5vmin;
-}
-
-.user-info-nav .country-icon {
-    position: relative;
-    top: 0.4vmin;
-    height: 2.2vmin;
-}
-
-.user-info-nav > :nth-child(1) {
-    background: purple;
-    color: white;
-    margin-right: 1vmin;
-}
-
-.user-info-nav > :nth-child(2):hover,
-.user-info-nav > :nth-child(2):hover i {
-    color: purple;
-}
-
-.user-info-nav a {
-    padding: 0.5vmin 1vmin;
-    border-radius: 1vmin;
-    margin: 0vmin;
+    animation: opacity-delay;
+    animation-delay: 0.5s;
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards;
+    opacity: 0;
 }
 
 .user-info {
     font-size: 2vmin !important;
     width: 40vmin !important;
-    height: 62vmin !important;
+    height: 59vmin !important;
     padding: 5vmin !important;
-    background: white !important;
+    background: #3e1b4b !important;
     border-radius: 2vmin !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
 }
 
-.user-info h1 {
+.user-info .user-username {
+    width: 100%;
+    margin: 1vmin;
+    color: white;
+    font-size: 3vmin;
     text-align: center;
-    margin-bottom: 1.5vmin;
+    padding: 1vmin 2vmin;
+    background-color: #32153d;
+    border-radius: 2vmin;
 }
 
 .user-img {
+    margin: 1vmin;
     border-radius: 50%;
     height: 21vmin;
     width: 21vmin;
-    border: 2vmin solid #EDF0F5;
+    border: 2vmin solid #32153d;
+    pointer-events: none !important;
 }
 
-.user-info p {
-    font-size: 1.7vmin;
+.user-info .user-introduction {
+    width: 100%;
+    margin: 1vmin;
+    padding: 1vmin 2vmin;
+    border-radius: 2vmin;
+    background-color: #32153d;
+    color: white;
+    font-size: 1.6vmin;
 }
 
 .age-gender-box {
-    margin: 2vmin;
-    background: purple;
+    margin: 1vmin;
+    background: #32153d;
     color: white;
     border-radius: 1vmin;
-    padding: 0.5vmin;
+    padding: 0.8vmin;
 }
 
 .age-gender-box i {
@@ -82,11 +67,11 @@
 }
 
 .unlike {
-    margin-top: 1vmin;
+    margin-top: 2vmin;
     font-size: 3vmin;
     cursor: pointer;
 }
 
-.unlike i:hover {
-    color: purple;
+.unlike i {
+    color: white;
 }
