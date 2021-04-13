@@ -55,7 +55,7 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
         className="user-info"
         onDragEnd={(event, info) => handleDragEnd(event, info)}>
 
-            <UserCard user={user} userID={user.ID} unlikeUser={null} canBeUnliked={false} />
+            <UserCard user={user} canBeUnliked={false} canBeMessaged={false} />
 
         </Frame>
     )

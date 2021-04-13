@@ -12,7 +12,11 @@ export const User = ({ match, history }) => {
     const [loading, setLoading] = useState(true);
     const baseURL = userContext.baseURL;
     const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
-    const canBeUnliked = (+userID) !== (+userContext.jwtID) ? true : false;
+    const isSelf = user.id === (+userContext.jwtID);
+
+    const messageUser = () => {
+        history.push("/thread/" + user.id); // redirect to thread
+    }
 
     const unlikeUser = async () => {
         const unlike = await fetch(baseURL + `v1/users/${userContext.jwtID}/like/${userID}`, {
@@ -20,7 +24,7 @@ export const User = ({ match, history }) => {
             method: "DELETE"
         });
         if(unlike.ok) {
-            history.push("/matches"); // redirect
+            history.push("/matches"); // redirect to matches
         }
     }
     
@@ -43,7 +47,13 @@ export const User = ({ match, history }) => {
             <div className="content">
                 {
                     !loading &&
-                    <UserCard user={user} unlikeUser={unlikeUser} canBeUnliked={canBeUnliked} />
+                    <UserCard
+                    user={user}
+                    canBeMessaged={!isSelf}
+                    messageUser={messageUser}
+                    canBeUnliked={!isSelf}
+                    unlikeUser={unlikeUser}
+                    />
                 }
             </div>
             

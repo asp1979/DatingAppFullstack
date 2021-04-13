@@ -13,8 +13,8 @@
 
 .user-info {
     font-size: 2vmin !important;
-    width: 40vmin !important;
-    height: 59vmin !important;
+    width: 34vmin !important;
+    height: 50vmin !important;
     padding: 5vmin !important;
     background: #3e1b4b !important;
     border-radius: 2vmin !important;
@@ -24,15 +24,32 @@
     align-items: center;
 }
 
-.user-info .user-username {
+.user-info .user-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     margin: 1vmin;
-    color: white;
-    font-size: 3vmin;
-    text-align: center;
     padding: 1vmin 2vmin;
     background-color: #32153d;
     border-radius: 2vmin;
+}
+
+.user-info .user-nav h2 {
+    margin: 0 1vmin;
+    color: white;
+    font-size: 2.5vmin;
+    text-align: center;
+}
+
+.user-nav i {
+    padding: 0.8vmin;
+    margin: 0 1vmin;
+    border-radius: 1vmin;
+    background-color: #3e1b4b;
+    font-size: 2vmin;
+    cursor: pointer;
+    color: white;
 }
 
 .user-img {
@@ -52,6 +69,7 @@
     background-color: #32153d;
     color: white;
     font-size: 1.6vmin;
+    text-align: center;
 }
 
 .age-gender-box {
@@ -63,15 +81,5 @@
 }
 
 .age-gender-box i {
-    color: white;
-}
-
-.unlike {
-    margin-top: 2vmin;
-    font-size: 3vmin;
-    cursor: pointer;
-}
-
-.unlike i {
     color: white;
 }
