@@ -14,72 +14,39 @@
 .user-info {
     font-size: 2vmin !important;
     width: 34vmin !important;
+    min-width: 34vmin !important;
+    max-width: 34vmin !important;
     height: 50vmin !important;
-    padding: 5vmin !important;
-    background: #3e1b4b !important;
+    min-height: 50vmin !important;
+    max-height: 50vmin !important;
+    background: #EDF0F5 !important;
     border-radius: 2vmin !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    border: 0.1vmin solid #EDF0F5;
 }
 
-.user-info .user-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.user-info img {
+    border-radius: 2vmin !important;
     width: 100%;
-    margin: 1vmin;
-    padding: 1vmin 2vmin;
-    background-color: #32153d;
-    border-radius: 2vmin;
-}
-
-.user-info .user-nav h2 {
-    margin: 0 1vmin;
-    color: white;
-    font-size: 2.5vmin;
-    text-align: center;
-}
-
-.user-nav i {
-    padding: 0.8vmin;
-    margin: 0 1vmin;
-    border-radius: 1vmin;
-    background-color: #3e1b4b;
-    font-size: 2vmin;
-    cursor: pointer;
-    color: white;
-}
-
-.user-img {
-    margin: 1vmin;
-    border-radius: 50%;
-    height: 21vmin;
-    width: 21vmin;
-    border: 2vmin solid #32153d;
+    height: 100%;
     pointer-events: none !important;
 }
 
-.user-info .user-introduction {
-    width: 100%;
-    margin: 1vmin;
-    padding: 1vmin 2vmin;
+.user-name, .user-desc {
+    position: relative;
+    top: -16vmin;
+    left: 2vmin;
+    width: fit-content;
+    max-width: 80%;
+    padding: 1vmin;
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 2vmin;
-    background-color: #32153d;
     color: white;
-    font-size: 1.6vmin;
-    text-align: center;
+    font-size: 3vmin;
+    font-weight: 900;
 }
 
-.age-gender-box {
-    margin: 1vmin;
-    background: #32153d;
-    color: white;
-    border-radius: 1vmin;
-    padding: 0.8vmin;
-}
-
-.age-gender-box i {
-    color: white;
+.user-desc {
+    margin-top: 2vmin;
+    font-size: 1.5vmin;
+    border-radius: 1.5vmin;
 }
