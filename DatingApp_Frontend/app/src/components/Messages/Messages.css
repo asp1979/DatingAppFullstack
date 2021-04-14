@@ -29,6 +29,7 @@
 }
 
 .thread-link img {
+    object-fit: cover;
     margin: 1vmin 2vmin;
     width: 6vmin;
     height: 6vmin;

@@ -20,6 +20,7 @@
 .title-img {
     position: relative;
     top: 0.4vmin;
+    object-fit: cover;
     margin-left: 1vmin;
     height: 5vmin;
     width: 5vmin;
