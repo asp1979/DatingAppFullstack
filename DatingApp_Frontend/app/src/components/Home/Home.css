@@ -45,7 +45,8 @@
 .animation-div .call-to-action a {
     background-color: #4c1d5e;
     color: white;
-    border: 0.2vmin solid darkgrey;
+    border: unset;
+    box-shadow: 0.7vmin 0.7vmin 0.7vmin rgba(0, 0, 0, 0.3);
 }
 
 .animation-div a {
