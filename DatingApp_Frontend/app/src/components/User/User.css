@@ -1,5 +1,6 @@
 .user .content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: transparent;
@@ -9,6 +10,14 @@
     animation-duration: 0.9s;
     animation-fill-mode: forwards;
     opacity: 0;
+}
+
+.user .content h2 {
+    position: relative;
+    top: -8vmin;
+    font-size: 5.5vmin;
+    text-decoration: underline;
+    text-underline-offset: 1vmin;
 }
 
 .user-info {
@@ -25,19 +34,58 @@
 }
 
 .user-info img {
+    object-fit: cover;
     border-radius: 2vmin !important;
     width: 100%;
     height: 100%;
     pointer-events: none !important;
 }
 
-.user-name, .user-desc {
+.user-cover {
     position: relative;
-    top: -16vmin;
-    left: 2vmin;
+    top: -101%;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+}
+
+.user-intro {
+    position: absolute;
+    bottom: 0; 
+}
+
+.user-actions {
+    position: absolute;
+    bottom: -10vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.user-actions i {
+    margin: 0 2vmin;
+    padding: 2vmin;
+    border-radius: 50%;
+    font-size: 3vmin;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0.7vmin 0.7vmin 0.7vmin rgba(0, 0, 0, 0.4);
+}
+
+.unlike-icon, .chat-icon {
+    color: darkgrey;
+}
+
+.user-actions i:hover {
+    color: purple;
+}
+
+.user-name, .user-desc {
     width: fit-content;
-    max-width: 80%;
+    max-width: 90%;
     padding: 1vmin;
+    margin: 2vmin;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 2vmin;
     color: white;
@@ -46,7 +94,6 @@
 }
 
 .user-desc {
-    margin-top: 2vmin;
     font-size: 1.5vmin;
     border-radius: 1.5vmin;
 }
