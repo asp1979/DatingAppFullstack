@@ -87,7 +87,7 @@ export const Messages = () => {
                         // user[4] = unread messages count 
                         <Link to={"thread/" + user[0]} className="thread-link" key={i}>
                             <img className="photo" src={user[3]} alt=""></img>
-                            <p className="username">{user[2]}</p>
+                            <p className="last-msg">{user[1][0].content.substring(0,16) + "..."}</p>
                             { user[4] > 0 ? <p className="unread-count">{user[4]}</p> : null }
                         </Link>
                     )

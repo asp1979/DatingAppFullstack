@@ -36,17 +36,19 @@
     border-radius: 50%;
 }
 
-.thread-link .username {
+.thread-link .last-msg {
     color: white;
-    font-size: 2vmin;
+    padding: 0.5vmin;
+    background-color: #32153d;
+    border-radius: 1vmin;
+    font-size: 1.5vmin;
     margin-right: 2vmin;
 }
 
 .thread-link .unread-count {
-    background: darkgrey;
-    color: white;
+    background: white;
+    color: #32153d;
     padding: 0.5vmin 1vmin;
     font-size: 1.75vmin;
     border-radius: 50%;
-    margin-left: 5vmin;
 }
