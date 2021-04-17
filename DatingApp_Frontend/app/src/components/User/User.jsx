@@ -45,7 +45,7 @@ export const User = ({ match, history }) => {
         <div className="page user">
 
             <div className="content">
-                { isSelf && <h2>Your Profile</h2> }
+                { isSelf && <h2>Profile</h2> }
                 {
                     !loading &&
                     <UserCard

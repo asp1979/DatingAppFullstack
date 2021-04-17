@@ -8,7 +8,7 @@ export const Matches = () => {
     const { userContext, setUserContext } = useContext(UserContext);
     const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [sortBy, setSortBy] = useState("Username"); // response is sorted by username
+    const [sortBy, setSortBy] = useState("Username A-Z"); // response is sorted by username
 
     useEffect(() => {
         async function getMatches() {
@@ -30,9 +30,13 @@ export const Matches = () => {
     }, []);
 
     function sortMatchesState(sortBy) {
-        if(sortBy === "Username") {
+        if(sortBy === "Username A-Z") {
             setMatches([...matches.sort((a,b) => a.username.localeCompare(b.username))]);
-            setSortBy("Username");
+            setSortBy("Username A-Z");
+        }
+        else if(sortBy === "Username Z-A") {
+            setMatches([...matches.sort((a,b) => b.username.localeCompare(a.username))]);
+            setSortBy("Username Z-A");
         }
         else if(sortBy === "Age Ascending") {
             setMatches([...matches.sort((a,b) => a.age - b.age)]);
@@ -56,7 +60,8 @@ export const Matches = () => {
                 <div className="sortby">
                     <button className="sortby-btn">Sort by: {sortBy}</button>
                     <div className="sortby-content">
-                        <p onClick={() => sortMatchesState("Username")}>Username</p>
+                        <p onClick={() => sortMatchesState("Username A-Z")}>Username A-Z</p>
+                        <p onClick={() => sortMatchesState("Username Z-A")}>Username Z-A</p>
                         <p onClick={() => sortMatchesState("Age Ascending")}>Age Ascending</p>
                         <p onClick={() => sortMatchesState("Age Descending")}>Age Descending</p>
                         <p onClick={() => sortMatchesState("Gender")}>Gender</p>
