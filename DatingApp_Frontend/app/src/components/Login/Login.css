@@ -12,9 +12,8 @@
     border-radius: 1vmin;
     width: 36vmin;
     height: 44vmin;
-    border: 0.4vmin solid darkgrey;
-    background: transparent;
-    box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
+    background: #EDF0F5;
+    box-shadow: 0 0 0.2vmin 0.2vmin rgba(0,0,0,0.1);
     opacity: 0;
     animation: opacity-delay;
     animation-duration: 0.9s;
@@ -23,30 +22,38 @@
 }
 
 .page.login h1 {
+    padding: 0.8vmin 1.5vmin;
+    border-radius: 2vmin;
+    box-shadow: 0 0 0.2vmin 0.2vmin rgba(0,0,0,0.1);
     font-size: 4vmin;
-    text-decoration: underline;
     color: darkgrey;
 }
 
-.form-inputs input, .form-inputs button {
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-inputs input {
     color: darkgrey;
-    border: 0.25vmin solid darkgrey;
     border-radius: 0.6vmin;
+    border: unset;
+    box-shadow: 0 0 0.2vmin 0.2vmin rgba(0,0,0,0.1);
     font-size: 1.6vmin;
-    background: transparent;
+    background: white;
 }
 
 .form-inputs button {
-    color: darkgrey;
-    background-color: transparent;
+    font-size: 1.8vmin;
+    color: white;
+    background-color: #502161;
+    border: unset;
 }
 
 .form-inputs .input-name {
-    position: absolute;
-    margin: -0.5vmin 2vmin;
-    padding: 0 1vmin;
-    font-size: 1.2vmin;
-    background: #EDF0F5;
+    margin-bottom: 0.2vmin;
+    font-size: 1.4vmin;
     color: darkgrey;
 }
 
@@ -90,10 +97,9 @@
     height: 44vmin;
     margin-left: 2vmin;
     font-size: 1.8vmin;
-    border: 0.4vmin solid darkgrey;
     border-radius: 1vmin;
     background: transparent;
-    box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
+    box-shadow: 0 0 0.2vmin 0.2vmin rgba(0,0,0,0.1);
     padding: 4vmin;
     opacity: 0;
     animation: opacity-delay;

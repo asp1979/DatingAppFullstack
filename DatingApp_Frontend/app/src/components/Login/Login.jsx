@@ -47,12 +47,12 @@ export const Login = withRouter(({ history }) => {
                 { errors.password && <span className="error-span regex">Password too short or contains unsupported characters</span> }
                 { fetchError && <span className="error-span fetch">Username/password is incorrect</span> }
 
-                <div>
+                <div className="input-container">
                     <span className="input-name">Username</span>
                     <input name="username" maxLength={16} autoComplete="off" ref={register({ required: true, minLength: 2, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
                 </div>
 
-                <div>
+                <div className="input-container">
                     <span className="input-name">Password</span>
                     <input name="password" maxLength={32} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
                 </div>
