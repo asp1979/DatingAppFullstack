@@ -18,7 +18,7 @@
     justify-content: center;
     align-items: center;
     animation: opacity-delay;
-    animation-delay: 0.1s;
+    animation-delay: 0.2s;
     animation-duration: 0.9s;
     animation-fill-mode: forwards;
     opacity: 0;
@@ -76,4 +76,5 @@
     position: absolute;
     top: -5vmin;
     height: 25vmin;
+    pointer-events: none !important;
 }
