@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './User.css';
 
 export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnliked, unlikeUser }) => {
 
     const [imgLoading, setImgLoading] = useState(true);
+    
+    useEffect(() => {
 
-    return (
+        const img = new Image();
+        img.onload = () => setImgLoading(false);
+        img.src = user.photoUrl;
+
+    }, [user])
+
+    return !imgLoading && (
         <div className="user-info">
 
-            <img className="user-img" src={user.photoUrl} onLoad={() => setImgLoading(!imgLoading)} alt="" />
+            <img className="user-img" src={user.photoUrl} alt="" />
 
             <div className="user-cover">
 

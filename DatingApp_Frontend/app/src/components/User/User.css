@@ -31,6 +31,10 @@
     background: #EDF0F5 !important;
     border-radius: 2vmin !important;
     border: 0.1vmin solid #EDF0F5;
+    animation: opacity-delay;
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards;
+    opacity: 0;
 }
 
 .user-info img {
