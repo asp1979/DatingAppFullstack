@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace DatingApp_API.Controllers
 {
-    [Authorize] // all endpoints require auth and {userID}
+    [Authorize(Policy = "IsDataOwner")] // all endpoints require auth and {userID}
     [Route("api/v1/users/{userID}/[controller]")] // [messages]
     [ApiController]
     public class MessagesController : ControllerBase
@@ -28,7 +28,6 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpGet("{id}", Name = "GetMessage")] // api/v1/users/{userID}/messages/{id}
-        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> GetMessage(int userID, int id)
         {
             var message = await _repo.GetMessage(id);
@@ -40,7 +39,6 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpGet] // api/v1/users/{userID}/messages
-        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> GetMessagesForUser(int userID, [FromQuery]GetMessagesParams getMessagesParams)
         {
             getMessagesParams.UserID = userID;
@@ -60,7 +58,6 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpGet("thread/{oppositeUserID}")] // api/v1/users/{userID}/messages/thread/{oppositeUserID}
-        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> GetMessagesThread(int userID, int oppositeUserID)
         {
             var messagesFromRepo = await _repo.GetMessagesThread(userID, oppositeUserID);
@@ -81,7 +78,6 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpPost] // api/v1/users/{userID}/messages
-        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> CreateMessage(int userID, MessageForCreationDto msgDto)
         {
             msgDto.SenderID = userID;
@@ -106,7 +102,6 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpDelete("{id}")] // api/v1/users/{userID}/messages/{id}
-        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> DeleteMessage(int id, int userID)
         {
             var messageFromRepo = await _repo.GetMessage(id);
@@ -120,7 +115,6 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpDelete] // api/v1/users/{userID}/messages
-        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> DeleteMultipleMessages([FromQuery]DeleteMessagesParams deleteMessagesParams, int userID)
         {
             List<int> msgIDs = JsonConvert.DeserializeObject<List<int>>(deleteMessagesParams.MsgIDs);
@@ -139,7 +133,6 @@ namespace DatingApp_API.Controllers
         }
 
         [HttpPost("{id}/read")] // api/v1/users/{userID}/messages/{id}/read
-        [Authorize(Policy = "IsDataOwner")]
         public async Task<IActionResult> MarkMessageAsRead(int userID, int id)
         {
             var message = await _repo.GetMessage(id);
