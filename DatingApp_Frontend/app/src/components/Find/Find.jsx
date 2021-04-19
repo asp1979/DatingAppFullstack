@@ -3,6 +3,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
 import { shuffleUsers } from './shuffleUsers';
 import { SwipeCard } from './SwipeCard';
+import SwipeSVG from './SwipeSVG.svg';
 
 export const Find = () => {
 
@@ -39,6 +40,8 @@ export const Find = () => {
                 {
                     !loading && (users.length > 0) &&
                     <div className="find-container">
+
+                        <img className="swipe-svg" src={SwipeSVG} alt=""/>
 
                         <i className="fas fa-heart"></i>
                         {

@@ -71,3 +71,9 @@
     animation-duration: 0.9s;
     animation-fill-mode: forwards;
 }
+
+.swipe-svg {
+    position: absolute;
+    top: -5vmin;
+    height: 25vmin;
+}
