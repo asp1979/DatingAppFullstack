@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './User.css';
 
 export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnliked, unlikeUser }) => {
+
+    const [imgLoading, setImgLoading] = useState(true);
+
     return (
         <div className="user-info">
 
-            <img className="user-img" src={user.photoUrl} alt="" />
+            <img className="user-img" src={user.photoUrl} onLoad={() => setImgLoading(!imgLoading)} alt="" />
 
             <div className="user-cover">
 
