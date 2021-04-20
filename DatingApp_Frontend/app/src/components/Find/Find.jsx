@@ -55,11 +55,6 @@ export const Find = () => {
                         }
                         <i className="fas fa-arrow-right"></i>
 
-                        <div className="swipe-guide">
-                            <i className="far fa-hand-rock"></i>
-                            <i className="fas fa-arrows-alt-h"></i>
-                        </div>
-
                     </div>
                 } 
             </div>

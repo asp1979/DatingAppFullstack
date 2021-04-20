@@ -24,16 +24,6 @@
     opacity: 0;
 }
 
-.find-container .swipe-guide {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    bottom: 0;
-    font-size: 3vmin;
-}
-
 .find-container .fas.fa-heart, .fas.fa-arrow-right {
     position: absolute;
     font-size: 15vmin;
