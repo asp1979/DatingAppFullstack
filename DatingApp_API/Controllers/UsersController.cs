@@ -33,6 +33,7 @@ namespace DatingApp_API.Controllers
             var currentUserID = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var user = await _repo.GetUser(currentUserID);
             getUsersParams.UserID = currentUserID;
+
             var users = await _repo.GetUsers(getUsersParams);
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
 
@@ -108,6 +109,19 @@ namespace DatingApp_API.Controllers
                 return Ok("Unliked successfully.");
             else 
                 return BadRequest("Failed to unlike user.");
+        }
+
+        [Authorize(Policy = "IsDataOwner")] // requires {userID} instead of {id}
+        [HttpPut("{userID}/introduction")] // api/v1/users/{userID}/introduction
+        public async Task<IActionResult> EditUserIntroduction(int userID, [FromQuery]string introduction)
+        {
+            var user = await _repo.GetUser(userID);
+            user.Introduction = introduction;
+
+            if(await _repo.SaveAll())
+                return Ok("Updated successfully.");
+            else 
+                return BadRequest("Failed to update.");
         }
     }
 }
