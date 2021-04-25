@@ -3,9 +3,17 @@ import ReactDOM from "react-dom";
 import "./Modal.css";
 
 const renderContent = props => {
+
+    const handleBackgroundClick = (e, closeModal) => {
+        e.preventDefault()
+        if(e.target === e.currentTarget) {
+            closeModal()
+        }
+    }
+
     return ReactDOM.createPortal(
         <div>
-            <div className="background" onClick={props.closeModal}>
+            <div className="background" onClick={(e) => handleBackgroundClick(e, props.closeModal)}>
                 <div className="modal">
                     {props.children}
                 </div>

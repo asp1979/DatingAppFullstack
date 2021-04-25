@@ -97,3 +97,25 @@
     font-size: 1.5vmin;
     border-radius: 1.5vmin;
 }
+
+.edit-user-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1vmin;
+}
+
+.edit-user-modal textarea {
+    border-radius: 1vmin;
+    font-size: 2.2vmin;
+    resize: none;
+}
+
+.edit-user-modal textarea::placeholder {
+    color: darkgrey;
+}
+
+.edit-user-modal p {
+    font-size: 2.2vmin;
+}
