@@ -5,7 +5,6 @@ import "./Modal.css";
 const renderContent = props => {
 
     const handleBackgroundClick = (e, closeModal) => {
-        e.preventDefault()
         if(e.target === e.currentTarget) {
             closeModal()
         }

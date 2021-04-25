@@ -116,6 +116,11 @@
     color: darkgrey;
 }
 
-.edit-user-modal p {
-    font-size: 2.2vmin;
+.edit-user-modal textarea:focus::placeholder {
+    color: transparent;
+}
+
+.edit-user-modal label {
+    font-size: 2.5vmin;
+    padding-bottom: 1vmin;
 }
