@@ -51,6 +51,12 @@ namespace DatingApp_API.Controllers
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await _repo.GetUser(id);
+
+            if(user == null)
+            {
+                return BadRequest(new { error = "User doesn't exist." });
+            }
+
             var userToReturn = _mapper.Map<UserForListDto>(user);
             return Ok(userToReturn);
         }
@@ -61,9 +67,10 @@ namespace DatingApp_API.Controllers
             var like = await _repo.GetLike(id, recipientID);
 
             if(like != null)
-                return BadRequest("You already liked this user.");
+                return BadRequest(new { error = "You already liked this user." });
+
             if(await _repo.GetUser(recipientID) == null)
-                return NotFound("User doesn't exist.");
+                return NotFound(new { error = "User doesn't exist." });
 
             like = new Like { LikerID = id, LikeeID = recipientID };
             _repo.Add<Like>(like);
@@ -72,18 +79,19 @@ namespace DatingApp_API.Controllers
             var likeBack = await _repo.GetLike(recipientID, id);
 
             if(likeBack != null)
-                return BadRequest("You already liked this user.");
+                return BadRequest(new { error = "You already liked this user." });
+
             if(await _repo.GetUser(id) == null)
-                return NotFound("User doesn't exist.");
+                return NotFound(new { error = "User doesn't exist." });
 
             likeBack = new Like { LikerID = recipientID, LikeeID = id};
             _repo.Add<Like>(likeBack);
             // delete block above if u want to remove demo feature
 
             if(await _repo.SaveAll())
-                return Ok("Liked successfully.");
+                return Ok();
             else 
-                return BadRequest("Failed to like user.");
+                return BadRequest(new { error = "Failed to like user." });
         }
 
         [HttpDelete("{id}/like/{recipientID}")] // api/v1/users/{id}/like/{recipientID}
@@ -92,7 +100,7 @@ namespace DatingApp_API.Controllers
             var like = await _repo.GetLike(id, recipientID);
 
             if(like == null)
-                return BadRequest("You already unliked this user.");
+                return BadRequest(new { error = "You already unliked this user." });
 
             _repo.Delete<Like>(like);
 
@@ -100,15 +108,15 @@ namespace DatingApp_API.Controllers
             var like2 = await _repo.GetLike(recipientID, id);
 
             if(like2 == null)
-                return BadRequest("You already unliked this user.");
+                return BadRequest(new { error = "You already unliked this user." });
 
             _repo.Delete<Like>(like2);
             // delete block above if u want to remove demo feature
 
             if(await _repo.SaveAll())
-                return Ok("Unliked successfully.");
+                return Ok();
             else 
-                return BadRequest("Failed to unlike user.");
+                return BadRequest(new { error = "Failed to unlike user." });
         }
 
         [Authorize(Policy = "IsDataOwner")] // requires {userID} instead of {id}
@@ -119,9 +127,9 @@ namespace DatingApp_API.Controllers
             user.Introduction = introduction;
 
             if(await _repo.SaveAll())
-                return Ok("Updated successfully.");
+                return Ok();
             else 
-                return BadRequest("Failed to update.");
+                return BadRequest(new { error = "Failed to update." });
         }
     }
 }

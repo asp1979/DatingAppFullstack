@@ -85,7 +85,7 @@ namespace DatingApp_API.Controllers
             var recipient = await _repo.GetUser(msgDto.RecipientID);
 
             if(recipient == null)
-                return BadRequest("Couldn't find user.");
+                return BadRequest(new { error = "Couldn't find user." });
 
             var message = _mapper.Map<Message>(msgDto);
 
@@ -111,7 +111,7 @@ namespace DatingApp_API.Controllers
             if(await _repo.SaveAll())
                 return NoContent();
 
-            return BadRequest("Error deleting the message. Message probably doesn't exist.");
+            return BadRequest(new { error = "Error deleting the message." });
         }
 
         [HttpDelete] // api/v1/users/{userID}/messages
@@ -129,7 +129,7 @@ namespace DatingApp_API.Controllers
             if(await _repo.SaveAll())
                 return NoContent();
 
-            return BadRequest("Error deleting messages. Messages probably dont exist.");
+            return BadRequest(new { error = "Error deleting messages." });
         }
 
         [HttpPost("{id}/read")] // api/v1/users/{userID}/messages/{id}/read

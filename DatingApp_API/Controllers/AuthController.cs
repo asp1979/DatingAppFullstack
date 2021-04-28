@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using DatingApp_API.Data;
-using DatingApp_API.Models;
 using DatingApp_API.DTOs;
 
 namespace DatingApp_API.Controllers
