@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Modal } from '../Modal/Modal';
 import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
+import SpinnerSVG from './SpinnerSVG.svg';
 import './User.css';
 
 export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnliked, unlikeUser }) => {
@@ -30,8 +31,11 @@ export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnlike
         setOpenModal(false);
     }
 
-    return !imgLoading && (
-        <div className="user-info">
+    return imgLoading 
+        ? <div className="user-spinner">
+            <img src={SpinnerSVG} alt="loading-icon"></img>
+        </div>
+        : <div className="user-info">
 
             <img className="user-img" src={user.photoUrl} alt="" />
 
@@ -62,5 +66,4 @@ export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnlike
             </div>
 
         </div>
-    )
 }
