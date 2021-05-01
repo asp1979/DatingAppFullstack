@@ -46,7 +46,7 @@ export const Find = () => {
                         <i className="fas fa-heart"></i>
                         {
                             swipeCount === users.length
-                            ? <div className="swiping-limit">
+                            ? <div className="swiping-limit" onClick={() => window.location.reload()}>
                                 <h3>Refresh!</h3>
                             </div>
                             : <ul>

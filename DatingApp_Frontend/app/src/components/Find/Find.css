@@ -56,10 +56,11 @@
     border-radius: 2vmin;
     background: white;
     text-align: center;
+    cursor: pointer;
     opacity: 0;
     animation: opacity-delay;
     animation-duration: 0.9s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: forwards !important;
 }
 
 .swipe-svg {

@@ -57,7 +57,7 @@ export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnlike
                     <Modal open={openModal} closeModal={() => setOpenModal(false)}>
                         <form onSubmit={ handleSubmit(onSubmit) } className="edit-user-modal">
                             <label>Status:</label>
-                            <textarea ref={register()} name="textarea" type="text" placeholder={user.introduction}/>
+                            <textarea ref={register()} maxLength="32" name="textarea" type="text" placeholder={user.introduction}/>
                             <button type="submit">Confirm</button>
                         </form>
                     </Modal>
