@@ -58,13 +58,13 @@ export const Matches = () => {
                 <h1>Matches</h1>
 
                 <div className="sortby">
-                    <button className="sortby-btn">Sort by: {sortBy}</button>
+                    <div className="sortby-btn">Sort by: {sortBy}</div>
                     <div className="sortby-content">
-                        <p onClick={() => sortMatchesState("Username A-Z")}>Username A-Z</p>
-                        <p onClick={() => sortMatchesState("Username Z-A")}>Username Z-A</p>
-                        <p onClick={() => sortMatchesState("Age Ascending")}>Age Ascending</p>
-                        <p onClick={() => sortMatchesState("Age Descending")}>Age Descending</p>
-                        <p onClick={() => sortMatchesState("Gender")}>Gender</p>
+                        <li onClick={() => sortMatchesState("Username A-Z")}>Username A-Z</li>
+                        <li onClick={() => sortMatchesState("Username Z-A")}>Username Z-A</li>
+                        <li onClick={() => sortMatchesState("Age Ascending")}>Age Ascending</li>
+                        <li onClick={() => sortMatchesState("Age Descending")}>Age Descending</li>
+                        <li onClick={() => sortMatchesState("Gender")}>Gender</li>
                     </div>
                 </div>
 

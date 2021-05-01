@@ -173,6 +173,7 @@ th {
     position: relative;
     top: -4.7vmin;
     width: 30vmin;
+    height: 4.7vmin;
     text-align: center;
     margin-left: auto;
     background-color: #32153d;
@@ -195,12 +196,13 @@ th {
 .sortby-btn {
     white-space: nowrap;
     font-size: 1.8vmin;
+    padding: 1vmin;
     border: none;
     background-color: transparent;
     color: white;
 }
 
-.sortby-content p {
+.sortby-content li {
     white-space: nowrap;
     font-size: 1.8vmin;
     color:darkgrey;
@@ -212,7 +214,7 @@ th {
     display: block;
 }
 
-.sortby-content p:hover {
+.sortby-content li:hover {
     color: white;
 }
 

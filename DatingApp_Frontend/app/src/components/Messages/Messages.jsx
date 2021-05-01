@@ -60,13 +60,13 @@ export const Messages = () => {
                 <h1>Messages</h1>
 
                 <div className="sortby">
-                    <button className="sortby-btn">Sort by: {sortBy}</button>
+                    <div className="sortby-btn">Sort by: {sortBy}</div>
                     <div className="sortby-content">
-                        <p onClick={() => sortThreadsState("Newest")}>Newest</p>
-                        <p onClick={() => sortThreadsState("Oldest")}>Oldest</p>
-                        <p onClick={() => sortThreadsState("Recieved")}>Recieved</p>
-                        <p onClick={() => sortThreadsState("Unread")}>Unread</p>
-                        <p onClick={() => sortThreadsState("Username")}>Username</p>
+                        <li onClick={() => sortThreadsState("Newest")}>Newest</li>
+                        <li onClick={() => sortThreadsState("Oldest")}>Oldest</li>
+                        <li onClick={() => sortThreadsState("Recieved")}>Recieved</li>
+                        <li onClick={() => sortThreadsState("Unread")}>Unread</li>
+                        <li onClick={() => sortThreadsState("Username")}>Username</li>
                     </div>
                 </div>
 
