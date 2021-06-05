@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using System.Text;
 using System.Net;
 using Microsoft.AspNetCore.Builder;
@@ -20,10 +22,21 @@ namespace DatingApp_API
 {
     public class Startup
     {
+        private static void Restart(object state)
+        {
+            var dir = Directory.GetCurrentDirectory();
+            File.Delete(dir + "/datingapp.db");
+            Environment.Exit(0);
+        }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            // restart program and clear database every 24 hours since this is a demo app
+            var timer = new System.Threading.Timer(Restart);
+            var hours24 = 86400000;
+            timer.Change(hours24, hours24);
         }
 
 
