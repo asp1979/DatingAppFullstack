@@ -18,7 +18,7 @@ export const App = () => {
     const jwt = localStorage.getItem("jwt");
 
     const [userContext, setUserContext] = useState({
-        baseURL: "http://localhost:5000/api/",
+        baseURL: "http://136.244.81.1/api/",
         jwt: jwt ? jwt : null,
         jwtID: jwt ? jwtDecode(jwt).nameid : null,
         jwtUsername: jwt ? jwtDecode(jwt).unique_name : null,
