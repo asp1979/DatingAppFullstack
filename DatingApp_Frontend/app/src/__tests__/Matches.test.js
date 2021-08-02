@@ -27,6 +27,6 @@ test("renders Matches component", () => {
         </MemoryRouter>
     )
 
-    const linkElement = screen.getByText(/matches/i)
-    expect(linkElement).toBeInTheDocument()
+    const element = screen.getByText(/matches/i)
+    expect(element).toBeInTheDocument()
 })

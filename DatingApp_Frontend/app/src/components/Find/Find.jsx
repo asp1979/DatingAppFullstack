@@ -35,7 +35,7 @@ export const Find = () => {
     }, [])
 
     return (
-        <div className="page find">
+        <div className="page find" data-testid="find-component">
             <div className="content">
                 {
                     !loading && (users.length > 0) &&

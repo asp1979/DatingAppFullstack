@@ -27,6 +27,6 @@ test("renders MessagesThread component", () => {
         </MemoryRouter>
     )
 
-    const linkElement = screen.getByText(/send a message/i)
-    expect(linkElement).toBeInTheDocument()
+    const element = screen.getByText(/send a message/i)
+    expect(element).toBeInTheDocument()
 })

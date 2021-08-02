@@ -27,6 +27,6 @@ test("renders Navbar component", () => {
         </MemoryRouter>
     )
 
-    const linkElement = screen.getByText(/timder/i)
-    expect(linkElement).toBeInTheDocument()
+    const element = screen.getByText(/timder/i)
+    expect(element).toBeInTheDocument()
 })

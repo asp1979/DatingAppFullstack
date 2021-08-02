@@ -4,9 +4,9 @@ import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 
-import { Messages } from '../components/Messages/Messages';
+import { Login } from '../components/Login/Login';
 
-test("renders Messages component", () => {
+test("renders Login component", () => {
     const userContext = {
         baseURL: "http://localhost:5000/api/",
         jwt: null,
@@ -22,11 +22,11 @@ test("renders Messages component", () => {
     render(
         <MemoryRouter>
             <UserContext.Provider value={{ userContext, setUserContext }}>
-                <Messages />
+                <Login />
             </UserContext.Provider>
         </MemoryRouter>
     )
 
-    const element = screen.getByText(/messages/i)
-    expect(element).toBeInTheDocument()
+    const elements = screen.getAllByText(/password/i)
+    elements.forEach(element => expect(element).toBeInTheDocument())
 })

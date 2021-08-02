@@ -4,9 +4,9 @@ import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 
-import { Messages } from '../components/Messages/Messages';
+import { Find } from '../components/Find/Find';
 
-test("renders Messages component", () => {
+test("renders Find component", () => {
     const userContext = {
         baseURL: "http://localhost:5000/api/",
         jwt: null,
@@ -22,11 +22,11 @@ test("renders Messages component", () => {
     render(
         <MemoryRouter>
             <UserContext.Provider value={{ userContext, setUserContext }}>
-                <Messages />
+                <Find />
             </UserContext.Provider>
         </MemoryRouter>
     )
 
-    const element = screen.getByText(/messages/i)
-    expect(element).toBeInTheDocument()
+    const linkElement = screen.getByTestId("find-component")
+    expect(linkElement).toBeInTheDocument()
 })
