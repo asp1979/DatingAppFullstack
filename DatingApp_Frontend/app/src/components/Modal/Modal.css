@@ -32,3 +32,20 @@
 .hidden {
     display: none;
 }
+
+@media only screen and (max-width: 767px) {
+    .modal {
+        border-radius: 4vmin;
+        padding: 2vmin;
+        width: 80%;
+    }
+    
+    .modal p {
+        font-size: 4vmin;
+    }
+    
+    .modal button {
+        font-size: 4vmin;
+        margin-top: 3vmin;
+    }
+}

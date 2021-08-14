@@ -136,3 +136,83 @@
 .message-container:hover .delete-message {
     opacity: 1;
 }
+
+@media only screen and (max-width: 767px) {
+    .content.with-h1-img {
+        padding-top: 2.4vmin;
+    }
+    
+    .messages-thread .content ul {
+        display: grid;
+        grid-template-columns: 36vmin;
+        grid-auto-rows: min-content;
+        grid-row-gap: 2vmin;
+        height: 60vmin;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 2vmin;
+    }
+      
+    .title-img {
+        display: none;
+    }
+    
+    .message-container {
+        font-size: 3vmin;
+        padding: 2vmin 1vmin;
+        border-radius: 2vmin;
+    }
+    
+    .message-container.logged-user {
+        position: relative;
+        left: 41vmin;
+    }
+    
+    .message-container.opposite-user {
+        position: relative;
+        left: 0vmin;
+    }
+    
+    .message-container p {
+        margin: 0 2vmin;
+    }
+    
+    .form-inputs.send-message {
+        position: absolute;
+        bottom: 3vmin;
+        margin-left: 2vmin;
+    }
+    
+    .form-inputs.send-message p {
+        font-size: 5vmin;
+    }
+    
+    .form-inputs.send-message input {
+        width: 60vmin;
+        padding: 2.5vmin 1vmin;
+    }
+
+    .form-inputs button {
+        margin-left: 2vmin;
+    }
+ 
+    .thread-legend div {
+        display: none;
+    }
+    
+    .delete-all {
+        font-size: 3vmin;
+        position: absolute;
+        top: 2.8vmin;
+        right: 2vmin;
+        border: 0.25vmin solid white;
+        border-radius: 2vmin 2vmin 0 0;
+        border-bottom: none;
+    }
+    
+    .delete-message {
+        position: relative;
+        left: 1vmin;
+        opacity: 0;
+    }
+}

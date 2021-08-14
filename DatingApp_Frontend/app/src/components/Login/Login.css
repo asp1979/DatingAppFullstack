@@ -49,6 +49,7 @@
     color: white;
     background-color: #502161;
     border: unset;
+    padding: 2vmin;
 }
 
 .form-inputs .input-name {
@@ -110,4 +111,104 @@
 
 .login-help p {
     color: darkgrey;
+}
+
+@media only screen and (max-width: 767px) {
+    .page.login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .page.login form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 1vmin;
+        width: 72vmin;
+        height: 88vmin;
+        background: #EDF0F5;
+        box-shadow: 0 0 0.4vmin 0.4vmin rgba(0,0,0,0.1);
+        opacity: 0;
+        animation: opacity-delay;
+        animation-duration: 0.9s;
+        animation-delay: 0.3s;
+        animation-fill-mode: forwards;
+    }
+    
+    .page.login h1 {
+        padding: 1.5vmin 3vmin;
+        border-radius: 4vmin;
+        box-shadow: 0 0 0.4vmin 0.4vmin rgba(0,0,0,0.1);
+        font-size: 8vmin;
+        color: darkgrey;
+    }
+    
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .form-inputs input {
+        color: darkgrey;
+        border-radius: 1.2vmin;
+        border: unset;
+        box-shadow: 0 0 0.4vmin 0.4vmin rgba(0,0,0,0.1);
+        font-size: 4vmin;
+        padding: 2vmin 1vmin;
+        background: white;
+    }
+    
+    .form-inputs button {
+        font-size: 5vmin;
+        color: white;
+        background-color: #502161;
+        border: unset;
+    }
+    
+    .form-inputs .input-name {
+        margin-bottom: 0.4vmin;
+        font-size: 5vmin;
+        color: darkgrey;
+    }
+    
+    .error-span {
+        font-size: 3vmin;
+        text-align: center;
+        padding: 0.6vmin 1.8vmin;
+        margin: 0 4vmin;
+        border-radius: 1vmin;
+        border: 0.4vmin solid darkgrey;
+        background-color: transparent;
+        color: darkgrey;
+    }
+    
+    .error-span.regex {
+        color: orange;
+        border-color: orange;
+    }
+    
+    .error-span.fetch {
+        color: crimson;
+        border-color: crimson;
+    }
+    
+    .success-span {
+        font-size: 3vmin;
+        text-align: center;
+        padding: 1vmin 2.2vmin;
+        margin: 0 4vmin;
+        border-radius: 1vmin;
+        border: 0.25vmin solid limegreen;
+        background-color: transparent;
+        color: limegreen;
+    }
+    
+    .login-help {
+        display: none;
+    }
+    
 }

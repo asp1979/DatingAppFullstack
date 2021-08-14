@@ -41,3 +41,27 @@
     color: white;
     margin-top: 1.5vmin;
 }
+
+@media only screen and (max-width: 767px) {
+    .matches .content ul {
+        display: grid;
+        grid-template-columns: 30vmin 30vmin;
+        column-gap: 10vmin;
+        grid-auto-rows: 30vmin;
+        row-gap: 10vmin;
+        padding: 0 6.4vmin;
+    }
+
+    .person-card {
+        font-size: 3.4vmin;
+        width: 30vmin;
+        height: 34vmin;
+    }
+
+    .person-card img {
+        object-fit: cover;
+        width: 20vmin;
+        height: 20vmin;
+        border-radius: 50%;
+    }
+}

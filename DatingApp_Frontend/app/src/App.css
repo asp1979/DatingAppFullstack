@@ -230,3 +230,50 @@ th {
     color: white;
     font-size: 3.2vmin;
 }
+
+@media only screen and (max-width: 767px) {
+    .page .content {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90vmin;
+        min-height: 85%;
+        padding: 4vmin;
+        padding-bottom: 10vmin;
+        margin-bottom: 2%;
+        border-radius: 2vmin;
+        background: #32153d;
+        box-shadow: 0.1vmin 0.1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
+    }
+
+    .page .content h1 {
+        font-size: 5vmin;
+    }
+
+    .sortby {
+        top: -7vmin;
+        width: 40vmin;
+        height: 7vmin;
+        background-color: #32153d;
+        border: 0.25vmin solid white;
+        border-radius: 2vmin 2vmin 0 0;
+    }
+    
+    .sortby-content {
+        width: 40vmin;
+        left: -0.25vmin;
+        border: 0.25vmin solid white;
+        border-radius: 0 0 2vmin 2vmin;
+    }
+    
+    .sortby-btn {
+        font-size: 3vmin;
+        padding: 1.4vmin;
+    }
+    
+    .sortby-content li {
+        font-size: 3vmin;
+        padding: 1vmin;
+    }
+}

@@ -62,3 +62,29 @@
     color: darkgrey;
     background-color: transparent;
 }
+
+@media only screen and (max-width: 767px) {
+    .animation-div {
+        border-radius: 3vmin;
+        padding: 4vmin;
+        width: 55vmin;
+        height: 30vmin;
+    }
+    
+    .animation-div .motion-h1 {
+        font-size: 7vmin;
+    }
+    
+    .animation-div .motion-p {
+        display: none;
+    }
+    
+    .animation-div .call-to-action {
+        margin-top: 2vmin;
+    }
+    
+    .animation-div a {
+        font-size: 4vmin;
+        font-weight: 200;
+    }    
+}
