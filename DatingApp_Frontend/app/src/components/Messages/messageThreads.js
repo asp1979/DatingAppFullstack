@@ -20,7 +20,7 @@ export function messageThreads(inbox, outbox) {
     threads.forEach(x => { 
         x.push(x[1][0].senderUsername)
         x.push(x[1][0].senderPhotoUrl)
-        x.push(x.push(x[1].reduce((a,x) => x.isRead ? a + 0 : a + 1, 0)));
+        x.push(x[1].reduce((a,x) => x.isRead ? a + 0 : a + 1, 0));
     });
 
     // threads[0][0] is the senderID 
