@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from '../Modal/Modal';
-import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
+import { useTimderApi } from '../../hooks/useTimderApi';
 import SpinnerSVG from './SpinnerSVG.svg';
 import './User.css';
 
 export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnliked, unlikeUser }) => {
 
+    const { timderFetch } = useTimderApi();
     const [imgLoading, setImgLoading] = useState(true);
     const [openModal, setOpenModal] = useState(false);
-    const { userContext } = useContext(UserContext);
     const { register, handleSubmit } = useForm();
     
     useEffect(() => {
@@ -19,15 +19,13 @@ export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnlike
     }, [user])
 
     const onSubmit = async (formdata) => {
-        const urlEncoded = formdata.textarea.replace(" ", "+");
-        const query = userContext.baseURL + "v1/users/" + user.id + "/introduction?introduction=" + urlEncoded;
-        const put = await fetch(query, {
-            method: "PUT",
-            headers: { "Authorization" : "Bearer " + userContext.jwt }
-        })
-        if(put.ok) {
+        const newIntroduction = formdata.textarea.replace(" ", "+");
+        const query = "?introduction=" + newIntroduction;
+        await timderFetch("PUT", `v1/users/${user.id}/introduction` + query)
+        .then(res => {
             window.location.reload();
-        }
+        })
+        .catch(err => console.error(err))
         setOpenModal(false);
     }
 

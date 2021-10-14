@@ -20,7 +20,6 @@ export const User = ({ match, history }) => {
 
     const unlikeUser = async () => {
         await timderFetch("DELETE", `v1/users/${userContext.jwtID}/like/${userID}`)
-        .then(res => res.json())
         .then(res => {
             history.push("/matches"); // redirect to matches
         })
