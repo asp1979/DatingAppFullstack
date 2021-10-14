@@ -3,22 +3,20 @@ import React, { useState, useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
 import { withRouter } from 'react-router-dom';
+import { useTimderApi } from '../../hooks/useTimderApi';
 import jwtDecode from 'jwt-decode';
 
 export const Login = withRouter(({ history }) => {
 
     const { userContext, setUserContext } = useContext(UserContext);
+    const { timderFetch } = useTimderApi();
     const { register, handleSubmit, errors } = useForm();
     const [fetchError, setFetchError] = useState(false);
 
     const onSubmit = async (formdata) => {
-        const post = await fetch(userContext.baseURL + "v1/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formdata)
-        });
-        if(post.ok) {
-            const res = await post.json();
+        await timderFetch("POST", "v1/auth/login", formdata)
+        .then(res => res.json())
+        .then(res => {
             const JWT = res.token;
             localStorage.setItem("jwt", JWT);
             setUserContext({
@@ -31,9 +29,11 @@ export const Login = withRouter(({ history }) => {
                 unreadMatches: 0
             });
             history.push("/find"); // redirect
-        } else {
+        })
+        .catch(err => {
+            console.error(err);
             setFetchError(true);
-        }
+        })
     }
 
     return (

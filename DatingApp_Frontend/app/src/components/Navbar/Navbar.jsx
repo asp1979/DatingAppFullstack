@@ -3,14 +3,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import { withRouter } from 'react-router-dom';
+import { useTimderApi } from '../../hooks/useTimderApi';
 
 export const Navbar = withRouter(({ history }) => {
 
     const { userContext, setUserContext } = useContext(UserContext);
-    const [unreadMessages, setUnreadMessages] = useState(0);
+    const { timderFetch } = useTimderApi();
     const [loading, setLoading] = useState(true);
-    const baseURL = userContext.baseURL;
-    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
+    const [unreadMessages, setUnreadMessages] = useState(0);
     const unreadMatches = userContext.unreadMatches;
 
     const logout = () => { 
@@ -34,13 +34,14 @@ export const Navbar = withRouter(({ history }) => {
     useEffect(() => {
         async function getUnreadMessagesCount() {
             if(userContext.loggedIn === true) {
-                const messages = await fetch(baseURL + `v1/users/${userContext.jwtID}/messages`, headers) 
-                if(messages.ok) {
-                    const messagesJSON = await messages.json();
-                    const unreadMessagesCount = messagesJSON.reduce((a,msg) => msg.isRead ? a + 0 : a + 1, 0);
+                await timderFetch("GET", `v1/users/${userContext.jwtID}/messages`)
+                .then(res => res.json())
+                .then(messages => {
+                    const unreadMessagesCount = messages.reduce((a,msg) => msg.isRead ? a + 0 : a + 1, 0);
                     setUnreadMessages(unreadMessagesCount);
                     setLoading(false);
-                }
+                })
+                .catch(err => console.error(err))
             }
         }
         getUnreadMessagesCount();
@@ -64,13 +65,17 @@ export const Navbar = withRouter(({ history }) => {
                     <p>Find</p>
                 </Link>
 
-                { userContext.loggedIn && <Link to="/matches">
-                    <p>Matches {!loading && unreadMatches > 0 && <span className="unread-count">{unreadMatches}</span>}</p>
-                </Link> }
+                {
+                    userContext.loggedIn && <Link to="/matches">
+                        <p>Matches {!loading && unreadMatches > 0 && <span className="unread-count">{unreadMatches}</span>}</p>
+                    </Link>
+                }
 
-                { userContext.loggedIn && <Link to="/messages">
-                    <p>Messages {!loading && unreadMessages > 0 && <span className="unread-count">{unreadMessages}</span>}</p>
-                </Link> }
+                {
+                    userContext.loggedIn && <Link to="/messages">
+                        <p>Messages {!loading && unreadMessages > 0 && <span className="unread-count">{unreadMessages}</span>}</p>
+                    </Link>
+                }
             </div>
 
             <div className="user-nav">

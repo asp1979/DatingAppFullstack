@@ -2,16 +2,16 @@ import React from 'react';
 import { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
 import { UserCard } from './UserCard';
+import { useTimderApi } from '../../hooks/useTimderApi';
 
 export const User = ({ match, history }) => {
 
     const userID = match.params.id; // user ID derived from the current URL
     const { userContext } = useContext(UserContext);
+    const { timderFetch } = useTimderApi();
 
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
-    const baseURL = userContext.baseURL;
-    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
     const isSelf = user.id === (+userContext.jwtID);
 
     const messageUser = () => {
@@ -19,23 +19,21 @@ export const User = ({ match, history }) => {
     }
 
     const unlikeUser = async () => {
-        const unlike = await fetch(baseURL + `v1/users/${userContext.jwtID}/like/${userID}`, {
-            ...headers,
-            method: "DELETE"
-        });
-        if(unlike.ok) {
+        await timderFetch("DELETE", `v1/users/${userContext.jwtID}/like/${userID}`)
+        .then(res => res.json())
+        .then(res => {
             history.push("/matches"); // redirect to matches
-        }
+        })
     }
     
     useEffect(() => {
         async function getUser() {
-            const get = await fetch(baseURL + `v1/users/${userID}`, headers);
-            if(get.ok) {
-                const data = await get.json();
+            await timderFetch("GET", `v1/users/${userID}`)
+            .then(res => res.json())
+            .then(res => {
                 setLoading(false);
-                setUser({ ...data });
-            }
+                setUser({ ...res });
+            })
         }
         getUser();
         //eslint-disable-next-line

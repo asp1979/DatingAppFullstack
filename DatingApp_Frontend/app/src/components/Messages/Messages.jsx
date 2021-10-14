@@ -3,29 +3,32 @@ import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom';
 import { messageThreads } from './messageThreads';
+import { useTimderApi } from '../../hooks/useTimderApi';
 
 export const Messages = () => {
 
     const { userContext } = useContext(UserContext);
+    const { timderFetch } = useTimderApi();
     const [threads, setThreads] = useState([]);
     const [loading, setLoading] = useState(true);
     const [sortBy, setSortBy] = useState("Newest"); // already sorted by newest in response
 
     const userID = Number(userContext.jwtID);
-    const baseURL = userContext.baseURL + `v1/users/${userID}/messages`;
-    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
+    const path = `v1/users/${userID}/messages`;
 
     useEffect(() => {
         async function getMessages() {
-            const inbox = await fetch(baseURL + "?messageContainer=inbox", headers);
-            const outbox = await fetch(baseURL + "?messageContainer=outbox", headers);
+            const inbox = await timderFetch("GET", path + "?messageContainer=inbox");
+            const outbox = await timderFetch("GET", path + "?messageContainer=outbox");
             if(inbox.ok && outbox.ok) {
                 const inboxJSON = await inbox.json();
                 const outboxJSON = await outbox.json();
                 const threads = messageThreads(inboxJSON, outboxJSON);
                 setThreads([...threads]);
                 setLoading(false);
-            } 
+            } else {
+                console.error("failed inbox/outbox fetch", inbox, outbox)
+            }
         }
         getMessages();
         // eslint-disable-next-line

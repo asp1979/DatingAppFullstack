@@ -2,25 +2,25 @@ import '../Login/Login.css';
 // NOTE: this is using same styling as Login component
 import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { UserContext } from '../../UserContext';
+import { useTimderApi } from '../../hooks/useTimderApi';
 
 export const Register = () => {
 
-    const { userContext } = useContext(UserContext);
+    const { timderFetch } = useTimderApi();
     const { register, handleSubmit, errors } = useForm();
     const [regSuccess, setRegSuccess] = useState(null);
 
     const onSubmit = async (formdata) => {
-        const post = await fetch(userContext.baseURL + "v1/auth/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formdata)
-        });
-        if(post.ok) {
+        await timderFetch("POST", "v1/auth/register", formdata)
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
             setRegSuccess(true);
-        } else {
+        })
+        .catch(err => {
+            console.error(err);
             setRegSuccess(false);
-        }
+        })
     }
 
     return (

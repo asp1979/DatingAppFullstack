@@ -2,9 +2,11 @@ import './Matches.css';
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom';
+import { useTimderApi } from '../../hooks/useTimderApi';
 
 export const Matches = () => {
 
+    const { timderFetch } = useTimderApi();
     const { userContext, setUserContext } = useContext(UserContext);
     const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -12,18 +14,17 @@ export const Matches = () => {
 
     useEffect(() => {
         async function getMatches() {
-            const get = await fetch(userContext.baseURL + "v1/users?likersOrLikees=likees", {
-                headers: { "Authorization": "Bearer " + userContext.jwt }
-            });
-            if(get.ok) {
-                const res = await get.json();
+            await timderFetch("GET", "v1/users?likersOrLikees=likees")
+            .then(res => res.json())
+            .then(res => {
                 setMatches([...res.sort((a,b) => a.username.localeCompare(b.username))]);
                 setLoading(false);
                 setUserContext({
                     ...userContext,
                     unreadMatches: 0
                 });
-            }
+            })
+            .catch(err => console.error(err))
         }
         getMatches();
         // eslint-disable-next-line

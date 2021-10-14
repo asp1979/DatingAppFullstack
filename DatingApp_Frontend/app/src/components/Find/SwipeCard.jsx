@@ -2,24 +2,22 @@ import React, { useContext } from "react";
 import { Frame, useMotionValue, useTransform, useAnimation } from "framer";
 import { UserContext } from '../../UserContext';
 import { UserCard } from '../User/UserCard';
+import { useTimderApi } from '../../hooks/useTimderApi';
 
 export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
 
+    const { timderFetch } = useTimderApi();
     const { userContext, setUserContext } = useContext(UserContext);
-    const baseURL = userContext.baseURL;
-    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
 
     const likeUser = async (userID) => {
-        const like = await fetch(baseURL + `v1/users/${userContext.jwtID}/like/${userID}`, {
-            ...headers,
-            method: "POST"
-        });
-        if(like.ok) {
+        await timderFetch("POST", `v1/users/${userContext.jwtID}/like/${userID}`)
+        .then(res => {
             setUserContext({
                 ...userContext,
                 unreadMatches: userContext.unreadMatches + 1
             });
-        }
+        })
+        .catch(err => console.error(err))
     }
 
     const motionValue = useMotionValue(0);

@@ -4,17 +4,17 @@ import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Modal } from '../Modal/Modal';
+import { useTimderApi } from '../../hooks/useTimderApi';
 import { messageTimestamp } from './messageTimestamp';
 
 export const MessagesThread = ({ match }) => {
 
+    const { timderFetch } = useTimderApi();
     const { userContext } = useContext(UserContext);
     const { register, handleSubmit, reset } = useForm();
 
     const userID = Number(userContext.jwtID);
     const oppositeUserID = Number(match.params.id); // match = current URL
-    const baseURL = userContext.baseURL + "v1/users";
-    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt, "Content-Type": "application/json"} };
 
     const [messages, setMessages] = useState([]);
     const [oppositeUser, setOppositeUser] = useState(null);
@@ -26,32 +26,25 @@ export const MessagesThread = ({ match }) => {
 
     const onSubmit = async (formdata) => {
         formdata.recipientID = oppositeUserID;
-        await fetch(baseURL + `/${userID}/messages`, {
-            ...headers,
-            method: "POST",
-            body: JSON.stringify(formdata)
-        })
+        await timderFetch("POST", `v1/users/${userID}/messages`, formdata)
+        .catch(err => console.error(err));
     }
 
     const deleteMessage = async (messageID) => {
-        await fetch(baseURL + `/${userID}/messages/${messageID}`, {
-            ...headers,
-            method: "DELETE",
-        })
+        await timderFetch("DELETE", `v1/users/${userID}/messages/${messageID}`)
+        .catch(err => console.error(err));
     }
 
     const deleteAll = async () => {
         const messageIDs = messages.map(x => x.id)
-        await fetch(baseURL + `/${userID}/messages?msgIDs=${JSON.stringify(messageIDs)}`, {
-            ...headers,
-            method: "DELETE",
-        })
+        await timderFetch("DELETE", `v1/users/${userID}/messages?msgIDs=${JSON.stringify(messageIDs)}`)
+        .catch(err => console.error(err));
     }
 
     useEffect(() => {
         async function getData() {
-            const getMessages = await fetch(baseURL + `/${userID}/messages/thread/${oppositeUserID}`, headers);
-            const getOppositeUser = await fetch(baseURL + `/${oppositeUserID}`, headers);
+            const getMessages = await timderFetch("GET", `v1/users/${userID}/messages/thread/${oppositeUserID}`);
+            const getOppositeUser = await timderFetch("GET", `v1/users/${oppositeUserID}`);
 
             if(getMessages.ok && getOppositeUser.ok) {
                 const messagesJSON = await getMessages.json();
@@ -62,6 +55,8 @@ export const MessagesThread = ({ match }) => {
                 setOppositeUser(oppositeUserJSON);
 
                 setLoading(false);
+            } else {
+                console.error("failed fetching messages/oppositeUser", getMessages, getOppositeUser);
             }
         }
         getData();

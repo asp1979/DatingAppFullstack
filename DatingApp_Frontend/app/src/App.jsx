@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 import { Navbar } from './components/Navbar/Navbar';
 import { Home } from './components/Home/Home';
@@ -45,16 +45,16 @@ export const App = () => {
     return (
         <Router>
             <UserContext.Provider value={{ userContext, setUserContext }}>
-
                 <Navbar />
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                <PrivateRoute path="/user/:id" component={User} />
-                <PrivateRoute path="/find" component={Find} />
-                <PrivateRoute path="/matches" component={Matches} />
-                <PrivateRoute path="/messages" component={Messages} />
-                <PrivateRoute path="/thread/:id" component={MessagesThread} />
-
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/login" component={Login} />
+                    <PrivateRoute path="/user/:id" component={User} />
+                    <PrivateRoute path="/find" component={Find} />
+                    <PrivateRoute path="/matches" component={Matches} />
+                    <PrivateRoute path="/messages" component={Messages} />
+                    <PrivateRoute path="/thread/:id" component={MessagesThread} />
+                </Switch>
             </UserContext.Provider>
         </Router>
     )

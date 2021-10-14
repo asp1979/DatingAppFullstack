@@ -1,24 +1,21 @@
 import './Find.css';
-import React, { useEffect, useContext, useState } from 'react';
-import { UserContext } from '../../UserContext';
+import React, { useEffect, useState } from 'react';
 import { shuffleUsers } from './shuffleUsers';
 import { SwipeCard } from './SwipeCard';
+import { useTimderApi } from '../../hooks/useTimderApi';
 import SwipeSVG from './SwipeSVG.svg';
 
 export const Find = () => {
 
-    const { userContext } = useContext(UserContext);
+    const { timderFetch } = useTimderApi();
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [swipeCount, setSwipeCount] = useState(0);
-    
-    const baseURL = userContext.baseURL;
-    const headers = { headers: { "Authorization": "Bearer " + userContext.jwt } };
 
     useEffect(() => {
         async function getUsers() {
-            const getAll = await fetch(baseURL + "v1/users", headers); 
-            const getLikees = await fetch(baseURL + "v1/users?likersOrLikees=likees", headers); 
+            const getAll = await timderFetch("GET", "v1/users"); 
+            const getLikees = await timderFetch("GET", "v1/users?likersOrLikees=likees"); 
             if(getAll.ok && getLikees.ok) {
                 const getAllJSON = await getAll.json();
                 const getLikeesJSON = await getLikees.json();
@@ -28,6 +25,8 @@ export const Find = () => {
 
                 setUsers([...shuffleUsers(usersNotYetLiked)]);
                 setLoading(false);
+            } else {
+                console.error("error fetching users/likees", getAll, getLikees)
             }
         }
         getUsers();
