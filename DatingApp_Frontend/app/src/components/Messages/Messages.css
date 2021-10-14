@@ -56,10 +56,10 @@
 @media only screen and (max-width: 767px) {
     .messages .content ul {
         display: grid;
-        grid-template-columns: 75vmin;
-        column-gap: 7vmin;
+        grid-template-columns: 78vmin;
+        row-gap: 10vmin;
         grid-auto-rows: 15vmin;
-        padding: 0 3vmin;
+        padding: 0 2vmin;
     }
 
     .thread-link {
@@ -77,7 +77,7 @@
         padding: 2vmin;
         background-color: #32153d;
         border-radius: 1vmin;
-        font-size: 4vmin;
+        font-size: 3vmin;
         margin-right: 2vmin;
     }
     

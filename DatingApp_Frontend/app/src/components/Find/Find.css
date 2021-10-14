@@ -1,3 +1,8 @@
+.find {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
 .find .content {
     display: flex;
     justify-content: center;

@@ -1,3 +1,8 @@
+.user {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
 .user .content {
     display: flex;
     flex-direction: column;
@@ -141,9 +146,9 @@
 @media only screen and (max-width: 767px) {
     .user-info {
         font-size: 5vmin !important;
-        width: 74vmin !important;
-        min-width: 74vmin !important;
-        max-width: 74vmin !important;
+        width: 62vmin !important;
+        min-width: 62vmin !important;
+        max-width: 62vmin !important;
         height: 90vmin !important;
         min-height: 90vmin !important;
         max-height: 90vmin !important;
@@ -154,6 +159,10 @@
         animation-duration: 0.9s;
         animation-fill-mode: forwards;
         opacity: 0;
+    }
+
+    .user .content h2 {
+        font-size: 7.5vmin;
     }
 
     .user-actions {
@@ -173,12 +182,12 @@
     .user-name, .user-desc {
         border-radius: 2vmin;
         color: white;
-        font-size: 7vmin;
+        font-size: 6vmin;
         font-weight: 900;
     }
 
     .user-desc {
-        font-size: 7vmin;
+        font-size: 4vmin;
         border-radius: 2.5vmin;
     }
 }
