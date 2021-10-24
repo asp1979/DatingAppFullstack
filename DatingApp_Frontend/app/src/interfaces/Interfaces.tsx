@@ -11,6 +11,8 @@ export interface IUserContext {
     setUserContext: React.Dispatch<React.SetStateAction<IUserContext["userContext"]>>
 }
 
+export type UserContextState = IUserContext["userContext"]
+
 export interface IUser {
     id: number,
     username: string,

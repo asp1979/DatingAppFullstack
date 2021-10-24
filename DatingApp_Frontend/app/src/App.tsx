@@ -11,14 +11,14 @@ import { Messages } from './components/Messages/Messages';
 import { MessagesThread } from './components/MessagesThread/MessagesThread';
 import { User } from './components/User/User';
 import { UserContext } from './UserContext';
-import { IUserContext } from './interfaces/Interfaces';
+import { IUserContext, UserContextState } from './interfaces/Interfaces';
 const jwtDecode = require('jwt-decode');
 
 export const App = (): JSX.Element => {
 
     const jwt = localStorage.getItem("jwt");
 
-    const [userContext, setUserContext] = useState<IUserContext["userContext"]>({
+    const [userContext, setUserContext] = useState<UserContextState>({
         baseURL: "http://localhost:5000/api/",
         jwt: jwt ? jwt : "",
         jwtID: jwt ? jwtDecode(jwt).nameid : "",
