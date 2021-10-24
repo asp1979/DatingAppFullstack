@@ -20,7 +20,7 @@ export const Navbar = withRouter(({ history }): JSX.Element => {
             jwt: "",
             jwtID: "",
             jwtUsername: "",
-            jwtExpiry: null,
+            jwtExpiry: -1,
             loggedIn: false,
             unreadMatches: 0
         });
