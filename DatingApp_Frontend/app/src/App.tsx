@@ -11,7 +11,7 @@ import { Messages } from './components/Messages/Messages';
 import { MessagesThread } from './components/MessagesThread/MessagesThread';
 import { User } from './components/User/User';
 import { UserContext } from './UserContext';
-import { IUserContext, UserContextState } from './interfaces/Interfaces';
+import { UserContextState } from './interfaces/Interfaces';
 const jwtDecode = require('jwt-decode');
 
 export const App = (): JSX.Element => {
