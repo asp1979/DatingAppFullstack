@@ -23,19 +23,19 @@ export const App = (): JSX.Element => {
         jwt: jwt ? jwt : "",
         jwtID: jwt ? jwtDecode(jwt).nameid : "",
         jwtUsername: jwt ? jwtDecode(jwt).unique_name : "",
-        jwtExpiry: jwt ? jwtDecode(jwt).exp : "",
+        jwtExpiry: jwt ? jwtDecode(jwt).exp : -1,
         loggedIn: jwt ? true : false,
         unreadMatches: 0
     })
 
     useEffect(() => {
-        if(userContext.jwtExpiry! < Date.now().valueOf() / 1000) {
+        if(userContext.jwtExpiry < Date.now().valueOf() / 1000) {
             setUserContext({
                 ...userContext,
                 jwt: "",
                 jwtID: "",
                 jwtUsername: "",
-                jwtExpiry: null,
+                jwtExpiry: -1,
                 loggedIn: false
             });
             localStorage.removeItem("jwt");

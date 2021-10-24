@@ -4,7 +4,7 @@ export interface IUserContext {
         jwt: string,
         jwtID: string,
         jwtUsername: string,
-        jwtExpiry: number | null,
+        jwtExpiry: number,
         loggedIn: boolean,
         unreadMatches: number,
     }
