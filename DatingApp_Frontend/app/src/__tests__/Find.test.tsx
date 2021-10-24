@@ -9,9 +9,9 @@ import { Find } from '../components/Find/Find';
 test("renders Find component", () => {
     const userContext = {
         baseURL: "http://localhost:5000/api/",
-        jwt: null,
-        jwtID: null,
-        jwtUsername: null,
+        jwt: "",
+        jwtID: "",
+        jwtUsername: "",
         jwtExpiry: null,
         loggedIn: false,
         unreadMatches: 0

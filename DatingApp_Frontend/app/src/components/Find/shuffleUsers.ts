@@ -1,5 +1,8 @@
+import { IUser } from "../../interfaces/Interfaces";
+
 // randomize array order using Durstenfeld shuffle algorithm
-export const shuffleUsers = (array) => {
+
+export const shuffleUsers = (array: IUser[]) => {
     for(let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         let temp = array[i];

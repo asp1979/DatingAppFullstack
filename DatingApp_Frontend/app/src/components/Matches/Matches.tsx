@@ -3,34 +3,19 @@ import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom';
 import { useTimderApi } from '../../hooks/useTimderApi';
+import { IUser, IUserContext } from '../../interfaces/Interfaces';
 
-export const Matches = () => {
+type SortBy = ("Username A-Z" | "Username Z-A" | "Age Ascending" | "Age Descending" | "Gender")
+
+export const Matches = (): JSX.Element => {
 
     const { timderFetch } = useTimderApi();
-    const { userContext, setUserContext } = useContext(UserContext);
-    const [matches, setMatches] = useState([]);
+    const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
+    const [matches, setMatches] = useState<IUser[]>([]);
     const [loading, setLoading] = useState(true);
-    const [sortBy, setSortBy] = useState("Username A-Z"); // response is sorted by username
+    const [sortBy, setSortBy] = useState<SortBy>("Username A-Z");
 
-    useEffect(() => {
-        async function getMatches() {
-            await timderFetch("GET", "v1/users?likersOrLikees=likees")
-            .then(res => res.json())
-            .then(res => {
-                setMatches([...res.sort((a,b) => a.username.localeCompare(b.username))]);
-                setLoading(false);
-                setUserContext({
-                    ...userContext,
-                    unreadMatches: 0
-                });
-            })
-            .catch(err => console.error(err))
-        }
-        getMatches();
-        // eslint-disable-next-line
-    }, []);
-
-    function sortMatchesState(sortBy) {
+    function sortMatchesState(sortBy: SortBy) {
         if(sortBy === "Username A-Z") {
             setMatches([...matches.sort((a,b) => a.username.localeCompare(b.username))]);
             setSortBy("Username A-Z");
@@ -52,6 +37,24 @@ export const Matches = () => {
             setSortBy("Gender");
         }
     }
+
+    useEffect(() => {
+        async function getMatches() {
+            await timderFetch("GET", "v1/users?likersOrLikees=likees", "")
+            .then(res => res.json())
+            .then(res => {
+                setMatches([...res].sort((a,b) => a.username.localeCompare(b.username)));
+                setLoading(false);
+                setUserContext({
+                    ...userContext,
+                    unreadMatches: 0
+                });
+            })
+            .catch(err => console.error(err))
+        }
+        getMatches();
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <div className="page matches">

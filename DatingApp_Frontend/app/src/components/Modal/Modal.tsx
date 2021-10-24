@@ -2,9 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./Modal.css";
 
-const renderContent = props => {
+interface IProps {
+    children: React.ReactNode,
+    closeModal: () => void,
+    open: boolean
+}
 
-    const handleBackgroundClick = (e, closeModal) => {
+const renderContent = (props: IProps): React.ReactPortal => {
+    const handleBackgroundClick = (e: React.MouseEvent, closeModal: () => void) => {
         if(e.target === e.currentTarget) {
             closeModal()
         }
@@ -18,10 +23,10 @@ const renderContent = props => {
                 </div>
             </div>
         </div>,
-        document.getElementById("modal")
+        document.getElementById("modal") as HTMLDivElement
     )
 }
 
-export const Modal = props => {
+export const Modal = (props: IProps) => {
     return props.open === true ? renderContent(props) : null
 }

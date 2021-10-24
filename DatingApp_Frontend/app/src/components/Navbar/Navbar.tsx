@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import { withRouter } from 'react-router-dom';
 import { useTimderApi } from '../../hooks/useTimderApi';
+import { IMessage, IUserContext } from '../../interfaces/Interfaces';
 
-export const Navbar = withRouter(({ history }) => {
+export const Navbar = withRouter(({ history }): JSX.Element => {
 
-    const { userContext, setUserContext } = useContext(UserContext);
+    const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
     const { timderFetch } = useTimderApi();
     const [loading, setLoading] = useState(true);
     const [unreadMessages, setUnreadMessages] = useState(0);
@@ -16,15 +17,15 @@ export const Navbar = withRouter(({ history }) => {
     const logout = () => { 
         setUserContext({
             ...userContext,
-            jwt: null,
-            jwtID: null,
-            jwtUsername: null,
+            jwt: "",
+            jwtID: "",
+            jwtUsername: "",
             jwtExpiry: null,
             loggedIn: false,
             unreadMatches: 0
         });
         localStorage.removeItem("jwt");
-        history.push("/")
+        history.push("/");
     }
 
     const reload = () => {
@@ -34,10 +35,10 @@ export const Navbar = withRouter(({ history }) => {
     useEffect(() => {
         async function getUnreadMessagesCount() {
             if(userContext.loggedIn === true) {
-                await timderFetch("GET", `v1/users/${userContext.jwtID}/messages`)
+                await timderFetch("GET", `v1/users/${userContext.jwtID}/messages`, "")
                 .then(res => res.json())
                 .then(messages => {
-                    const unreadMessagesCount = messages.reduce((a,msg) => msg.isRead ? a + 0 : a + 1, 0);
+                    const unreadMessagesCount = messages.reduce((a: number, msg: IMessage) => msg.isRead ? a + 0 : a + 1, 0);
                     setUnreadMessages(unreadMessagesCount);
                     setLoading(false);
                 })
@@ -65,14 +66,14 @@ export const Navbar = withRouter(({ history }) => {
                     <p>Find</p>
                 </Link>
 
-                {
-                    userContext.loggedIn && <Link to="/matches">
+                {userContext.loggedIn &&
+                    <Link to="/matches">
                         <p>Matches {!loading && unreadMatches > 0 && <span className="unread-count">{unreadMatches}</span>}</p>
                     </Link>
                 }
 
-                {
-                    userContext.loggedIn && <Link to="/messages">
+                {userContext.loggedIn &&
+                    <Link to="/messages">
                         <p>Messages {!loading && unreadMessages > 0 && <span className="unread-count">{unreadMessages}</span>}</p>
                     </Link>
                 }

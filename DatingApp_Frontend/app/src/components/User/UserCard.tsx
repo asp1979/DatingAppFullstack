@@ -3,9 +3,26 @@ import { Modal } from '../Modal/Modal';
 import { useForm } from 'react-hook-form';
 import { useTimderApi } from '../../hooks/useTimderApi';
 import SpinnerSVG from './SpinnerSVG.svg';
+import { IUser, IFormData } from '../../interfaces/Interfaces';
 import './User.css';
 
-export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnliked, unlikeUser }) => {
+interface IProps {
+    user: IUser,
+    isSelf: boolean,
+    canBeMessaged: boolean,
+    messageUser: () => void,
+    canBeUnliked: boolean,
+    unlikeUser: () => void
+}
+
+export const UserCard = ({
+    user,
+    isSelf,
+    canBeMessaged,
+    messageUser,
+    canBeUnliked,
+    unlikeUser
+    }: IProps): JSX.Element => {
 
     const { timderFetch } = useTimderApi();
     const [imgLoading, setImgLoading] = useState(true);
@@ -18,10 +35,10 @@ export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnlike
         img.src = user.photoUrl;
     }, [user])
 
-    const onSubmit = async (formdata) => {
+    const onSubmit = async (formdata: IFormData) => {
         const newIntroduction = formdata.textarea.replace(" ", "+");
         const query = "?introduction=" + newIntroduction;
-        await timderFetch("PUT", `v1/users/${user.id}/introduction` + query)
+        await timderFetch("PUT", `v1/users/${user.id}/introduction` + query, "")
         .then(res => {
             window.location.reload();
         })
@@ -55,7 +72,7 @@ export const UserCard = ({ user, isSelf, canBeMessaged, messageUser, canBeUnlike
                     <Modal open={openModal} closeModal={() => setOpenModal(false)}>
                         <form onSubmit={ handleSubmit(onSubmit) } className="edit-user-modal">
                             <label>Status:</label>
-                            <textarea ref={register()} maxLength="32" name="textarea" type="text" placeholder={user.introduction}/>
+                            <textarea ref={register()} maxLength={32} name="textarea" placeholder={user.introduction}/>
                             <button type="submit">Confirm</button>
                         </form>
                     </Modal>

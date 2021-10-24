@@ -3,14 +3,21 @@ import { Frame, useMotionValue, useTransform, useAnimation } from "framer";
 import { UserContext } from '../../UserContext';
 import { UserCard } from '../User/UserCard';
 import { useTimderApi } from '../../hooks/useTimderApi';
+import { IUser, IUserContext } from "../../interfaces/Interfaces";
 
-export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
+interface IProps {
+    user: IUser,
+    swipeCount: number,
+    setSwipeCount: (x: number) => void
+}
+
+export const SwipeCard = ({ user, swipeCount, setSwipeCount }: IProps): JSX.Element => {
 
     const { timderFetch } = useTimderApi();
-    const { userContext, setUserContext } = useContext(UserContext);
+    const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
 
-    const likeUser = async (userID) => {
-        await timderFetch("POST", `v1/users/${userContext.jwtID}/like/${userID}`)
+    const likeUser = async (userID: number) => {
+        await timderFetch("POST", `v1/users/${userContext.jwtID}/like/${userID}`, "")
         .then(res => {
             setUserContext({
                 ...userContext,
@@ -25,7 +32,7 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
     const scaleValue = useTransform(motionValue, [-300, -150, 0, 150, 300], [0.80, 0.90, 1, 0.90, 0.80]);
     const animControls = useAnimation();
 
-    const handleDragEnd = (event, info) => {
+    const handleDragEnd = (event: any, info: any) => {
         if (Math.abs(info.offset.x) <= 150) {
             animControls.start({ x: 0 });
         }
@@ -46,14 +53,14 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }) => {
         animate={animControls}
         style={{ display: "flex" }}
         drag="x"
-        x={motionValue}
+        x={motionValue as any}
         opacity={opacityValue}
-        scale={scaleValue}
+        scale={scaleValue as any}
         dragConstraints={{ left: -300, right: 300 }}
         className="user-info"
         onDragEnd={(event, info) => handleDragEnd(event, info)}>
 
-            <UserCard user={user} canBeUnliked={false} canBeMessaged={false} />
+            <UserCard user={user} canBeUnliked={false} unlikeUser={() => {}} canBeMessaged={false} messageUser={() => {}} isSelf={false} />
 
         </Frame>
     )

@@ -1,16 +1,17 @@
 import '../Login/Login.css';
 // NOTE: this is using same styling as Login component
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTimderApi } from '../../hooks/useTimderApi';
+import { IFormData } from '../../interfaces/Interfaces';
 
-export const Register = () => {
+export const Register = (): JSX.Element => {
 
     const { timderFetch } = useTimderApi();
     const { register, handleSubmit, errors } = useForm();
-    const [regSuccess, setRegSuccess] = useState(null);
+    const [regSuccess, setRegSuccess] = useState<boolean|null>(null);
 
-    const onSubmit = async (formdata) => {
+    const onSubmit = async (formdata: IFormData) => {
         await timderFetch("POST", "v1/auth/register", formdata)
         .then(res => res.json())
         .then(res => {

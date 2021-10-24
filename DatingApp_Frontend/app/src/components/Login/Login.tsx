@@ -4,16 +4,17 @@ import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
 import { withRouter } from 'react-router-dom';
 import { useTimderApi } from '../../hooks/useTimderApi';
-import jwtDecode from 'jwt-decode';
+import { IUserContext, IFormData } from '../../interfaces/Interfaces';
+const jwtDecode = require("jwt-decode");
 
-export const Login = withRouter(({ history }) => {
+export const Login = withRouter(({ history }): JSX.Element => {
 
-    const { userContext, setUserContext } = useContext(UserContext);
+    const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
     const { timderFetch } = useTimderApi();
     const { register, handleSubmit, errors } = useForm();
     const [fetchError, setFetchError] = useState(false);
 
-    const onSubmit = async (formdata) => {
+    const onSubmit = async (formdata: IFormData) => {
         await timderFetch("POST", "v1/auth/login", formdata)
         .then(res => res.json())
         .then(res => {

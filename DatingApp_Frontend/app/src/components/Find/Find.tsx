@@ -3,25 +3,26 @@ import React, { useEffect, useState } from 'react';
 import { shuffleUsers } from './shuffleUsers';
 import { SwipeCard } from './SwipeCard';
 import { useTimderApi } from '../../hooks/useTimderApi';
+import { IUser } from '../../interfaces/Interfaces';
 import SwipeSVG from './SwipeSVG.svg';
 
-export const Find = () => {
+export const Find = (): JSX.Element => {
 
     const { timderFetch } = useTimderApi();
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState<IUser[]>([]);
     const [loading, setLoading] = useState(true);
     const [swipeCount, setSwipeCount] = useState(0);
 
     useEffect(() => {
         async function getUsers() {
-            const getAll = await timderFetch("GET", "v1/users"); 
-            const getLikees = await timderFetch("GET", "v1/users?likersOrLikees=likees"); 
+            const getAll = await timderFetch("GET", "v1/users", ""); 
+            const getLikees = await timderFetch("GET", "v1/users?likersOrLikees=likees", ""); 
             if(getAll.ok && getLikees.ok) {
                 const getAllJSON = await getAll.json();
                 const getLikeesJSON = await getLikees.json();
 
-                const getLikeesStr = getLikeesJSON.map(user => JSON.stringify(user));
-                const usersNotYetLiked = getAllJSON.filter(user => !getLikeesStr.includes(JSON.stringify(user)));
+                const getLikeesStr = getLikeesJSON.map((user: IUser) => JSON.stringify(user));
+                const usersNotYetLiked = getAllJSON.filter((user: IUser) => !getLikeesStr.includes(JSON.stringify(user)));
 
                 setUsers([...shuffleUsers(usersNotYetLiked)]);
                 setLoading(false);

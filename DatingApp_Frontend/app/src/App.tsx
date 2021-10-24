@@ -11,29 +11,30 @@ import { Messages } from './components/Messages/Messages';
 import { MessagesThread } from './components/MessagesThread/MessagesThread';
 import { User } from './components/User/User';
 import { UserContext } from './UserContext';
-import jwtDecode from 'jwt-decode';
+import { IUserContext } from './interfaces/Interfaces';
+const jwtDecode = require('jwt-decode');
 
-export const App = () => {
+export const App = (): JSX.Element => {
 
     const jwt = localStorage.getItem("jwt");
 
-    const [userContext, setUserContext] = useState({
+    const [userContext, setUserContext] = useState<IUserContext["userContext"]>({
         baseURL: "http://localhost:5000/api/",
-        jwt: jwt ? jwt : null,
-        jwtID: jwt ? jwtDecode(jwt).nameid : null,
-        jwtUsername: jwt ? jwtDecode(jwt).unique_name : null,
-        jwtExpiry: jwt ? jwtDecode(jwt).exp : null,
+        jwt: jwt ? jwt : "",
+        jwtID: jwt ? jwtDecode(jwt).nameid : "",
+        jwtUsername: jwt ? jwtDecode(jwt).unique_name : "",
+        jwtExpiry: jwt ? jwtDecode(jwt).exp : "",
         loggedIn: jwt ? true : false,
         unreadMatches: 0
     })
 
     useEffect(() => {
-        if(userContext.jwtExpiry < Date.now().valueOf() / 1000) {
+        if(userContext.jwtExpiry! < Date.now().valueOf() / 1000) {
             setUserContext({
                 ...userContext,
-                jwt: null,
-                jwtID: null,
-                jwtUsername: null,
+                jwt: "",
+                jwtID: "",
+                jwtUsername: "",
                 jwtExpiry: null,
                 loggedIn: false
             });

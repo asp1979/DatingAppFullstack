@@ -2,10 +2,11 @@ import './Home.css';
 import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { UserContext } from '../../UserContext';
+import { IUserContext } from '../../interfaces/Interfaces';
 
-export const Home = () => {
+export const Home = (): JSX.Element => {
 
-    const { userContext } = useContext(UserContext);
+    const { userContext } = useContext<IUserContext>(UserContext);
 
     return (
         <div className="page home">

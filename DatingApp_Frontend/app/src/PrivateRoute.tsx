@@ -1,10 +1,16 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { UserContext } from './UserContext';
+import { IUserContext } from './interfaces/Interfaces';
 
-export const PrivateRoute = ({ component: Component, ...rest }) => {
+interface IProps {
+    path: string,
+    component: React.ComponentType<any>
+}
 
-    const { userContext } = useContext(UserContext);
+export const PrivateRoute = ({ component: Component, ...rest }: IProps): JSX.Element => {
+
+    const { userContext } = useContext<IUserContext>(UserContext);
     
     return (
         <Route {...rest} 

@@ -1,10 +1,12 @@
+import { IMessage } from "../../interfaces/Interfaces";
+
 // this groups messages between 2 people (conversation thread)
 
-export function messageThreads(inbox, outbox) {
+export function messageThreads(inbox: IMessage[], outbox: IMessage[]): any[] {
 
-    function groupBy(arr, keyGetter) {
+    function groupBy(arr: IMessage[], keyGetter: (key: IMessage) => any) {
         let map = new Map();
-        arr.forEach((item) => {
+        arr.forEach((item: IMessage) => {
             let key = keyGetter(item);
             let pair = map.get(key);
             if(!pair) {
@@ -16,11 +18,11 @@ export function messageThreads(inbox, outbox) {
         return map;
     }
 
-    let threads = [...groupBy(inbox, msg => msg.senderID)];
+    let threads: any[] = [...groupBy(inbox, msg => msg.senderID)];
     threads.forEach(x => { 
         x.push(x[1][0].senderUsername)
         x.push(x[1][0].senderPhotoUrl)
-        x.push(x[1].reduce((a,x) => x.isRead ? a + 0 : a + 1, 0));
+        x.push(x[1].reduce((a: any, x: any) => x.isRead ? a + 0 : a + 1, 0));
     });
 
     // threads[0][0] is the senderID 
@@ -29,7 +31,7 @@ export function messageThreads(inbox, outbox) {
     // threads[0][3] is the senderPhotoUrl
     // threads[0][4] is is the amount of unread messages 
 
-    let noReplyThreads = outbox.filter(msg => threads.every(x => x[0] !== msg.recipientID));
+    let noReplyThreads: any[] = outbox.filter(msg => threads.every(x => x[0] !== msg.recipientID));
     noReplyThreads = [...groupBy(noReplyThreads, msg => msg.recipientID)];
     noReplyThreads.forEach(x => {
         x.push(x[1][0].recipientUsername)
