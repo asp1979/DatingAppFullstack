@@ -32,21 +32,27 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }: IProps): JSX.Elem
     const scaleValue = useTransform(motionValue, [-300, -150, 0, 150, 300], [0.80, 0.90, 1, 0.90, 0.80]);
     const animControls = useAnimation();
 
+    let swipeConfirmPx = 150;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    if(isMobile) {
+        swipeConfirmPx = 30;
+    }
+
     const handleDragEnd = (event: any, info: any) => {
-        if (Math.abs(info.offset.x) <= 150) {
+        if(Math.abs(info.offset.x) <= swipeConfirmPx) {
             animControls.start({ x: 0 });
         }
-        else if(info.offset.x < 150) { // left
+        else if(info.offset.x < swipeConfirmPx) { // left
             setSwipeCount(swipeCount + 1);
             animControls.start({ x: -4000, opacity: 0, transition: { duration: 2 } });
             likeUser(user.id);
         }
-        else if(info.offset.x > -150) { // right
+        else if(info.offset.x > swipeConfirmPx * -1) { // right
             setSwipeCount(swipeCount + 1);
             animControls.start({ x: 4000, opacity: 0, transition: { duration: 2 } });
         }
     }
-    
+
     return (
         <Frame
         center

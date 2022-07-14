@@ -15,8 +15,8 @@ export const Find = (): JSX.Element => {
 
     useEffect(() => {
         async function getUsers() {
-            const getAll = await timderFetch("GET", "v1/users", ""); 
-            const getLikees = await timderFetch("GET", "v1/users?likersOrLikees=likees", ""); 
+            const getAll = await timderFetch("GET", "v1/users", "");
+            const getLikees = await timderFetch("GET", "v1/users?likersOrLikees=likees", "");
             if(getAll.ok && getLikees.ok) {
                 const getAllJSON = await getAll.json();
                 const getLikeesJSON = await getLikees.json();
@@ -47,7 +47,7 @@ export const Find = (): JSX.Element => {
                         {
                             swipeCount === users.length
                             ? <div className="swiping-limit" onClick={() => window.location.reload()}>
-                                <h3>Refresh!</h3>
+                                <h3>No more users! Refresh.</h3>
                             </div>
                             : <ul>
                                 {users.map((user, i) => <SwipeCard user={user} swipeCount={swipeCount} setSwipeCount={setSwipeCount} key={i}/>)}
@@ -56,7 +56,7 @@ export const Find = (): JSX.Element => {
                         <i className="fas fa-arrow-right"></i>
 
                     </div>
-                } 
+                }
             </div>
         </div>
     )

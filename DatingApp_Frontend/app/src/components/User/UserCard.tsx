@@ -54,7 +54,7 @@ export const UserCard = ({
         ? <div className="user-spinner">
             <img src={SpinnerSVG} alt="loading-icon"></img>
         </div>
-        : <div className={isSelf ? "user-info self" : "user-info"}>
+        : <div className="user-info">
 
             <img className="user-img" src={user.photoUrl} alt="" />
 

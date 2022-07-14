@@ -40,9 +40,10 @@
 
 .swiping-limit h3 {
     padding: 2vmin;
+    border: 0.3vmin solid white;
     border-radius: 2vmin;
-    background: white;
     text-align: center;
+    font-size: 3vmin;
     cursor: pointer;
     opacity: 0;
     animation: opacity-delay;
