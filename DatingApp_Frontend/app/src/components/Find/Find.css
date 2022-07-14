@@ -12,11 +12,6 @@
     box-shadow: unset;
 }
 
-.find .content h1 {
-    color: darkgrey;
-    border-color: darkgrey;
-}
-
 .find-container {
     display: flex;
     flex-direction: column;
@@ -43,19 +38,6 @@
     right: -20vmin;
 }
 
-.buttons-container button {
-    width: 10vmin;
-    margin-top: 4vmin;
-    background: purple;
-    box-shadow: 1vmin 1vmin 0.5vmin 0vmin rgba(0,0,0,0.15);
-    color: white;
-    border: none;
-}
-
-.buttons-container button i {
-    color: white;
-}
-
 .swiping-limit h3 {
     padding: 2vmin;
     border-radius: 2vmin;
@@ -79,7 +61,7 @@
     .swipe-svg {
         top: -10vmin;
         height: 40vmin;
-    }    
+    }
 
     .find-container .fas.fa-arrow-right {
         bottom: 0;

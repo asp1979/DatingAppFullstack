@@ -72,7 +72,7 @@ export const MessagesThread = ({ match }: IProps): JSX.Element => {
         return () => clearInterval(updateMessages);
 
         // eslint-disable-next-line
-    }, [JSON.stringify(messages)]);
+    }, []);
 
     return (
         <div className="page messages-thread">
@@ -110,7 +110,7 @@ export const MessagesThread = ({ match }: IProps): JSX.Element => {
                 <ul>
                     {
                         !loading && messages
-                        .map((msg) => 
+                        .map((msg) =>
                             msg.senderID === Number(userContext.jwtID)
                             ? <div key={msg.id} className="message-container logged-user">
                                 <p>{msg.content}</p>
@@ -133,13 +133,13 @@ export const MessagesThread = ({ match }: IProps): JSX.Element => {
                 </ul>
 
                 <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs send-message">
-                    <p>Send a message</p>
                     <input
-                        placeholder=""
+                        placeholder="Send a message"
                         name="content"
                         minLength={1}
                         maxLength={56}
-                        autoComplete="off" 
+                        autoComplete="off"
+                        autoFocus={true}
                         ref={register({ required: true, minLength: 1, maxLength: 56 })}
                     />
                     <button onClick={() => setTimeout(() => reset(), 200)} className="send-button" type="submit">Send</button>

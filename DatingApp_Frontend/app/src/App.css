@@ -8,7 +8,7 @@
     box-sizing: border-box;
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
-    color: darkgrey;
+    color: white;
     outline: none;
 }
 
@@ -19,7 +19,7 @@ html {
 
 body {
     height: 100%;
-    background: #EDF0F5;
+    background: linear-gradient(320deg,#f27121,#e94057,#8a2387);
     overflow-x: hidden;
 }
 
@@ -32,7 +32,7 @@ li {
 }
 
 a {
-    color: darkgrey;
+    color: white;
 }
 
 button {
@@ -41,52 +41,19 @@ button {
     padding: 1vmin 2.2vmin;
     margin: 0 2vmin;
     border-radius: 1vmin;
-    border: 0.25vmin solid darkgrey;
-    background-color: darkgrey;
-    color: transparent;
+    border: 0.3vmin solid #cccccc;
+    background-color: #cccccc;
 }
 
-input {
-    padding: 0.75vmin;
-    border: 0.25vmin solid darkgrey;
-}
-
-input:focus::-webkit-input-placeholder {
-    color: transparent;
-}
-
-input:focus:-moz-placeholder {
-    color: transparent;
-}
-
-input:focus::-moz-placeholder {
-    color: transparent;
-}
-
-input:focus:-ms-input-placeholder {
-    color: transparent;
-}
-
-textarea {
+input, textarea {
     padding: 1vmin;
-    border: 0.25vmin solid darkgrey;
+    border: 0.3vmin solid white;
+    background: transparent;
     overflow: hidden;
 }
 
-textarea:focus::-webkit-input-placeholder {
-    color: transparent;
-}
-
-textarea:focus:-moz-placeholder {
-    color: transparent;
-}
-
-textarea:focus::-moz-placeholder {
-    color: transparent;
-}
-
-textarea:focus:-ms-input-placeholder {
-    color: transparent;
+input::placeholder, textarea::placeholder, input:focus::placeholder, textarea:focus::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
 }
 
 select {
@@ -95,17 +62,17 @@ select {
 
 table {
     padding: 1vmin;
-    border: 2px solid darkgrey;
+    border: 2px solid #cccccc;
 }
 
 td {
     padding: 4vmin;
-    border: 2px solid darkgrey;
+    border: 2px solid #cccccc;
 }
 
 th {
     padding: 1vmin;
-    border: 2px solid darkgrey;
+    border: 2px solid #cccccc;
 }
 
 @keyframes opacity-delay {
@@ -128,7 +95,7 @@ th {
 ::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
 }
-  
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: white;
@@ -157,16 +124,24 @@ th {
     min-height: 92%;
     padding: 4vmin;
     margin-bottom: 2%;
-    border-radius: 2vmin;
-    background: #32153d;
-    box-shadow: 0.1vmin 0.1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3.2vmin;
+    box-shadow: 0 0.2vmin 6.0vmin rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1.0vmin);
 }
 
 .page .content h1 {
     font-size: 4vmin;
     color: white;
     width: 100%;
-    border-bottom: 0.25vmin solid white;
+    border-bottom: 0.3vmin solid white;
+}
+
+.unread-count {
+    padding: 0.5vmin 1vmin;
+    border-radius: 50%;
+    border: 0.3vmin solid white;
+    font-size: 1.5vmin;
 }
 
 .sortby {
@@ -176,8 +151,7 @@ th {
     height: 4.7vmin;
     text-align: center;
     margin-left: auto;
-    background-color: #32153d;
-    border: 0.25vmin solid white;
+    border: 0.3vmin solid white;
     border-radius: 2vmin 2vmin 0 0;
     cursor: pointer;
 }
@@ -185,10 +159,10 @@ th {
 .sortby-content {
     width: 30vmin;
     display: none;
+    background: #ED6678;
     position: absolute;
-    left: -0.25vmin;
-    background-color: #32153d;
-    border: 0.25vmin solid white;
+    left: -0.3vmin;
+    border: 0.3vmin solid white;
     border-radius: 0 0 2vmin 2vmin;
     z-index: 1;
 }
@@ -205,7 +179,7 @@ th {
 .sortby-content li {
     white-space: nowrap;
     font-size: 1.8vmin;
-    color:darkgrey;
+    color: #cccccc;
     padding: 1vmin;
     display: block;
 }
@@ -220,7 +194,7 @@ th {
 
 .sortby-content > :last-child():hover {
     border-radius: 0 0 2vmin 2vmin;
-} 
+}
 
 .empty-list {
     display: flex;
@@ -243,7 +217,6 @@ th {
         padding-bottom: 10vmin;
         margin-bottom: 2%;
         border-radius: 2vmin;
-        background: #32153d;
         box-shadow: 0.1vmin 0.1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
     }
 
@@ -255,23 +228,22 @@ th {
         top: -7vmin;
         width: 40vmin;
         height: 7vmin;
-        background-color: #32153d;
-        border: 0.25vmin solid white;
+        border: 0.3vmin solid white;
         border-radius: 2vmin 2vmin 0 0;
     }
-    
+
     .sortby-content {
         width: 40vmin;
         left: -0.25vmin;
-        border: 0.25vmin solid white;
+        border: 0.3vmin solid white;
         border-radius: 0 0 2vmin 2vmin;
     }
-    
+
     .sortby-btn {
         font-size: 3vmin;
         padding: 1.4vmin;
     }
-    
+
     .sortby-content li {
         font-size: 3vmin;
         padding: 1vmin;

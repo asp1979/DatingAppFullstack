@@ -10,14 +10,20 @@
     width: 100%;
     z-index: 998;
 }
-  
+
 .modal {
-    background-color: white;
-    border: 0.3vmin solid darkgrey;
+    width: 50vmin;
+    background-color: #ED6678;
+    border: 0.3vmin solid white;
     border-radius: 2vmin;
     text-align: center;
     padding: 2vmin;
     z-index: 999;
+}
+
+.modal button {
+    background: transparent;
+    border: 0.3vmin solid white;
 }
 
 .modal p {
@@ -28,7 +34,7 @@
     margin-top: 1.5vmin;
     color: white;
 }
-  
+
 .hidden {
     display: none;
 }
@@ -39,11 +45,11 @@
         padding: 2vmin;
         width: 80%;
     }
-    
+
     .modal p {
         font-size: 4vmin;
     }
-    
+
     .modal button {
         font-size: 4vmin;
         margin-top: 3vmin;

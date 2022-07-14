@@ -33,13 +33,23 @@
     height: 50vmin !important;
     min-height: 50vmin !important;
     max-height: 50vmin !important;
-    background: #EDF0F5 !important;
+    background: white !important;
     border-radius: 2vmin !important;
-    border: 0.1vmin solid #EDF0F5;
+    border-top: 0.1vmin solid white;
+    border-left: 0.1vmin solid white;
+    border-right: 0.3vmin solid white;
+    border-bottom: 0.3vmin solid white;
     animation: opacity-delay;
     animation-duration: 0.9s;
     animation-fill-mode: forwards;
     opacity: 0;
+}
+
+.self {
+    border-top: 0.3vmin solid white;
+    border-left: 0.3vmin solid white;
+    border-right: 0.3vmin solid white;
+    border-bottom: 0.3vmin solid white;
 }
 
 .user-info img {
@@ -60,7 +70,7 @@
 
 .user-intro {
     position: absolute;
-    bottom: 0; 
+    bottom: 0;
 }
 
 .user-actions {
@@ -77,8 +87,8 @@
     padding: 2vmin;
     border-radius: 50%;
     font-size: 3vmin;
-    background: rgba(128, 0, 128, 0.4);
-    color: #EDF0F5;
+    background: rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
     cursor: pointer;
 }
 
@@ -117,14 +127,6 @@
     resize: none;
 }
 
-.edit-user-modal textarea::placeholder {
-    color: darkgrey;
-}
-
-.edit-user-modal textarea:focus::placeholder {
-    color: transparent;
-}
-
 .edit-user-modal label {
     font-size: 2.5vmin;
     padding-bottom: 1vmin;
@@ -152,7 +154,7 @@
         height: 90vmin !important;
         min-height: 90vmin !important;
         max-height: 90vmin !important;
-        background: #EDF0F5 !important;
+        background: #FFFFFF !important;
         border-radius: 7vmin !important;
         border: none;
         animation: opacity-delay;
@@ -174,8 +176,8 @@
         padding: 5vmin;
         border-radius: 50%;
         font-size: 10vmin;
-        background: rgba(128, 0, 128, 0.4);
-        color: #EDF0F5;
+        background: rgba(255, 255, 255, 0.3);
+        color: #FFFFFF;
         cursor: pointer;
     }
 

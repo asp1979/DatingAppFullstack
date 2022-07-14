@@ -48,7 +48,7 @@ export const Register = (): JSX.Element => {
                 </div>
 
                 <button type="submit">Register</button>
-                
+
             </form>
 
         </div>

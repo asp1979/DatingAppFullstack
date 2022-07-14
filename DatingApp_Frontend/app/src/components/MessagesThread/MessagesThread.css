@@ -8,23 +8,12 @@
 
 .messages-thread .content ul {
     display: grid;
-    grid-template-columns: 36vmin;
+    grid-template-columns: 41vmin;
     grid-auto-rows: min-content;
     grid-row-gap: 2vmin;
-    height: 60vmin;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 2vmin;
-}
-  
-.title-img {
-    position: relative;
-    top: 0.4vmin;
-    object-fit: cover;
-    margin-left: 1vmin;
-    height: 5vmin;
-    width: 5vmin;
-    border-radius: 5vmin;
+    padding: 2vmin 0;
 }
 
 .message-container {
@@ -41,6 +30,16 @@
     opacity: 0;
 }
 
+.title-img {
+    position: relative;
+    top: 0.4vmin;
+    object-fit: cover;
+    margin-left: 1vmin;
+    height: 5vmin;
+    width: 5vmin;
+    border-radius: 5vmin;
+}
+
 .message-container > :nth-child(1) {
     word-break: break-all;
 }
@@ -48,13 +47,13 @@
 .message-container.logged-user {
     position: relative;
     left: 41vmin;
-    background-color: purple;
+    background: #D63B5E;
 }
 
 .message-container.opposite-user {
     position: relative;
     left: 0vmin;
-    background-color: deepskyblue;
+    background: #B73170;
 }
 
 .message-container p {
@@ -62,10 +61,18 @@
     margin: 0 2vmin;
 }
 
+.form-inputs.send-message input {
+    width: 70.5vmin;
+}
+
+.messages-thread .form-inputs input {
+    background: transparent;
+    border: 0.3vmin solid white;
+}
+
 .form-inputs.send-message {
     position: absolute;
     bottom: 3vmin;
-    margin-left: 2vmin;
 }
 
 .form-inputs.send-message p {
@@ -73,16 +80,9 @@
     font-size: 2vmin;
 }
 
-.form-inputs.send-message input {
-    background: white;
-    color: darkgrey;
-    width: 68vmin;
-}
-
-.form-inputs .send-button {
-    color: white;
-    border: none;
-    background: purple;
+.form-inputs.send-message button {
+    background: transparent;
+    border: 0.3vmin solid white;
 }
 
 .thread-legend {
@@ -95,15 +95,15 @@
 .thread-legend div {
     color: white;
     font-size: 1.5vmin;
-    margin: 0 2vmin;
+    margin: 0.5vmin 2vmin 0 2vmin;
 }
 
 .thread-legend .purple-circle {
-    color: purple;
+    color: #D63B5E;
 }
 
 .thread-legend .blue-circle {
-    color: deepskyblue;
+    color: #B73170;
 }
 
 .delete-all {
@@ -112,9 +112,8 @@
     right: 2vmin;
     color: white;
     background-color: transparent;
-    border: 0.25vmin solid white;
+    border: 0.3vmin solid white;
     border-radius: 2vmin 2vmin 0 0;
-    border-bottom: none;
 }
 
 .delete-message {
@@ -125,14 +124,6 @@
     cursor: pointer;
 }
 
-.message-container.logged-user:hover {
-    background-color: #5a005a;
-}
-
-.message-container.opposite-user:hover {
-    background-color: #00a4db;
-}
-
 .message-container:hover .delete-message {
     opacity: 1;
 }
@@ -141,7 +132,7 @@
     .content.with-h1-img {
         padding-top: 2.4vmin;
     }
-    
+
     .messages-thread .content ul {
         display: grid;
         grid-template-columns: 36vmin;
@@ -150,43 +141,43 @@
         height: 60vmin;
         overflow-y: auto;
         overflow-x: hidden;
-        padding: 2vmin;
+        padding: 2vmin 0;
     }
-      
+
     .title-img {
         display: none;
     }
-    
+
     .message-container {
         font-size: 3vmin;
         padding: 2vmin 1vmin;
         border-radius: 2vmin;
     }
-    
+
     .message-container.logged-user {
         position: relative;
         left: 41vmin;
     }
-    
+
     .message-container.opposite-user {
         position: relative;
         left: 0vmin;
     }
-    
+
     .message-container p {
         margin: 0 2vmin;
     }
-    
+
     .form-inputs.send-message {
         position: absolute;
         bottom: 3vmin;
         margin-left: 2vmin;
     }
-    
+
     .form-inputs.send-message p {
         font-size: 3vmin;
     }
-    
+
     .form-inputs.send-message input {
         width: 60vmin;
         padding: 1.5vmin 1vmin;
@@ -197,21 +188,22 @@
         padding: 1.7vmin 2vmin;
         margin-left: 4vmin;
     }
- 
+
     .thread-legend div {
+        margin: 1.5vmin 2vmin 0 2vmin;
         font-size: 3vmin;
     }
-    
+
     .delete-all {
         font-size: 3vmin;
         position: absolute;
         top: 2.8vmin;
         right: 2vmin;
-        border: 0.25vmin solid white;
+        border: 0.3vmin solid white;
         border-radius: 2vmin 2vmin 0 0;
         border-bottom: none;
     }
-    
+
     .delete-message {
         position: relative;
         left: 1vmin;

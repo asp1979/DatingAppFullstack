@@ -12,8 +12,9 @@
     border-radius: 1vmin;
     width: 36vmin;
     height: 44vmin;
-    background: #EDF0F5;
     box-shadow: 0 0 0.2vmin 0.2vmin rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(1.0vmin);
     opacity: 0;
     animation: opacity-delay;
     animation-duration: 0.9s;
@@ -26,7 +27,6 @@
     border-radius: 2vmin;
     box-shadow: 0 0 0.2vmin 0.2vmin rgba(0,0,0,0.1);
     font-size: 4vmin;
-    color: darkgrey;
 }
 
 .input-container {
@@ -36,25 +36,22 @@
 }
 
 .form-inputs input {
-    color: darkgrey;
     border-radius: 0.6vmin;
-    border: unset;
+    border: none;
     box-shadow: 0 0 0.2vmin 0.2vmin rgba(0,0,0,0.1);
     font-size: 1.6vmin;
-    background: white;
 }
 
 .form-inputs button {
     font-size: 1.8vmin;
-    color: white;
-    background-color: #502161;
-    border: unset;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 0 0.2vmin 0.2vmin rgba(0,0,0,0.1);
 }
 
 .form-inputs .input-name {
     margin-bottom: 0.2vmin;
     font-size: 1.4vmin;
-    color: darkgrey;
 }
 
 .error-span {
@@ -63,30 +60,8 @@
     padding: 0.6vmin 1.8vmin;
     margin: 0 4vmin;
     border-radius: 1vmin;
-    border: 0.2vmin solid darkgrey;
+    border: 0.3vmin solid #cccccc;
     background-color: transparent;
-    color: darkgrey;
-}
-
-.error-span.regex {
-    color: orange;
-    border-color: orange;
-}
-
-.error-span.fetch {
-    color: crimson;
-    border-color: crimson;
-}
-
-.success-span {
-    font-size: 1.8vmin;
-    text-align: center;
-    padding: 1vmin 2.2vmin;
-    margin: 0 4vmin;
-    border-radius: 1vmin;
-    border: 0.25vmin solid limegreen;
-    background-color: transparent;
-    color: limegreen;
 }
 
 .login-help {
@@ -98,7 +73,8 @@
     margin-left: 2vmin;
     font-size: 1.8vmin;
     border-radius: 1vmin;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(1.0vmin);
     box-shadow: 0 0 0.2vmin 0.2vmin rgba(0,0,0,0.1);
     padding: 4vmin;
     opacity: 0;
@@ -108,10 +84,6 @@
     animation-fill-mode: forwards;
 }
 
-.login-help p {
-    color: darkgrey;
-}
-
 @media only screen and (max-width: 767px) {
     .page.login form {
         border-radius: 1vmin;
@@ -119,48 +91,40 @@
         height: 88vmin;
         box-shadow: 0 0 0.4vmin 0.4vmin rgba(0,0,0,0.1);
     }
-    
+
     .page.login h1 {
         padding: 1.5vmin 3vmin;
         border-radius: 4vmin;
         box-shadow: 0 0 0.4vmin 0.4vmin rgba(0,0,0,0.1);
         font-size: 8vmin;
     }
-    
+
     .form-inputs input {
         border-radius: 1.2vmin;
         box-shadow: 0 0 0.4vmin 0.4vmin rgba(0,0,0,0.1);
         font-size: 4vmin;
         padding: 2vmin 1vmin;
     }
-    
+
     .form-inputs button {
         font-size: 5vmin;
         padding: 2.5vmin;
     }
-    
+
     .form-inputs .input-name {
         margin-bottom: 0.4vmin;
         font-size: 5vmin;
     }
-    
-    .error-span {
-        font-size: 3vmin;
-        padding: 0.6vmin 1.8vmin;
-        margin: 0 4vmin;
-        border-radius: 1vmin;
-        border: 0.4vmin solid darkgrey;
-    }
-    
+
     .success-span {
         font-size: 3vmin;
         padding: 1vmin 2.2vmin;
         margin: 0 4vmin;
         border-radius: 1vmin;
     }
-    
+
     .login-help {
         display: none;
     }
-    
+
 }

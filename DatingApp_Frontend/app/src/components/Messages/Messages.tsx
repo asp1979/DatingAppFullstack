@@ -49,7 +49,7 @@ export const Messages = (): JSX.Element => {
             if(inbox.ok && outbox.ok) {
                 const inboxJSON = await inbox.json();
                 const outboxJSON = await outbox.json();
-                const threads = 
+                const threads =
                     messageThreads(inboxJSON, outboxJSON)
                     .sort((a: any, b: any) => (
                         Date.parse(b[1][0].messageSent) - Date.parse(a[1][0].messageSent)
@@ -91,11 +91,11 @@ export const Messages = (): JSX.Element => {
                     !loading && threads
                     .map((user: any, i: number) => {
 
-                        // user[0] = senderID 
+                        // user[0] = senderID
                         // user[1] = all message objects
-                        // user[2] = senderUsername 
+                        // user[2] = senderUsername
                         // user[3] = senderPhotoUrl
-                        // user[4] = unread messages count 
+                        // user[4] = unread messages count
 
                         return (
                             <Link to={"thread/" + user[0]} className="thread-link" key={i}>
@@ -103,7 +103,7 @@ export const Messages = (): JSX.Element => {
                                 <p className="last-msg">
                                     {user[1][0].senderUsername === userContext.jwtUsername
                                         ? ("You: " + user[1][0].content).substring(0,16) + "..."
-                                        : (user[1][0].senderUsername + ": " + user[1][0].content).substring(0,16) + "..."
+                                        : (user[1][0].senderUsername + ": " + user[1][0].content).substring(0,12) + "..."
                                     }
                                 </p>
                                 { user[4] > 0 ? <p className="unread-count">{user[4]}</p> : null }

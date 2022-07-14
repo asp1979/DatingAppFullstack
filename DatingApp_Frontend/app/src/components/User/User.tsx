@@ -29,7 +29,7 @@ export const User = ({ match, history }: IProps): JSX.Element => {
             history.push("/matches"); // redirect to matches
         })
     }
-    
+
     useEffect(() => {
         async function getUser() {
             await timderFetch("GET", `v1/users/${userID}`, "")
@@ -49,7 +49,6 @@ export const User = ({ match, history }: IProps): JSX.Element => {
 
     return (
         <div className="page user">
-
             <div className="content">
                 { isSelf && <h2>Profile</h2> }
                 {
@@ -64,7 +63,6 @@ export const User = ({ match, history }: IProps): JSX.Element => {
                     />
                 }
             </div>
-            
         </div>
     )
 }

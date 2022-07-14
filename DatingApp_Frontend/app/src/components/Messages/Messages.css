@@ -1,16 +1,15 @@
 .messages .content ul {
     display: grid;
     grid-template-columns: 33vmin 33vmin;
-    column-gap: 7vmin;
+    column-gap: 8vmin;
     grid-auto-rows: 15vmin;
-    padding: 0 3vmin;
+    padding: 0 4vmin;
 }
 
 .thread-link {
     width: 100%;
     height: 10vmin;
-    background-color: #3e1b4b;
-    border: 0.4vmin solid transparent;
+    border: 0.3vmin solid transparent;
     border-radius: 2vmin;
     box-shadow: 0 0 2vmin 0.5vmin rgba(0, 0, 0, 0.15);
     display: flex;
@@ -25,12 +24,12 @@
 }
 
 .thread-link:hover {
-    border: 0.4vmin solid #3d0066;
+    border: 0.3vmin solid white;
 }
 
 .thread-link img {
     object-fit: cover;
-    margin: 1vmin 2vmin;
+    margin: 2vmin;
     width: 6vmin;
     height: 6vmin;
     border-radius: 50%;
@@ -39,18 +38,9 @@
 .thread-link .last-msg {
     color: white;
     padding: 0.5vmin;
-    background-color: #32153d;
     border-radius: 1vmin;
-    font-size: 1.5vmin;
-    margin-right: 2vmin;
-}
-
-.thread-link .unread-count {
-    background: white;
-    color: #32153d;
-    padding: 0.5vmin 1vmin;
     font-size: 1.75vmin;
-    border-radius: 50%;
+    margin-right: 2vmin;
 }
 
 @media only screen and (max-width: 767px) {
@@ -72,15 +62,14 @@
         width: 12vmin;
         height: 12vmin;
     }
-    
+
     .thread-link .last-msg {
         padding: 2vmin;
-        background-color: #32153d;
         border-radius: 1vmin;
         font-size: 3vmin;
         margin-right: 2vmin;
     }
-    
+
     .thread-link .unread-count {
         padding: 0.5vmin 1.5vmin;
         font-size: 3vmin;

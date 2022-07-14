@@ -11,8 +11,7 @@
     font-size: 1.7vmin;
     width: 15vmin;
     height: 17vmin;
-    background-color: #3e1b4b;
-    border: 0.4vmin solid transparent;
+    border: 0.3vmin solid transparent;
     border-radius: 2vmin;
     box-shadow: 0 0 2vmin 0.5vmin rgba(0, 0, 0, 0.15);
     display: flex;
@@ -27,7 +26,7 @@
 }
 
 .person-card:hover {
-    border: 0.4vmin solid #3d0066;
+    border: 0.3vmin solid white;
 }
 
 .person-card img {

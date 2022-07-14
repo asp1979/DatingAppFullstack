@@ -15,21 +15,21 @@
 }
 
 .animation-div .motion-h1 {
+    color: rgba(255, 255, 255, 0.5);
     text-align: center;
     font-size: 4vmin;
     font-weight: bold;
-    color: darkgrey;
 }
 
 .animation-div .motion-p {
+    color: rgba(255, 255, 255, 0.5);
     text-align: center;
     font-size: 1.8vmin;
     font-weight: 200;
-    color: darkgrey;
 }
 
 .color-text {
-    color: #4c1d5e;
+    color: white;
     animation: opacity-delay;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
@@ -43,7 +43,7 @@
 }
 
 .animation-div .call-to-action a {
-    background-color: #4c1d5e;
+    background-color: rgba(255, 255, 255, 0.2);
     color: white;
     border: unset;
     box-shadow: 0.7vmin 0.7vmin 0.7vmin rgba(0, 0, 0, 0.3);
@@ -53,13 +53,12 @@
     margin: 1.5vmin;
     padding: 0.5vmin 4vmin;
     border-radius: 1vmin;
-    border: 0.25vmin solid darkgrey;
+    border: 0.3vmin solid #cccccc;
     width: 15vmin;
     height: 3vmin;
     text-align: center;
     font-size: 1.4vmin;
     font-weight: 200;
-    color: darkgrey;
     background-color: transparent;
 }
 
@@ -70,21 +69,21 @@
         width: 55vmin;
         height: 30vmin;
     }
-    
+
     .animation-div .motion-h1 {
         font-size: 7vmin;
     }
-    
+
     .animation-div .motion-p {
         display: none;
     }
-    
+
     .animation-div .call-to-action {
         margin-top: 2vmin;
     }
-    
+
     .animation-div a {
         font-size: 4vmin;
         font-weight: 200;
-    }    
+    }
 }

@@ -28,7 +28,7 @@ export const UserCard = ({
     const [imgLoading, setImgLoading] = useState(true);
     const [openModal, setOpenModal] = useState(false);
     const { register, handleSubmit } = useForm();
-    
+
     useEffect(() => {
         const img = new Image();
         img.onload = () => setImgLoading(false);
@@ -36,8 +36,12 @@ export const UserCard = ({
     }, [user])
 
     const onSubmit = async (formdata: IFormData) => {
-        const newIntroduction = formdata.textarea.replace(" ", "+");
-        const query = "?introduction=" + newIntroduction;
+        const newStatus = formdata.textarea;
+        if(!newStatus || newStatus.trim() === "") {
+            window.location.reload();
+            return;
+        }
+        const query = "?introduction=" + newStatus.replaceAll(" ", "+");
         await timderFetch("PUT", `v1/users/${user.id}/introduction` + query, "")
         .then(res => {
             window.location.reload();
@@ -46,11 +50,11 @@ export const UserCard = ({
         setOpenModal(false);
     }
 
-    return imgLoading 
+    return imgLoading
         ? <div className="user-spinner">
             <img src={SpinnerSVG} alt="loading-icon"></img>
         </div>
-        : <div className="user-info">
+        : <div className={isSelf ? "user-info self" : "user-info"}>
 
             <img className="user-img" src={user.photoUrl} alt="" />
 
@@ -72,7 +76,7 @@ export const UserCard = ({
                     <Modal open={openModal} closeModal={() => setOpenModal(false)}>
                         <form onSubmit={ handleSubmit(onSubmit) } className="edit-user-modal">
                             <label>Status:</label>
-                            <textarea ref={register()} maxLength={32} name="textarea" placeholder={user.introduction}/>
+                            <textarea ref={register()} maxLength={32} name="textarea" autoFocus={true} placeholder={user.introduction}/>
                             <button type="submit">Confirm</button>
                         </form>
                     </Modal>

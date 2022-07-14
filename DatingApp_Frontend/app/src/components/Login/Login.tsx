@@ -1,5 +1,5 @@
 import './Login.css';
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
 import { withRouter } from 'react-router-dom';
@@ -11,8 +11,7 @@ export const Login = withRouter(({ history }): JSX.Element => {
 
     const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
     const { timderFetch } = useTimderApi();
-    const { register, handleSubmit, errors } = useForm();
-    const [fetchError, setFetchError] = useState(false);
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = async (formdata: IFormData) => {
         await timderFetch("POST", "v1/auth/login", formdata)
@@ -33,7 +32,6 @@ export const Login = withRouter(({ history }): JSX.Element => {
         })
         .catch(err => {
             console.error(err);
-            setFetchError(true);
         })
     }
 
@@ -43,10 +41,6 @@ export const Login = withRouter(({ history }): JSX.Element => {
             <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs">
 
                 <h1>Sign in</h1>
-
-                { errors.username && <span className="error-span regex">Username too short or contains unsupported characters</span> }
-                { errors.password && <span className="error-span regex">Password too short or contains unsupported characters</span> }
-                { fetchError && <span className="error-span fetch">Username/password is incorrect</span> }
 
                 <div className="input-container">
                     <span className="input-name">Username</span>
@@ -59,7 +53,7 @@ export const Login = withRouter(({ history }): JSX.Element => {
                 </div>
 
                 <button type="submit">Sign in</button>
-                
+
             </form>
 
             <div className="login-help">
