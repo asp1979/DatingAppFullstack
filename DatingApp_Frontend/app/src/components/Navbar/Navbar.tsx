@@ -14,12 +14,13 @@ export const Navbar = withRouter(({ history }): JSX.Element => {
     const [unreadMessages, setUnreadMessages] = useState(0);
     const unreadMatches = userContext.unreadMatches;
 
-    const logout = () => { 
+    const logout = () => {
         setUserContext({
             ...userContext,
             jwt: "",
             jwtID: "",
             jwtUsername: "",
+            jwtPhotoUrl: "",
             jwtExpiry: -1,
             loggedIn: false,
             unreadMatches: 0
@@ -56,7 +57,7 @@ export const Navbar = withRouter(({ history }): JSX.Element => {
 
     return (
         <div className="navbar">
-            
+
             <div className="route-nav">
                 <Link to="/">
                     <h1>Timder</h1>
@@ -80,9 +81,20 @@ export const Navbar = withRouter(({ history }): JSX.Element => {
             </div>
 
             <div className="user-nav">
-                { !userContext.loggedIn && <Link to="/login"> Sign in </Link> }
-                { userContext.loggedIn && <Link to={"/user/" + userContext.jwtID} onClick={ reload }> { userContext.jwtUsername } </Link> }
-                { userContext.loggedIn && <a onClick={ logout } href="/"> Logout </a> }
+                {userContext.loggedIn
+                    ? <div className="user-drop">
+                        <Link className="avatar" to={"/user/" + userContext.jwtID} onClick={reload}>
+                            <img src={userContext.jwtPhotoUrl} alt="user"></img>
+                        </Link>
+                        <div className="user-drop-content">
+                            <Link to={"/user/" + userContext.jwtID} onClick={reload}>Profile</Link>
+                            <Link to={"/"} onClick={logout}>Logout</Link>
+                        </div>
+                    </div>
+                    : <Link to="/login">
+                        Sign in
+                    </Link>
+                }
             </div>
 
         </div>

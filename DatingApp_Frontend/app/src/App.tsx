@@ -23,6 +23,7 @@ export const App = (): JSX.Element => {
         jwt: jwt ? jwt : "",
         jwtID: jwt ? jwtDecode(jwt).nameid : "",
         jwtUsername: jwt ? jwtDecode(jwt).unique_name : "",
+        jwtPhotoUrl: jwt ? jwtDecode(jwt).photo_url : "",
         jwtExpiry: jwt ? jwtDecode(jwt).exp : -1,
         loggedIn: jwt ? true : false,
         unreadMatches: 0
@@ -35,8 +36,10 @@ export const App = (): JSX.Element => {
                 jwt: "",
                 jwtID: "",
                 jwtUsername: "",
+                jwtPhotoUrl: "",
                 jwtExpiry: -1,
-                loggedIn: false
+                loggedIn: false,
+                unreadMatches: 0
             });
             localStorage.removeItem("jwt");
         }

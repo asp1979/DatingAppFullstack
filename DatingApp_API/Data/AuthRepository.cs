@@ -16,13 +16,19 @@ namespace DatingApp_API.Data
         public async Task<User> Login(string username, string password)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());
-            
-            if(user == null) 
+
+            if(user == null)
                 return null;
-            if(!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt)) 
+            if(!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
 
             return user;
+        }
+
+        public async Task<string> UserPhotoUrl(int id)
+        {
+            var photo = await _context.Photos.FirstOrDefaultAsync(x => x.UserID == id);
+            return photo.Url;
         }
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
@@ -65,7 +71,7 @@ namespace DatingApp_API.Data
         {
             if(await _context.Users.AnyAsync(x => x.Username.ToLower() == username.ToLower()))
                 return true;
-            
+
             return false;
         }
     }

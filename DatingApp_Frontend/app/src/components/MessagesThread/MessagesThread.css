@@ -135,7 +135,7 @@
 
     .messages-thread .content ul {
         display: grid;
-        grid-template-columns: 36vmin;
+        grid-template-columns: 41vmin;
         grid-auto-rows: min-content;
         grid-row-gap: 2vmin;
         height: 60vmin;

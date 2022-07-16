@@ -28,7 +28,7 @@ namespace DatingApp_API.Controllers
         [HttpPost("register")] // api/v1/auth/register
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            if(await _repo.UserExists(userForRegisterDto.Username.ToLower())) 
+            if(await _repo.UserExists(userForRegisterDto.Username.ToLower()))
             {
                 return BadRequest("Username already exists");
             }
@@ -44,21 +44,24 @@ namespace DatingApp_API.Controllers
         {
             var userFromRepo = await _repo.Login(userForLoginDto.Username, userForLoginDto.Password);
 
-            if(userFromRepo == null) 
+            if(userFromRepo == null)
             {
                 return Unauthorized();
             }
 
-            var claims = new[] 
-            { 
+            var userPhotoUrl = await _repo.UserPhotoUrl(userFromRepo.ID);
+
+            var claims = new[]
+            {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.ID.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.Username)
+                new Claim(ClaimTypes.Name, userFromRepo.Username),
+                new Claim("photo_url", userPhotoUrl)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
-            
-            var tokenDescriptor = new SecurityTokenDescriptor 
+
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(1),

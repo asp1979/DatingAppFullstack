@@ -24,6 +24,7 @@ export const Login = withRouter(({ history }): JSX.Element => {
                 jwt: JWT,
                 jwtID: jwtDecode(localStorage.getItem("jwt")).nameid,
                 jwtUsername: jwtDecode(localStorage.getItem("jwt")).unique_name,
+                jwtPhotoUrl: jwtDecode(localStorage.getItem("jwt")).photo_url,
                 jwtExpiry: jwtDecode(localStorage.getItem("jwt")).exp,
                 loggedIn: true,
                 unreadMatches: 0

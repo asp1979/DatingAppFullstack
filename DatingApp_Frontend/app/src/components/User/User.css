@@ -95,7 +95,7 @@
 
 .user-name, .user-desc {
     width: fit-content;
-    max-width: 90%;
+    max-width: 94%;
     padding: 1vmin;
     margin: 2vmin;
     background: rgba(0, 0, 0, 0.4);
@@ -158,7 +158,7 @@
     }
 
     .user .content h2 {
-        font-size: 7.5vmin;
+        display: none;
     }
 
     .user-actions {
@@ -183,7 +183,7 @@
     }
 
     .user-desc {
-        font-size: 4vmin;
+        font-size: 3vmin;
         border-radius: 2.5vmin;
     }
 }

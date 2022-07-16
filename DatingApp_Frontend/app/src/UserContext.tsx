@@ -7,6 +7,7 @@ export const UserContext = createContext<IUserContext>({
         jwt: "",
         jwtID: "",
         jwtUsername: "",
+        jwtPhotoUrl: "",
         jwtExpiry: -1,
         loggedIn: false,
         unreadMatches: 0
