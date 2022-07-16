@@ -83,9 +83,9 @@ export const Navbar = withRouter(({ history }): JSX.Element => {
             <div className="user-nav">
                 {userContext.loggedIn
                     ? <div className="user-drop">
-                        <Link className="avatar" to={"/user/" + userContext.jwtID} onClick={reload}>
+                        <div className="avatar">
                             <img src={userContext.jwtPhotoUrl} alt="user"></img>
-                        </Link>
+                        </div>
                         <div className="user-drop-content">
                             <Link to={"/user/" + userContext.jwtID} onClick={reload}>Profile</Link>
                             <Link to={"/"} onClick={logout}>Logout</Link>

@@ -50,7 +50,7 @@
     z-index: 1;
 }
 
-.user-drop a, .user-drop-content a {
+.user-drop .avatar, .user-drop-content a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,6 +62,7 @@
     border: none;
     border-left: 0.3vmin solid rgba(255, 255, 255, 0.4);
     border-right: 0.3vmin solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
 }
 
 .user-drop .avatar {
@@ -79,7 +80,7 @@
     object-fit: cover;
 }
 
-.user-drop-content a:hover, .user-drop a:hover {
+.user-drop-content a:hover, .user-drop .avatar:hover {
     border-right: 0.3vmin solid white;
     border-left: 0.3vmin solid white;
 }
@@ -135,7 +136,7 @@
         font-size: 3vmin;
     }
 
-    .user-drop a, .user-drop-content a {
+    .user-drop .avatar, .user-drop-content a {
         height: 10vmin;
         width: 20vmin;
         font-size: 3vmin;
