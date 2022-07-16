@@ -12,19 +12,13 @@ import { MessagesThread } from './components/MessagesThread/MessagesThread';
 import { User } from './components/User/User';
 import { UserContext } from './UserContext';
 import { UserContextState } from './interfaces/Interfaces';
-import jwt_decode, { JwtPayload } from 'jwt-decode';
-
-interface myJwt extends JwtPayload {
-    nameid: string,
-    unique_name: string,
-    photo_url: string
-}
+import { decodeJwt } from './util/decodeJwt';
 
 export const App = (): JSX.Element => {
 
     const jwt = localStorage.getItem("jwt") || "";
 
-    let decoded: myJwt = jwt_decode<myJwt>(jwt);
+    const decoded = decodeJwt(jwt);
 
     const [userContext, setUserContext] = useState<UserContextState>({
         baseURL: "http://localhost:5000/api/",

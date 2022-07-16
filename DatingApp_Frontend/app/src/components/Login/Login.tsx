@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { withRouter } from 'react-router-dom';
 import { useTimderApi } from '../../hooks/useTimderApi';
 import { IUserContext, IFormData } from '../../interfaces/Interfaces';
-const jwtDecode = require("jwt-decode");
+import { decodeJwt } from '../../util/decodeJwt';
 
 export const Login = withRouter(({ history }): JSX.Element => {
 
@@ -17,19 +17,22 @@ export const Login = withRouter(({ history }): JSX.Element => {
         await timderFetch("POST", "v1/auth/login", formdata)
         .then(res => res.json())
         .then(res => {
-            const JWT = res.token;
-            localStorage.setItem("jwt", JWT);
-            setUserContext({
-                ...userContext,
-                jwt: JWT,
-                jwtID: jwtDecode(localStorage.getItem("jwt")).nameid,
-                jwtUsername: jwtDecode(localStorage.getItem("jwt")).unique_name,
-                jwtPhotoUrl: jwtDecode(localStorage.getItem("jwt")).photo_url,
-                jwtExpiry: jwtDecode(localStorage.getItem("jwt")).exp,
-                loggedIn: true,
-                unreadMatches: 0
-            });
-            history.push("/find"); // redirect
+            const jwt = res.token;
+            if(jwt) {
+                localStorage.setItem("jwt", jwt);
+                let decoded = decodeJwt(jwt);
+                setUserContext({
+                    ...userContext,
+                    jwt: jwt,
+                    jwtID: decoded.nameid,
+                    jwtUsername: decoded.unique_name,
+                    jwtPhotoUrl: decoded.photo_url,
+                    jwtExpiry: decoded.exp ? decoded.exp : -1,
+                    loggedIn: true,
+                    unreadMatches: 0
+                });
+                history.push("/find"); // redirect
+            }
         })
         .catch(err => {
             console.error(err);
