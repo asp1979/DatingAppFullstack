@@ -12,19 +12,27 @@ import { MessagesThread } from './components/MessagesThread/MessagesThread';
 import { User } from './components/User/User';
 import { UserContext } from './UserContext';
 import { UserContextState } from './interfaces/Interfaces';
-const jwtDecode = require('jwt-decode');
+import jwt_decode, { JwtPayload } from 'jwt-decode';
+
+interface myJwt extends JwtPayload {
+    nameid: string,
+    unique_name: string,
+    photo_url: string
+}
 
 export const App = (): JSX.Element => {
 
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem("jwt") || "";
+
+    let decoded: myJwt = jwt_decode<myJwt>(jwt);
 
     const [userContext, setUserContext] = useState<UserContextState>({
         baseURL: "http://localhost:5000/api/",
         jwt: jwt ? jwt : "",
-        jwtID: jwt ? jwtDecode(jwt).nameid : "",
-        jwtUsername: jwt ? jwtDecode(jwt).unique_name : "",
-        jwtPhotoUrl: jwt ? jwtDecode(jwt).photo_url : "",
-        jwtExpiry: jwt ? jwtDecode(jwt).exp : -1,
+        jwtID: decoded.nameid,
+        jwtUsername: decoded.unique_name,
+        jwtPhotoUrl: decoded.photo_url,
+        jwtExpiry: decoded.exp ? decoded.exp : -1,
         loggedIn: jwt ? true : false,
         unreadMatches: 0
     })
