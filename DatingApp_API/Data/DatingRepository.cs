@@ -133,7 +133,7 @@ namespace DatingApp_API.Data
                         || (userID == m.SenderID && recipientID == m.RecipientID && m.SenderDeleted == false))
                 .OrderByDescending(m => m.MessageSent)
                 .ToListAsync();
-            
+
             return messages;
         }
 

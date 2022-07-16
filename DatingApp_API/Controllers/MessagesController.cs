@@ -31,10 +31,10 @@ namespace DatingApp_API.Controllers
         public async Task<IActionResult> GetMessage(int userID, int id)
         {
             var message = await _repo.GetMessage(id);
-            
+
             if(message == null)
                 return NotFound();
-            
+
             return Ok(message);
         }
 
@@ -42,7 +42,7 @@ namespace DatingApp_API.Controllers
         public async Task<IActionResult> GetMessagesForUser(int userID, [FromQuery]GetMessagesParams getMessagesParams)
         {
             getMessagesParams.UserID = userID;
-            
+
             var messagesFromRepo = await _repo.GetMessagesForUser(getMessagesParams);
 
             var messages = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
@@ -73,7 +73,7 @@ namespace DatingApp_API.Controllers
             var messageThread = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
 
             await _repo.SaveAll();
-            
+
             return Ok(messageThread);
         }
 

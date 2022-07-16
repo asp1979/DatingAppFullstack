@@ -90,7 +90,7 @@ namespace DatingApp_API.Controllers
 
             if(await _repo.SaveAll())
                 return Ok();
-            else 
+            else
                 return BadRequest(new { error = "Failed to like user." });
         }
 
@@ -115,7 +115,7 @@ namespace DatingApp_API.Controllers
 
             if(await _repo.SaveAll())
                 return Ok();
-            else 
+            else
                 return BadRequest(new { error = "Failed to unlike user." });
         }
 
@@ -128,7 +128,7 @@ namespace DatingApp_API.Controllers
 
             if(await _repo.SaveAll())
                 return Ok();
-            else 
+            else
                 return BadRequest(new { error = "Failed to update." });
         }
     }

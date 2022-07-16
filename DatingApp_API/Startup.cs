@@ -56,7 +56,7 @@ namespace DatingApp_API
 
             services.AddScoped<IDatingRepository, DatingRepository>();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -92,7 +92,7 @@ namespace DatingApp_API
                     builder.Run(async context => {
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         var error = context.Features.Get<IExceptionHandlerFeature>();
-                        
+
                         if(error != null)
                         {
                             context.Response.AddApplicationError(error.Error.Message);
