@@ -73,8 +73,8 @@
 }
 
 .user-drop .avatar img {
-    height: 7vmin;
-    width: 7vmin;
+    height: 6.5vmin;
+    width: 6.5vmin;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -140,5 +140,10 @@
         width: 20vmin;
         font-size: 3vmin;
         background: #D65F84;
+    }
+
+    .user-drop .avatar img {
+        height: 9vmin;
+        width: 9vmin;
     }
 }

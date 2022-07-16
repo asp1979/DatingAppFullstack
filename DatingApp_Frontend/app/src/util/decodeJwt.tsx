@@ -4,6 +4,7 @@ interface IMyJwt extends JwtPayload {
     nameid: string,
     unique_name: string,
     photo_url: string
+    exp: number,
 }
 
 export const decodeJwt = (jwt: string): IMyJwt => {
@@ -15,7 +16,8 @@ export const decodeJwt = (jwt: string): IMyJwt => {
         decoded = {
             nameid: "",
             unique_name: "",
-            photo_url: ""
+            photo_url: "",
+            exp: 0
         }
     }
 

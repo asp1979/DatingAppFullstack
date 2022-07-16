@@ -22,12 +22,12 @@ export const App = (): JSX.Element => {
 
     const [userContext, setUserContext] = useState<UserContextState>({
         baseURL: "http://localhost:5000/api/",
-        jwt: jwt ? jwt : "",
+        jwt: jwt,
         jwtID: decoded.nameid,
         jwtUsername: decoded.unique_name,
         jwtPhotoUrl: decoded.photo_url,
-        jwtExpiry: decoded.exp ? decoded.exp : -1,
-        loggedIn: jwt ? true : false,
+        jwtExpiry: decoded.exp,
+        loggedIn: decoded.nameid ? true : false,
         unreadMatches: 0
     })
 

@@ -27,8 +27,8 @@ export const Login = withRouter(({ history }): JSX.Element => {
                     jwtID: decoded.nameid,
                     jwtUsername: decoded.unique_name,
                     jwtPhotoUrl: decoded.photo_url,
-                    jwtExpiry: decoded.exp ? decoded.exp : -1,
-                    loggedIn: true,
+                    jwtExpiry: decoded.exp,
+                    loggedIn: decoded.nameid ? true : false,
                     unreadMatches: 0
                 });
                 history.push("/find"); // redirect
