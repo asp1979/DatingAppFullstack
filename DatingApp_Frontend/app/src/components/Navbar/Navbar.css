@@ -31,7 +31,6 @@
 .user-nav a {
     display: inline-block;
     font-size: 2.2vmin;
-    margin: 0 2vmin;
     padding: 1vmin 2.2vmin;
     cursor: pointer;
     border: 0.3vmin solid white;
@@ -42,6 +41,7 @@
 .user-drop {
     position: relative;
     display: inline-block;
+    padding: 0;
 }
 
 .user-drop-content {
@@ -54,8 +54,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 7vmin;
-    width: 17vmin;
+    height: 6.2vmin;
+    width: 15vmin;
     font-size: 2.2vmin;
     background: #ED6975;
     border-radius: 0;
@@ -73,8 +73,8 @@
 }
 
 .user-drop .avatar img {
-    height: 6.5vmin;
-    width: 6.5vmin;
+    height: 6.2vmin;
+    width: 6.2vmin;
     border-radius: 50%;
     object-fit: cover;
 }
