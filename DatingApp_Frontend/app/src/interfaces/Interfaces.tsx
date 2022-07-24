@@ -48,3 +48,5 @@ export interface IFormData {
     recipientID: number,
     senderID: number
 }
+
+export type AnyJSON = object | [] | string | number | boolean
