@@ -24,7 +24,7 @@ export const User = ({ match, history }: IProps): JSX.Element => {
     }
 
     const unlikeUser = async () => {
-        await timderFetch("DELETE", `v1/users/${userContext.jwtID}/like/${userID}`, "")
+        await timderFetch("DELETE", `v1/users/${userContext.jwtID}/like/${userID}`)
         .then(res => {
             history.push("/matches"); // redirect to matches
         })
@@ -32,8 +32,7 @@ export const User = ({ match, history }: IProps): JSX.Element => {
 
     useEffect(() => {
         async function getUser() {
-            await timderFetch("GET", `v1/users/${userID}`, "")
-            .then(res => res.json())
+            await timderFetch("GET", `v1/users/${userID}`)
             .then((user: IUser) => {
                 setUser({ ...user });
                 if(user.id === +userContext.jwtID) {

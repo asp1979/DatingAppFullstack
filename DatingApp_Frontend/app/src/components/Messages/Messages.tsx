@@ -44,11 +44,9 @@ export const Messages = (): JSX.Element => {
 
     useEffect(() => {
         async function getMessages() {
-            const inbox = await timderFetch("GET", path + "?messageContainer=inbox", "");
-            const outbox = await timderFetch("GET", path + "?messageContainer=outbox", "");
-            if(inbox.ok && outbox.ok) {
-                const inboxJSON = await inbox.json();
-                const outboxJSON = await outbox.json();
+            try {
+                const inboxJSON = await timderFetch("GET", path + "?messageContainer=inbox");
+                const outboxJSON = await timderFetch("GET", path + "?messageContainer=outbox");
                 const threads =
                     messageThreads(inboxJSON, outboxJSON)
                     .sort((a: any, b: any) => (
@@ -56,8 +54,8 @@ export const Messages = (): JSX.Element => {
                     ));
                 setThreads([...threads]);
                 setLoading(false);
-            } else {
-                console.error("failed inbox/outbox fetch", inbox, outbox)
+            } catch(err) {
+                console.error("failed inbox/outbox fetch", err);
             }
         }
         getMessages();

@@ -40,8 +40,7 @@ export const Matches = (): JSX.Element => {
 
     useEffect(() => {
         async function getMatches() {
-            await timderFetch("GET", "v1/users?likersOrLikees=likees", "")
-            .then(res => res.json())
+            await timderFetch("GET", "v1/users?likersOrLikees=likees")
             .then(res => {
                 setMatches([...res].sort((a,b) => a.username.localeCompare(b.username)));
                 setLoading(false);

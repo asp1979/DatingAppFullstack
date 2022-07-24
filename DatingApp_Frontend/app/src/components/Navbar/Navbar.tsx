@@ -36,8 +36,7 @@ export const Navbar = withRouter(({ history }): JSX.Element => {
     useEffect(() => {
         async function getUnreadMessagesCount() {
             if(userContext.loggedIn === true) {
-                await timderFetch("GET", `v1/users/${userContext.jwtID}/messages`, "")
-                .then(res => res.json())
+                await timderFetch("GET", `v1/users/${userContext.jwtID}/messages`)
                 .then(messages => {
                     const unreadMessagesCount = messages.reduce((a: number, msg: IMessage) => msg.isRead ? a + 0 : a + 1, 0);
                     setUnreadMessages(unreadMessagesCount);

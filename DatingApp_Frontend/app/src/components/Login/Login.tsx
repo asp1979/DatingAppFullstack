@@ -1,5 +1,5 @@
 import './Login.css';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserContext } from '../../UserContext';
 import { useForm } from 'react-hook-form';
 import { withRouter } from 'react-router-dom';
@@ -12,10 +12,10 @@ export const Login = withRouter(({ history }): JSX.Element => {
     const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
     const { timderFetch } = useTimderApi();
     const { register, handleSubmit } = useForm();
+    const [loginError, setLoginError] = useState("");
 
     const onSubmit = async (formdata: IFormData) => {
         await timderFetch("POST", "v1/auth/login", formdata)
-        .then(res => res.json())
         .then(res => {
             const jwt = res.token;
             if(jwt) {
@@ -34,7 +34,8 @@ export const Login = withRouter(({ history }): JSX.Element => {
                 history.push("/find"); // redirect
             }
         })
-        .catch(err => {
+        .catch((err: Error) => {
+            setLoginError(err.message)
             console.error(err);
         })
     }
@@ -46,14 +47,16 @@ export const Login = withRouter(({ history }): JSX.Element => {
 
                 <h1>Sign in</h1>
 
+                { loginError && <span className="error-span">{loginError}</span> }
+
                 <div className="input-container">
                     <span className="input-name">Username</span>
-                    <input name="username" maxLength={16} autoComplete="off" ref={register({ required: true, minLength: 2, maxLength: 16, pattern: /^[a-z0-9]+$/i })} />
+                    <input name="username" maxLength={16} autoComplete="off" ref={register({ required: true })} />
                 </div>
 
                 <div className="input-container">
                     <span className="input-name">Password</span>
-                    <input name="password" maxLength={32} autoComplete="off" ref={register({ required: true, minLength: 4, maxLength: 32, pattern: /^[a-z0-9]+$/i })} type="password" />
+                    <input name="password" maxLength={32} autoComplete="off" ref={register({ required: true })} type="password" />
                 </div>
 
                 <button type="submit">Sign in</button>

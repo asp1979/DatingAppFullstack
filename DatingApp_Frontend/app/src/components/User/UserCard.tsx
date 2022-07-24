@@ -42,7 +42,7 @@ export const UserCard = ({
             return;
         }
         const query = "?introduction=" + newStatus.replaceAll(" ", "+");
-        await timderFetch("PUT", `v1/users/${user.id}/introduction` + query, "")
+        await timderFetch("PUT", `v1/users/${user.id}/introduction` + query)
         .then(res => {
             window.location.reload();
         })

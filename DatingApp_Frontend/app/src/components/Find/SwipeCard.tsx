@@ -17,7 +17,7 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }: IProps): JSX.Elem
     const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
 
     const likeUser = async (userID: number) => {
-        await timderFetch("POST", `v1/users/${userContext.jwtID}/like/${userID}`, "")
+        await timderFetch("POST", `v1/users/${userContext.jwtID}/like/${userID}`)
         .then(res => {
             setUserContext({
                 ...userContext,

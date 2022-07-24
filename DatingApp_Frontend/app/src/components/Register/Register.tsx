@@ -13,7 +13,6 @@ export const Register = (): JSX.Element => {
 
     const onSubmit = async (formdata: IFormData) => {
         await timderFetch("POST", "v1/auth/register", formdata)
-        .then(res => res.json())
         .then(res => {
             console.log(res);
             setRegSuccess(true);

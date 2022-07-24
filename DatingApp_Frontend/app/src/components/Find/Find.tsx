@@ -15,19 +15,17 @@ export const Find = (): JSX.Element => {
 
     useEffect(() => {
         async function getUsers() {
-            const getAll = await timderFetch("GET", "v1/users", "");
-            const getLikees = await timderFetch("GET", "v1/users?likersOrLikees=likees", "");
-            if(getAll.ok && getLikees.ok) {
-                const getAllJSON = await getAll.json();
-                const getLikeesJSON = await getLikees.json();
+            try {
+                const getAllJSON = await timderFetch("GET", "v1/users");
+                const getLikeesJSON = await timderFetch("GET", "v1/users?likersOrLikees=likees");
 
                 const getLikeesStr = getLikeesJSON.map((user: IUser) => JSON.stringify(user));
                 const usersNotYetLiked = getAllJSON.filter((user: IUser) => !getLikeesStr.includes(JSON.stringify(user)));
 
                 setUsers([...shuffleUsers(usersNotYetLiked)]);
                 setLoading(false);
-            } else {
-                console.error("error fetching users/likees", getAll, getLikees)
+            } catch(err) {
+                console.error("error fetching users/likees", err);
             }
         }
         getUsers();

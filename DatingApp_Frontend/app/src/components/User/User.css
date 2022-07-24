@@ -186,4 +186,10 @@
         font-size: 3vmin;
         border-radius: 2.5vmin;
     }
+
+    .edit-user-modal textarea, .edit-user-modal label {
+        font-size: 4vmin;
+        resize: none;
+    }
+
 }

@@ -1,6 +1,6 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./Modal.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './Modal.css';
 
 interface IProps {
     children: React.ReactNode,

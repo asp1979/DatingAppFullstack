@@ -36,31 +36,28 @@ export const MessagesThread = ({ match }: IProps): JSX.Element => {
     }
 
     const deleteMessage = async (messageID: number) => {
-        await timderFetch("DELETE", `v1/users/${userID}/messages/${messageID}`, "")
+        await timderFetch("DELETE", `v1/users/${userID}/messages/${messageID}`)
         .catch(err => console.error(err));
     }
 
     const deleteAll = async () => {
         const messageIDs = messages.map(x => x.id)
-        await timderFetch("DELETE", `v1/users/${userID}/messages?msgIDs=${JSON.stringify(messageIDs)}`, "")
+        await timderFetch("DELETE", `v1/users/${userID}/messages?msgIDs=${JSON.stringify(messageIDs)}`)
         .catch(err => console.error(err));
     }
 
     useEffect(() => {
         async function getData() {
-            const getMessages = await timderFetch("GET", `v1/users/${userID}/messages/thread/${oppositeUserID}`, "");
-            const getOppositeUser = await timderFetch("GET", `v1/users/${oppositeUserID}`, "");
-
-            if(getMessages.ok && getOppositeUser.ok) {
-                const messages: IMessage[] = await getMessages.json();
+            try {
+                const messages: IMessage[] = await timderFetch("GET", `v1/users/${userID}/messages/thread/${oppositeUserID}`);
                 setMessages([...messages].sort((a,b) => Date.parse(a.messageSent) - Date.parse(b.messageSent)));
 
-                const oppositeUserJSON = await getOppositeUser.json();
+                const oppositeUserJSON = await timderFetch("GET", `v1/users/${oppositeUserID}`);
                 setOppositeUser(oppositeUserJSON);
 
                 setLoading(false);
-            } else {
-                console.error("failed fetching messages/oppositeUser", getMessages, getOppositeUser);
+            } catch(err) {
+                console.error("failed fetching messages/oppositeUser", err);
             }
         }
         getData();
