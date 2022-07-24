@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { UserContext } from '../UserContext';
-import { AnyJSON, IUserContext } from '../interfaces/Interfaces';
+import { JSON, HTTPVerb, IUserContext } from '../interfaces/Interfaces';
 
 interface ITimderFetch {
-    timderFetch: (verb: string, path: string, postJSON?: AnyJSON) => Promise<any>
+    timderFetch: (verb: HTTPVerb, path: string, postJSON?: JSON) => Promise<any>
 }
 
 export const useTimderApi = (): ITimderFetch => {
@@ -21,7 +21,7 @@ export const useTimderApi = (): ITimderFetch => {
         })
         .then(async (res) => {
             if(!res.ok) throw Error("Error: " + res.status + " " + res.statusText);
-            let json: AnyJSON
+            let json: JSON
             try {
                 json = await res.json();
             } catch {
