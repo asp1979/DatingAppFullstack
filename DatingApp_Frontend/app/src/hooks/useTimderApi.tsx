@@ -3,7 +3,7 @@ import { UserContext } from '../UserContext';
 import { AnyJSON, IUserContext } from '../interfaces/Interfaces';
 
 interface ITimderFetch {
-    timderFetch: (verb: string, path: string, postJSON?: AnyJSON) => Promise<AnyJSON>
+    timderFetch: (verb: string, path: string, postJSON?: AnyJSON) => Promise<any>
 }
 
 export const useTimderApi = (): ITimderFetch => {
