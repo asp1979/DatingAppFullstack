@@ -3,14 +3,14 @@ import { UserContext } from '../UserContext';
 import { IUserContext } from '../interfaces/Interfaces';
 
 interface ITimderFetch {
-    timderFetch: (verb: string, path: string, postJSON?: object | [] | "" | number) => Promise<any>
+    timderFetch: (verb: string, path: string, postJSON?: object | [] | string | number | boolean) => Promise<any>
 }
 
 export const useTimderApi = (): ITimderFetch => {
     const { userContext } = useContext<IUserContext>(UserContext);
 
     const timderFetch: ITimderFetch["timderFetch"] = async (verb, path, postJSON) => {
-        return await fetch(userContext.baseURL + path, {
+        return fetch(userContext.baseURL + path, {
             method: verb,
             headers: {
                 "Authorization": "Bearer " + userContext.jwt,
@@ -19,11 +19,16 @@ export const useTimderApi = (): ITimderFetch => {
             },
             body: postJSON ? JSON.stringify(postJSON) : null
         })
-        .then(res => {
+        .then(async (res) => {
             if(!res.ok) throw Error("Error: " + res.status + " " + res.statusText);
-            return res.json();
+            let json: object | [] | string | number | boolean;
+            try {
+                json = await res.json();
+            } catch {
+                json = "";
+            }
+            return json;
         })
-        .catch((err) => err);
     }
 
     return { timderFetch }

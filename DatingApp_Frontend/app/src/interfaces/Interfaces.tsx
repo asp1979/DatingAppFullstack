@@ -14,6 +14,13 @@ export interface IUserContext {
 
 export type UserContextState = IUserContext["userContext"]
 
+export interface IMyJwt {
+    nameid: string,
+    unique_name: string,
+    photo_url: string
+    exp: number,
+}
+
 export interface IUser {
     id: number,
     username: string,

@@ -1,11 +1,5 @@
-import jwt_decode, { JwtPayload } from "jwt-decode";
-
-interface IMyJwt extends JwtPayload {
-    nameid: string,
-    unique_name: string,
-    photo_url: string
-    exp: number,
-}
+import jwt_decode from "jwt-decode";
+import { IMyJwt } from "../interfaces/Interfaces";
 
 export const decodeJwt = (jwt: string): IMyJwt => {
     let decoded: IMyJwt;
