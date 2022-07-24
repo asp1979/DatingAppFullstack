@@ -49,6 +49,6 @@ export interface IFormData {
     senderID: number
 }
 
-export type JSON = object | [] | string | number | boolean
+export type AnyJSON = object | [] | string | number | boolean
 
 export type HTTPVerb = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"
