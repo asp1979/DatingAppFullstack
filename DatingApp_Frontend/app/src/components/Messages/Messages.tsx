@@ -2,7 +2,7 @@ import './Messages.css';
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import { Link } from 'react-router-dom';
-import { messageThreads } from './messageThreads';
+import { IPersonYouTalkedTo, messageThreads } from './messageThreads';
 import { useTimderApi } from '../../hooks/useTimderApi';
 import { IUserContext } from '../../interfaces/Interfaces';
 
@@ -12,7 +12,7 @@ export const Messages = (): JSX.Element => {
 
     const { userContext } = useContext<IUserContext>(UserContext);
     const { timderFetch } = useTimderApi();
-    const [threads, setThreads] = useState<any>([]);
+    const [threads, setThreads] = useState<IPersonYouTalkedTo[]>([]);
     const [loading, setLoading] = useState(true);
     const [sortBy, setSortBy] = useState<SortBy>("Newest");
 
@@ -21,24 +21,34 @@ export const Messages = (): JSX.Element => {
 
     function sortThreadsState(sortBy: SortBy) {
         if(sortBy === "Newest") {
-            setThreads([...threads.sort((a: any, b: any) => Date.parse(b[1][0].messageSent) - Date.parse(a[1][0].messageSent))]);
+            setThreads([...threads.sort((a: IPersonYouTalkedTo, b: IPersonYouTalkedTo) => {
+                return Date.parse(b.sharedMessages[0].messageSent) - Date.parse(a.sharedMessages[0].messageSent);
+            })]);
             setSortBy("Newest");
         }
         else if(sortBy === "Oldest") {
-            setThreads([...threads.sort((a: any, b: any) => Date.parse(a[1][0].messageSent) - Date.parse(b[1][0].messageSent))]);
+            setThreads([...threads.sort((a: IPersonYouTalkedTo, b: IPersonYouTalkedTo) => {
+                return Date.parse(a.sharedMessages[0].messageSent) - Date.parse(b.sharedMessages[0].messageSent);
+            })]);
             setSortBy("Oldest");
         }
         else if(sortBy === "Unread") {
-            setThreads([...threads.sort((a: any, b: any) => b[4] - a[4])]);
+            setThreads([...threads.sort((a: IPersonYouTalkedTo, b: IPersonYouTalkedTo) => {
+                return a.unreadCount - b.unreadCount;
+            })]);
             setSortBy("Unread");
         }
         else if(sortBy === "Username A-Z") {
-            setThreads([...threads.sort((a: any, b: any) => a[2].localeCompare(b[2]))]);
+            setThreads([...threads.sort((a: IPersonYouTalkedTo, b: IPersonYouTalkedTo) => {
+                return a.username.localeCompare(b.username);
+            })]);
             setSortBy("Username A-Z");
         }
         else if(sortBy === "Username Z-A") {
-            setThreads([...threads.sort((a: any, b: any) => b[2].localeCompare(a[2]))]);
-            setSortBy("Username A-Z");
+            setThreads([...threads.sort((a: IPersonYouTalkedTo, b: IPersonYouTalkedTo) => {
+                return b.username.localeCompare(a.username);
+            })]);
+            setSortBy("Username Z-A");
         }
     }
 
@@ -47,12 +57,7 @@ export const Messages = (): JSX.Element => {
             try {
                 const inboxJSON = await timderFetch("GET", path + "?messageContainer=inbox");
                 const outboxJSON = await timderFetch("GET", path + "?messageContainer=outbox");
-                const threads =
-                    messageThreads(inboxJSON, outboxJSON)
-                    .sort((a: any, b: any) => (
-                        Date.parse(b[1][0].messageSent) - Date.parse(a[1][0].messageSent)
-                    ));
-                setThreads([...threads]);
+                setThreads([...messageThreads(inboxJSON, outboxJSON, userID)]);
                 setLoading(false);
             } catch(err) {
                 console.error("failed inbox/outbox fetch", err);
@@ -87,24 +92,17 @@ export const Messages = (): JSX.Element => {
                 <ul>
                 {
                     !loading && threads
-                    .map((user: any, i: number) => {
-
-                        // user[0] = senderID
-                        // user[1] = all message objects
-                        // user[2] = senderUsername
-                        // user[3] = senderPhotoUrl
-                        // user[4] = unread messages count
-
+                    .map((user: IPersonYouTalkedTo, i: number) => {
                         return (
-                            <Link to={"thread/" + user[0]} className="thread-link" key={i}>
-                                <img className="photo" src={user[3]} alt=""></img>
+                            <Link to={"thread/" + user.id} className="thread-link" key={i}>
+                                <img className="photo" src={user.photoUrl} alt=""></img>
                                 <p className="last-msg">
-                                    {user[1][0].senderUsername === userContext.jwtUsername
-                                        ? ("You: " + user[1][0].content).substring(0,16) + "..."
-                                        : (user[1][0].senderUsername + ": " + user[1][0].content).substring(0,12) + "..."
+                                    { user.sharedMessages[0].senderID == userID
+                                        ? ("You: " + user.sharedMessages[0].content).substring(0,16) + "..."
+                                        : (user.sharedMessages[0].senderUsername + ": " + user.sharedMessages[0].content).substring(0,16) + "..."
                                     }
                                 </p>
-                                { user[4] > 0 ? <p className="unread-count">{user[4]}</p> : null }
+                                { user.unreadCount > 0 && <p className="unread-count">{user.unreadCount}</p> }
                             </Link>
                         )
                     })

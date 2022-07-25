@@ -1,44 +1,52 @@
 import { IMessage } from "../../interfaces/Interfaces";
 
-// this groups messages between 2 people (conversation thread)
+export interface IPersonYouTalkedTo {
+    id: number,
+    username: string,
+    photoUrl: string,
+    sharedMessages: IMessage[],
+    unreadCount: number
+}
 
-export function messageThreads(inbox: IMessage[], outbox: IMessage[]): any[] {
+export function messageThreads(inbox: IMessage[], outbox: IMessage[], myUserID: number): IPersonYouTalkedTo[] {
+    const all = [...inbox, ...outbox].sort((a,b) => Date.parse(b.messageSent) - Date.parse(a.messageSent));
 
-    function groupBy(arr: IMessage[], keyGetter: (key: IMessage) => any) {
-        let map = new Map();
-        arr.forEach((item: IMessage) => {
-            let key = keyGetter(item);
-            let pair = map.get(key);
-            if(!pair) {
-                map.set(key, [item]);
-            } else {
-                pair.push(item);
+    const peopleYouTalkedTo: IPersonYouTalkedTo[] = all.map(x => {
+        if(x.senderID !== myUserID) {
+            return {
+                id: x.senderID,
+                username: x.senderUsername,
+                photoUrl: x.senderPhotoUrl,
+                sharedMessages: [],
+                unreadCount: 0
             }
-        });
-        return map;
-    }
+        } else if(x.recipientID !== myUserID) {
+            return {
+                id: x.recipientID,
+                username: x.recipientUsername,
+                photoUrl: x.recipientPhotoUrl,
+                sharedMessages: [],
+                unreadCount: 0
+            }
+        } else {
+            return {
+                id: -1,
+                username: "",
+                photoUrl: "",
+                sharedMessages: [],
+                unreadCount: 0
+            }
+        }
+    })
+    .filter((x,i,a) => (a.findIndex(x2 => x2.id === x.id) === i) || (x.id === -1))
 
-    let threads: any[] = [...groupBy(inbox, msg => msg.senderID)];
-    threads.forEach(x => {
-        x.push(x[1][0].senderUsername)
-        x.push(x[1][0].senderPhotoUrl)
-        x.push(x[1].reduce((a: any, x: any) => x.isRead ? a + 0 : a + 1, 0));
-    });
+    peopleYouTalkedTo.forEach(x => {
+        x.sharedMessages = all.filter(x2 =>
+            (x2.senderID === myUserID && x2.recipientID === x.id)
+            || (x2.recipientID === myUserID && x2.senderID === x.id)
+        ).reverse()
+        x.unreadCount = x.sharedMessages.filter(x => x.senderID !== myUserID && !x.isRead).length
+    })
 
-    // threads[0][0] is the senderID
-    // threads[0][1] is all the message objects of the user
-    // threads[0][2] is the senderUsername
-    // threads[0][3] is the senderPhotoUrl
-    // threads[0][4] is is the amount of unread messages
-
-    let noReplyThreads: any[] = outbox.filter(msg => threads.every(x => x[0] !== msg.recipientID));
-    noReplyThreads = [...groupBy(noReplyThreads, msg => msg.recipientID)];
-    noReplyThreads.forEach(x => {
-        x.push(x[1][0].recipientUsername)
-        x.push(x[1][0].recipientPhotoUrl)
-    });
-
-    // same format as threads
-
-    return [threads, noReplyThreads].flat();
+    return peopleYouTalkedTo;
 }
