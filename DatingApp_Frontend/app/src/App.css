@@ -121,13 +121,22 @@ th {
     left: 50%;
     transform: translateX(-50%);
     width: 90vmin;
-    min-height: 92%;
+    height: 82vh;
     padding: 4vmin;
     margin-bottom: 2%;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 3.2vmin;
     box-shadow: 0 0.2vmin 6.0vmin rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(1.0vmin);
+}
+
+.page .content ul {
+    justify-content: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 85%;
+    padding-top: 2vh;
+    padding-bottom: 4vh;
 }
 
 .page .content h1 {
@@ -212,7 +221,6 @@ th {
         left: 50%;
         transform: translateX(-50%);
         width: 90vmin;
-        min-height: 85%;
         padding: 4vmin;
         padding-bottom: 10vmin;
         margin-bottom: 2%;
@@ -222,6 +230,10 @@ th {
 
     .page .content h1 {
         font-size: 5vmin;
+    }
+
+    .page .content ul {
+        height: 92%;
     }
 
     .sortby {

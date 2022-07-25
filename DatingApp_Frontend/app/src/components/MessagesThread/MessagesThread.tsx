@@ -110,16 +110,16 @@ export const MessagesThread = ({ match }: IProps): JSX.Element => {
                         .map((msg) =>
                             msg.senderID === Number(userContext.jwtID)
                             ? <div key={msg.id} className="message-container logged-user">
-                                <p>{msg.content}</p>
-                                <p>
+                                <p className="msg-content">{msg.content}</p>
+                                <p className="msg-date">
                                     {messageTimestamp(msg.messageSent)}
                                     <i onClick={() => deleteMessage(msg.id)} className="delete-message fas fa-times"></i>
                                 </p>
                             </div>
 
                             : <div key={msg.id} className="message-container opposite-user">
-                                <p>{msg.content}</p>
-                                <p>
+                                <p className="msg-content">{msg.content}</p>
+                                <p className="msg-date">
                                     {messageTimestamp(msg.messageSent)}
                                     <i onClick={() => deleteMessage(msg.id)} className="delete-message fas fa-times"></i>
                                 </p>

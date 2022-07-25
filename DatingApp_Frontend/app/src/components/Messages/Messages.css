@@ -3,7 +3,6 @@
     grid-template-columns: 33vmin 33vmin;
     column-gap: 8vmin;
     grid-auto-rows: 15vmin;
-    padding: 0 4vmin;
 }
 
 .thread-link {
@@ -39,17 +38,16 @@
     color: white;
     padding: 0.5vmin;
     border-radius: 1vmin;
-    font-size: 1.75vmin;
+    font-size: 1.5vmin;
     margin-right: 2vmin;
 }
 
 @media only screen and (max-width: 767px) {
     .messages .content ul {
         display: grid;
-        grid-template-columns: 78vmin;
+        grid-template-columns: 70vmin;
         row-gap: 10vmin;
         grid-auto-rows: 15vmin;
-        padding: 0 2vmin;
     }
 
     .thread-link {

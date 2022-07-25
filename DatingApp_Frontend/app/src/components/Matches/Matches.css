@@ -4,7 +4,6 @@
     column-gap: 5vmin;
     grid-auto-rows: 15vmin;
     row-gap: 5vmin;
-    padding: 0 3.3vmin;
 }
 
 .person-card {
@@ -48,7 +47,6 @@
         column-gap: 10vmin;
         grid-auto-rows: 30vmin;
         row-gap: 10vmin;
-        padding: 0 6.4vmin;
     }
 
     .person-card {

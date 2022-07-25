@@ -8,12 +8,12 @@
 
 .messages-thread .content ul {
     display: grid;
-    grid-template-columns: 41vmin;
+    justify-content: flex-start;
+    height: 78%;
+    grid-template-columns: 34vmin;
     grid-auto-rows: min-content;
     grid-row-gap: 2vmin;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 2vmin 0;
+    padding-left: 2vmin;
 }
 
 .message-container {
@@ -40,8 +40,12 @@
     border-radius: 5vmin;
 }
 
-.message-container > :nth-child(1) {
+.msg-content {
     word-break: break-all;
+}
+
+.msg-date {
+    white-space: nowrap;
 }
 
 .message-container.logged-user {
@@ -134,14 +138,7 @@
     }
 
     .messages-thread .content ul {
-        display: grid;
-        grid-template-columns: 41vmin;
-        grid-auto-rows: min-content;
-        grid-row-gap: 2vmin;
-        height: 60vmin;
-        overflow-y: auto;
-        overflow-x: hidden;
-        padding: 2vmin 0;
+        height: 85%;
     }
 
     .title-img {
