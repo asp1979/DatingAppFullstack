@@ -26,8 +26,8 @@ export const MessagesThread = ({ match }: IProps): JSX.Element => {
     const [loading, setLoading] = useState(true);
     const [openModal, setOpenModal] = useState(false);
 
-    const lastMsgRef: any = useRef();
-    const scrollToLast = () => lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
+    const bottomMsgRef = useRef<HTMLDivElement>(null);
+    const scrollToLast = () => bottomMsgRef.current?.scrollIntoView({ behavior: "smooth" });
 
     const onSubmit = async (formdata: IFormData) => {
         formdata.recipientID = oppositeUserID;
@@ -126,7 +126,7 @@ export const MessagesThread = ({ match }: IProps): JSX.Element => {
                             </div>
                         )
                     }
-                    <div ref={lastMsgRef}></div>
+                    <div ref={bottomMsgRef}></div>
                 </ul>
 
                 <form onSubmit={ handleSubmit(onSubmit) } className="form-inputs send-message">

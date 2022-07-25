@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Frame, useMotionValue, useTransform, useAnimation } from "framer";
+import { Frame, useMotionValue, useTransform, useAnimation, PanInfo, MotionValue } from "framer";
 import { UserContext } from '../../UserContext';
 import { UserCard } from '../User/UserCard';
 import { useTimderApi } from '../../hooks/useTimderApi';
@@ -38,7 +38,7 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }: IProps): JSX.Elem
         swipeConfirmPx = 30;
     }
 
-    const handleDragEnd = (event: any, info: any) => {
+    const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
         if(Math.abs(info.offset.x) <= swipeConfirmPx) {
             animControls.start({ x: 0 });
         }
@@ -59,9 +59,9 @@ export const SwipeCard = ({ user, swipeCount, setSwipeCount }: IProps): JSX.Elem
         animate={animControls}
         style={{ display: "flex" }}
         drag="x"
-        x={motionValue as any}
+        x={motionValue as MotionValue<string | number>}
         opacity={opacityValue}
-        scale={scaleValue as any}
+        scale={scaleValue as MotionValue<string | number>}
         dragConstraints={{ left: -300, right: 300 }}
         className="user-info"
         onDragEnd={(event, info) => handleDragEnd(event, info)}>

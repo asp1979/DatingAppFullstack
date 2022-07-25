@@ -74,21 +74,19 @@ export const Matches = (): JSX.Element => {
                 {
                     !loading && matches.length === 0
                     ? <div className="empty-list">No matches yet.</div>
-                    : null
+                    : <ul>
+                        {matches
+                            .filter(match => match.username !== userContext.jwtUsername)
+                            .map((match, i) =>
+                                <Link to={"user/" + match.id} className="person-card" key={i}>
+                                    <p>{match.username}</p>
+                                    <img src={match.photoUrl} alt=""></img>
+                                </Link>
+                            )
+                        }
+                    </ul>
                 }
 
-                <ul>
-                { 
-                    !loading && matches
-                    .filter(match => match.username !== userContext.jwtUsername)
-                    .map((match, i) => 
-                        <Link to={"user/" + match.id} className="person-card" key={i}>
-                            <p>{match.username}</p>
-                            <img src={match.photoUrl} alt=""></img>
-                        </Link>
-                    )
-                }
-                </ul>
             </div>
         </div>
     )

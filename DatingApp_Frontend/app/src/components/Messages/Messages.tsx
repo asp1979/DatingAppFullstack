@@ -86,28 +86,24 @@ export const Messages = (): JSX.Element => {
                 {
                     !loading && threads.length === 0
                     ? <div className="empty-list">No messages yet.</div>
-                    : null
+                    : <ul>
+                        {threads
+                            .map((user: IPersonYouTalkedTo, i: number) =>
+                                <Link to={"thread/" + user.id} className="thread-link" key={i}>
+                                    <img className="photo" src={user.photoUrl} alt=""></img>
+                                    <p className="last-msg">
+                                        { user.sharedMessages[0].senderID === userID
+                                            ? ("You: " + user.sharedMessages[0].content).substring(0,16) + "..."
+                                            : (user.sharedMessages[0].senderUsername + ": " + user.sharedMessages[0].content).substring(0,16) + "..."
+                                        }
+                                    </p>
+                                    { user.unreadCount > 0 && <p className="unread-count">{user.unreadCount}</p> }
+                                </Link>
+                            )
+                        }
+                    </ul>
                 }
 
-                <ul>
-                {
-                    !loading && threads
-                    .map((user: IPersonYouTalkedTo, i: number) => {
-                        return (
-                            <Link to={"thread/" + user.id} className="thread-link" key={i}>
-                                <img className="photo" src={user.photoUrl} alt=""></img>
-                                <p className="last-msg">
-                                    { user.sharedMessages[0].senderID == userID
-                                        ? ("You: " + user.sharedMessages[0].content).substring(0,16) + "..."
-                                        : (user.sharedMessages[0].senderUsername + ": " + user.sharedMessages[0].content).substring(0,16) + "..."
-                                    }
-                                </p>
-                                { user.unreadCount > 0 && <p className="unread-count">{user.unreadCount}</p> }
-                            </Link>
-                        )
-                    })
-                }
-                </ul>
             </div>
         </div>
     )
