@@ -71,11 +71,11 @@
 }
 
 .user-actions {
-    position: absolute;
-    top: -10vmin;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: -10vmin;
     width: 100%;
 }
 
@@ -145,12 +145,12 @@
 @media only screen and (max-width: 767px) {
     .user-info {
         font-size: 5vmin !important;
-        width: 62vmin !important;
-        min-width: 62vmin !important;
-        max-width: 62vmin !important;
-        height: 90vmin !important;
-        min-height: 90vmin !important;
-        max-height: 90vmin !important;
+        width: 50vmin !important;
+        min-width: 50vmin !important;
+        max-width: 50vmin !important;
+        height: 70vmin !important;
+        min-height: 70vmin !important;
+        max-height: 70vmin !important;
         animation: opacity-delay;
         animation-duration: 0.9s;
         animation-fill-mode: forwards;
@@ -161,18 +161,11 @@
         display: none;
     }
 
-    .user-actions {
-        bottom: -135vmin;
-    }
-
     .user-actions i {
-        margin: 0 9vmin;
-        padding: 5vmin;
-        border-radius: 50%;
-        font-size: 10vmin;
-        background: rgba(255, 255, 255, 0.3);
-        color: #FFFFFF;
-        cursor: pointer;
+        position: relative;
+        top: -5vmin;
+        font-size: 5vmin;
+        padding: 3vmin;
     }
 
     .user-name, .user-desc {

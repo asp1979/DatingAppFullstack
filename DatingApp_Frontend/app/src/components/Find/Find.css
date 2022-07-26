@@ -53,24 +53,26 @@
 
 .swipe-svg {
     position: absolute;
-    top: -5vmin;
+    top: -7vmin;
     height: 25vmin;
     pointer-events: none !important;
 }
 
 @media only screen and (max-width: 767px) {
     .swipe-svg {
-        top: -10vmin;
-        height: 40vmin;
+        top: -2vmin;
+        height: 36vmin;
     }
 
     .find-container .fas.fa-arrow-right {
-        bottom: 0;
-        right: 5vmin;
+        font-size: 10vmin;
+        bottom: 10vmin;
+        right: 12vmin;
     }
 
     .find-container .fas.fa-heart {
-        bottom: 0;
-        left: 5vmin;
+        font-size: 10vmin;
+        bottom: 10vmin;
+        left: 12vmin;
     }
 }

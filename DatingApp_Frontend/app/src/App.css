@@ -13,13 +13,13 @@
 }
 
 html {
-    height: 100%;
+    height: 100vh;
     scroll-behavior: smooth;
     background: linear-gradient(320deg,#f27121,#e94057,#8a2387);
 }
 
 body {
-    height: 100%;
+    height: 100vh;
     overflow-x: hidden;
 }
 
@@ -104,26 +104,18 @@ th {
 /*-----  GLOBAL CSS BELOW  -----*/
 
 .page {
-    position: absolute;
-    top: 10vmin;
-    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    min-height: calc(100% - 10vmin);
-}
-
-.content {
-    padding-top: 1vmin;
+    height: calc(100vh - 10vmin);
 }
 
 .page .content {
-    position: absolute;
-    top: 4%;
-    left: 50%;
-    transform: translateX(-50%);
     width: 90vmin;
-    height: 82vh;
+    height: calc(90vh - 10vmin);
     padding: 4vmin;
-    margin-bottom: 2%;
+    margin: 4vmin;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 3.2vmin;
     box-shadow: 0 0.2vmin 6.0vmin rgba(0, 0, 0, 0.1);
@@ -215,15 +207,14 @@ th {
 }
 
 @media only screen and (max-width: 767px) {
+    .page {
+        height: calc(100vh - 20vmin);
+    }
+
     .page .content {
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
         width: 90vmin;
-        padding: 4vmin;
-        padding-bottom: 10vmin;
-        margin-bottom: 2%;
+        height: 78%;
+        padding: 6vmin;
         border-radius: 2vmin;
         box-shadow: 0.1vmin 0.1vmin 0.5vmin 0vmin rgba(0,0,0,0.1);
     }
@@ -246,7 +237,7 @@ th {
 
     .sortby-content {
         width: 40vmin;
-        left: -0.25vmin;
+        left: -0.3vmin;
         border: 0.3vmin solid white;
         border-radius: 0 0 2vmin 2vmin;
     }
