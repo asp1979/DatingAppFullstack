@@ -237,7 +237,8 @@ th {
 
     .sortby-content {
         width: 40vmin;
-        left: -0.3vmin;
+        left: -0.1vmin;
+        margin-top: -0.3vmin;
         border: 0.3vmin solid white;
         border-radius: 0 0 2vmin 2vmin;
     }

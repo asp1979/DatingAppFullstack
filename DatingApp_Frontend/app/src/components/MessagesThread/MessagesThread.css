@@ -192,7 +192,8 @@
 
     .delete-all {
         font-size: 3vmin;
-        left: 41vmin;
+        left: 40.2vmin;
+        top: 0vmin;
     }
 
     .delete-message {
