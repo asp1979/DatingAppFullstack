@@ -65,6 +65,14 @@
     margin: 0 2vmin;
 }
 
+.form-inputs.send-message {
+    position: absolute;
+    bottom: 3vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .form-inputs.send-message input {
     width: 70.5vmin;
 }
@@ -72,11 +80,6 @@
 .messages-thread .form-inputs input {
     background: transparent;
     border: 0.3vmin solid white;
-}
-
-.form-inputs.send-message {
-    position: absolute;
-    bottom: 3vmin;
 }
 
 .form-inputs.send-message p {
@@ -111,9 +114,9 @@
 }
 
 .delete-all {
-    position: absolute;
-    top: 4vmin;
-    right: 2vmin;
+    position: relative;
+    left: 47.3vmin;
+    top: 0.3vmin;
     color: white;
     background-color: transparent;
     border: 0.3vmin solid white;
@@ -134,7 +137,7 @@
 
 @media only screen and (max-width: 767px) {
     .content.with-h1-img {
-        padding-top: 2.4vmin;
+        padding-top: 4.8vmin;
     }
 
     .messages-thread .content ul {
@@ -165,40 +168,31 @@
         margin: 0 2vmin;
     }
 
-    .form-inputs.send-message {
-        position: absolute;
-        bottom: 3vmin;
-        margin-left: 2vmin;
-    }
-
     .form-inputs.send-message p {
         font-size: 3vmin;
     }
 
     .form-inputs.send-message input {
-        width: 60vmin;
-        padding: 1.5vmin 1vmin;
+        width: 63vmin;
     }
 
     .form-inputs button {
-        font-size: 4vmin;
-        padding: 1.7vmin 2vmin;
-        margin-left: 4vmin;
+        font-size: 3.5vmin;
+        padding: 2vmin;
+    }
+
+    .form-inputs.send-message input {
+        width: 63vmin;
+        font-size: 3.5vmin;
     }
 
     .thread-legend div {
-        margin: 1.5vmin 2vmin 0 2vmin;
         font-size: 3vmin;
     }
 
     .delete-all {
         font-size: 3vmin;
-        position: absolute;
-        top: 2.8vmin;
-        right: 2vmin;
-        border: 0.3vmin solid white;
-        border-radius: 2vmin 2vmin 0 0;
-        border-bottom: none;
+        left: 41vmin;
     }
 
     .delete-message {

@@ -60,19 +60,18 @@
 
 @media only screen and (max-width: 767px) {
     .swipe-svg {
-        top: -2vmin;
-        height: 36vmin;
+        display: none;
     }
 
     .find-container .fas.fa-arrow-right {
         font-size: 10vmin;
         bottom: 10vmin;
-        right: 12vmin;
+        right: 19vmin;
     }
 
     .find-container .fas.fa-heart {
         font-size: 10vmin;
         bottom: 10vmin;
-        left: 12vmin;
+        left: 19vmin;
     }
 }
