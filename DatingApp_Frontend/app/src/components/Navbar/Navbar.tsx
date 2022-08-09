@@ -9,7 +9,7 @@ import { IMessage, IUserContext } from '../../interfaces/Interfaces';
 export const Navbar = withRouter(({ history }): JSX.Element => {
 
     const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
-    const { timderFetch } = useTimderApi();
+    const { get } = useTimderApi();
     const [loading, setLoading] = useState(true);
     const [unreadMessages, setUnreadMessages] = useState(0);
     const unreadMatches = userContext.unreadMatches;
@@ -36,7 +36,7 @@ export const Navbar = withRouter(({ history }): JSX.Element => {
     useEffect(() => {
         async function getUnreadMessagesCount() {
             if(userContext.loggedIn === true) {
-                await timderFetch("GET", `v1/users/${userContext.jwtID}/messages`)
+                await get(`v1/users/${userContext.jwtID}/messages`)
                 .then(messages => {
                     const unreadMessagesCount = messages.reduce((a: number, msg: IMessage) => msg.isRead ? a + 0 : a + 1, 0);
                     setUnreadMessages(unreadMessagesCount);

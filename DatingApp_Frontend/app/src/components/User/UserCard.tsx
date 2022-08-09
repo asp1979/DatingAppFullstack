@@ -24,7 +24,7 @@ export const UserCard = ({
     unlikeUser
     }: IProps): JSX.Element => {
 
-    const { timderFetch } = useTimderApi();
+    const { put } = useTimderApi();
     const [imgLoading, setImgLoading] = useState(true);
     const [openModal, setOpenModal] = useState(false);
     const { register, handleSubmit } = useForm();
@@ -42,7 +42,7 @@ export const UserCard = ({
             return;
         }
         const query = "?introduction=" + newStatus.replaceAll(" ", "+");
-        await timderFetch("PUT", `v1/users/${user.id}/introduction` + query)
+        await put(`v1/users/${user.id}/introduction` + query)
         .then(res => {
             window.location.reload();
         })

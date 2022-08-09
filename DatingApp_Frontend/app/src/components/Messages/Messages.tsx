@@ -11,7 +11,7 @@ type SortBy = ("Newest" | "Oldest" | "Unread" | "Username A-Z" | "Username Z-A")
 export const Messages = (): JSX.Element => {
 
     const { userContext } = useContext<IUserContext>(UserContext);
-    const { timderFetch } = useTimderApi();
+    const { get } = useTimderApi();
     const [threads, setThreads] = useState<IPersonYouTalkedTo[]>([]);
     const [loading, setLoading] = useState(true);
     const [sortBy, setSortBy] = useState<SortBy>("Newest");
@@ -55,8 +55,8 @@ export const Messages = (): JSX.Element => {
     useEffect(() => {
         async function getMessages() {
             try {
-                const inboxJSON = await timderFetch("GET", path + "?messageContainer=inbox");
-                const outboxJSON = await timderFetch("GET", path + "?messageContainer=outbox");
+                const inboxJSON = await get(path + "?messageContainer=inbox");
+                const outboxJSON = await get(path + "?messageContainer=outbox");
                 setThreads([...messageThreads(inboxJSON, outboxJSON, userID)]);
                 setLoading(false);
             } catch(err) {

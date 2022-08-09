@@ -10,12 +10,12 @@ import { decodeJwt } from '../../util/decodeJwt';
 export const Login = withRouter(({ history }): JSX.Element => {
 
     const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
-    const { timderFetch } = useTimderApi();
+    const { post } = useTimderApi();
     const { register, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState("");
 
     const onSubmit = async (formdata: IFormData) => {
-        await timderFetch("POST", "v1/auth/login", formdata)
+        await post("v1/auth/login", formdata)
         .then(res => {
             const jwt = res.token;
             if(jwt) {

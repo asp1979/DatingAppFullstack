@@ -9,7 +9,7 @@ type SortBy = ("Username A-Z" | "Username Z-A" | "Age Ascending" | "Age Descendi
 
 export const Matches = (): JSX.Element => {
 
-    const { timderFetch } = useTimderApi();
+    const { get } = useTimderApi();
     const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
     const [matches, setMatches] = useState<IUser[]>([]);
     const [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ export const Matches = (): JSX.Element => {
 
     useEffect(() => {
         async function getMatches() {
-            await timderFetch("GET", "v1/users?likersOrLikees=likees")
+            await get("v1/users?likersOrLikees=likees")
             .then(res => {
                 setMatches([...res].sort((a,b) => a.username.localeCompare(b.username)));
                 setLoading(false);

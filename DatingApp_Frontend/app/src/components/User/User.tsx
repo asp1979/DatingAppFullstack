@@ -13,7 +13,7 @@ export const User = ({ match, history }: IProps): JSX.Element => {
 
     const userID = match.params.id; // user ID derived from the current URL
     const { userContext } = useContext<IUserContext>(UserContext);
-    const { timderFetch } = useTimderApi();
+    const timderFetch = useTimderApi();
 
     const [user, setUser] = useState<IUser>();
     const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ export const User = ({ match, history }: IProps): JSX.Element => {
     }
 
     const unlikeUser = async () => {
-        await timderFetch("DELETE", `v1/users/${userContext.jwtID}/like/${userID}`)
+        await timderFetch.delete(`v1/users/${userContext.jwtID}/like/${userID}`)
         .then(res => {
             history.push("/matches"); // redirect to matches
         })
@@ -32,7 +32,7 @@ export const User = ({ match, history }: IProps): JSX.Element => {
 
     useEffect(() => {
         async function getUser() {
-            await timderFetch("GET", `v1/users/${userID}`)
+            await timderFetch.get(`v1/users/${userID}`)
             .then((user: IUser) => {
                 setUser({ ...user });
                 if(user.id === +userContext.jwtID) {

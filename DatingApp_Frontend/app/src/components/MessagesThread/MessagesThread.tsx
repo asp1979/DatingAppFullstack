@@ -14,7 +14,7 @@ interface IProps {
 
 export const MessagesThread = ({ match }: IProps): JSX.Element => {
 
-    const { timderFetch } = useTimderApi();
+    const timderFetch = useTimderApi();
     const { userContext } = useContext<IUserContext>(UserContext);
     const { register, handleSubmit, reset } = useForm();
 
@@ -31,28 +31,28 @@ export const MessagesThread = ({ match }: IProps): JSX.Element => {
 
     const onSubmit = async (formdata: IFormData) => {
         formdata.recipientID = oppositeUserID;
-        await timderFetch("POST", `v1/users/${userID}/messages`, formdata)
+        await timderFetch.post(`v1/users/${userID}/messages`, formdata)
         .catch(err => console.error(err));
     }
 
     const deleteMessage = async (messageID: number) => {
-        await timderFetch("DELETE", `v1/users/${userID}/messages/${messageID}`)
+        await timderFetch.delete(`v1/users/${userID}/messages/${messageID}`)
         .catch(err => console.error(err));
     }
 
     const deleteAll = async () => {
         const messageIDs = messages.map(x => x.id)
-        await timderFetch("DELETE", `v1/users/${userID}/messages?msgIDs=${JSON.stringify(messageIDs)}`)
+        await timderFetch.delete(`v1/users/${userID}/messages?msgIDs=${JSON.stringify(messageIDs)}`)
         .catch(err => console.error(err));
     }
 
     useEffect(() => {
         async function getData() {
             try {
-                const messages: IMessage[] = await timderFetch("GET", `v1/users/${userID}/messages/thread/${oppositeUserID}`);
+                const messages: IMessage[] = await timderFetch.get(`v1/users/${userID}/messages/thread/${oppositeUserID}`);
                 setMessages([...messages].sort((a,b) => Date.parse(a.messageSent) - Date.parse(b.messageSent)));
 
-                const oppositeUserJSON = await timderFetch("GET", `v1/users/${oppositeUserID}`);
+                const oppositeUserJSON = await timderFetch.get(`v1/users/${oppositeUserID}`);
                 setOppositeUser(oppositeUserJSON);
 
                 setLoading(false);

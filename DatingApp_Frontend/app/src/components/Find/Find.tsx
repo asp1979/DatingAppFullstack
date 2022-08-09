@@ -8,7 +8,7 @@ import SwipeSVG from './SwipeSVG.svg';
 
 export const Find = (): JSX.Element => {
 
-    const { timderFetch } = useTimderApi();
+    const { get } = useTimderApi();
     const [users, setUsers] = useState<IUser[]>([]);
     const [loading, setLoading] = useState(true);
     const [swipeCount, setSwipeCount] = useState(0);
@@ -16,8 +16,8 @@ export const Find = (): JSX.Element => {
     useEffect(() => {
         async function getUsers() {
             try {
-                const getAllJSON = await timderFetch("GET", "v1/users");
-                const getLikeesJSON = await timderFetch("GET", "v1/users?likersOrLikees=likees");
+                const getAllJSON = await get("v1/users");
+                const getLikeesJSON = await get("v1/users?likersOrLikees=likees");
 
                 const getLikeesStr = getLikeesJSON.map((user: IUser) => JSON.stringify(user));
                 const usersNotYetLiked = getAllJSON.filter((user: IUser) => !getLikeesStr.includes(JSON.stringify(user)));

@@ -13,11 +13,11 @@ interface IProps {
 
 export const SwipeCard = ({ user, swipeCount, setSwipeCount }: IProps): JSX.Element => {
 
-    const { timderFetch } = useTimderApi();
+    const { post } = useTimderApi();
     const { userContext, setUserContext } = useContext<IUserContext>(UserContext);
 
     const likeUser = async (userID: number) => {
-        await timderFetch("POST", `v1/users/${userContext.jwtID}/like/${userID}`)
+        await post(`v1/users/${userContext.jwtID}/like/${userID}`)
         .then(res => {
             setUserContext({
                 ...userContext,

@@ -7,12 +7,12 @@ import { IFormData } from '../../interfaces/Interfaces';
 
 export const Register = (): JSX.Element => {
 
-    const { timderFetch } = useTimderApi();
+    const { post } = useTimderApi();
     const { register, handleSubmit, errors } = useForm();
     const [regSuccess, setRegSuccess] = useState<boolean|null>(null);
 
     const onSubmit = async (formdata: IFormData) => {
-        await timderFetch("POST", "v1/auth/register", formdata)
+        await post("v1/auth/register", formdata)
         .then(res => {
             console.log(res);
             setRegSuccess(true);

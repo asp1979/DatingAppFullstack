@@ -2,14 +2,19 @@ import { useContext } from 'react';
 import { UserContext } from '../UserContext';
 import { AnyJSON, HTTPVerb, IUserContext } from '../interfaces/Interfaces';
 
+type TimderRequest = (path: string, postJSON?: AnyJSON) => Promise<any>
+
 interface ITimderFetch {
-    timderFetch: (verb: HTTPVerb, path: string, postJSON?: AnyJSON) => Promise<any>
+    get: TimderRequest,
+    post: TimderRequest,
+    put: TimderRequest,
+    delete: TimderRequest,
 }
 
 export const useTimderApi = (): ITimderFetch => {
     const { userContext } = useContext<IUserContext>(UserContext);
 
-    const timderFetch: ITimderFetch["timderFetch"] = async (verb, path, postJSON) => {
+    const timderFetch = async (path: string, verb: HTTPVerb, postJSON?: AnyJSON) => {
         return fetch(userContext.baseURL + path, {
             method: verb,
             headers: {
@@ -31,5 +36,12 @@ export const useTimderApi = (): ITimderFetch => {
         })
     }
 
-    return { timderFetch }
+    const methods: ITimderFetch = {
+        get: (path, postJSON) => timderFetch(path, "GET", postJSON),
+        post: (path, postJSON) => timderFetch(path, "POST", postJSON),
+        put: (path, postJSON) => timderFetch(path, "PUT", postJSON),
+        delete: (path, postJSON) => timderFetch(path, "DELETE", postJSON)
+    }
+
+    return methods;
 }
